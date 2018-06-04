@@ -1,0 +1,12 @@
+<div><h1>成员列表</h1></div>
+<div>
+  <span><input type="text" [(ngModel)]="m2add.name"></span>
+  <span><button (click)="addMember()">添加</button></span>
+</div>
+<div>
+  <ul>
+    <li *ngFor="let m of ms">
+      {{m.name}}
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,53 @@
+body, html{
+    height:100%;
+}
+
+.bg-theme{
+    background-color: #76b852;
+}
+
+body {
+    background: #fafafa; /* fallback for old browsers */
+    background: -webkit-linear-gradient(right, #fafafa, #fafafa);
+    background: -moz-linear-gradient(right, #fafafa, #fafafa);
+    background: -o-linear-gradient(right, #fafafa, #fafafa);
+    background: linear-gradient(to left, #fafafa,#fafafa);
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;      
+}
+
+.page {
+    padding: 100px 0;
+    position: relative;
+    z-index: 99;
+}
+
+.page-alternate {
+
+    padding: 100px 0;
+    position: relative;
+    z-index: 99;
+    
+}
+
+
+.title-page {
+    width: 90%;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+.title-page .title {
+    color: #4CAF50;
+    font-size: 48px;
+    margin: 0 auto;
+    font-family: Arial;
+}
+.title-page .title-description {
+    color: rgb(133, 133, 133);
+    font-size: 20px;
+    font-weight: 100;
+    margin: 0 auto;
+    font-family: Arial;
+}
+

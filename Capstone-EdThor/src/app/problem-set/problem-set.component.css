@@ -1,0 +1,265 @@
+body, html{
+    height:100%;
+}
+
+.bg-theme{
+    background-color: #76b852;
+}
+
+body {
+    background: #fafafa; /* fallback for old browsers */
+    background: -webkit-linear-gradient(right, #fafafa, #fafafa);
+    background: -moz-linear-gradient(right, #fafafa, #fafafa);
+    background: -o-linear-gradient(right, #fafafa, #fafafa);
+    background: linear-gradient(to left, #fafafa,#fafafa);
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;      
+}
+
+.page {
+    padding: 100px 0;
+    position: relative;
+    z-index: 99;
+}
+
+.page-alternate {
+
+    padding: 100px 0;
+    position: relative;
+    z-index: 99;
+    
+}
+
+
+.title-page {
+    width: 90%;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+.title-page .title {
+    color: #4CAF50;
+    font-size: 48px;
+    margin: 0 auto;
+    font-family: Arial;
+}
+.title-page .title-description {
+    color: rgb(133, 133, 133);
+    font-size: 20px;
+    font-weight: 100;
+    margin: 0 auto;
+    font-family: Arial;
+}
+
+.title{
+    color: #9b9b9b;
+    font-size: 18px;
+    margin: 0 auto;
+    font-family: 'Noto Sans CJK SC Regular';
+    src: url('../../assets/font/NotoSansCJKsc-Regular.otf');
+}
+
+.title-alternate{
+    color: #81c784;
+    font-size: 18px;
+    margin: 0 auto;
+    font-family: 'Noto Sans CJK SC Regular';
+    src: url('../../assets/font/NotoSansCJKsc-Regular.otf');
+}
+
+.question{
+    color: #A4A4A4;
+    font-size: 16px;
+    margin: 0 auto;
+    font-family: 'Noto Sans CJK SC Regular';
+    src: url('../../assets/font/NotoSansCJKsc-Regular.otf');
+}
+
+.problem-canvas {
+    height:700px;
+    width:100%;
+    padding: 40px 32px 32px 40px;
+    position: relative;
+    z-index: 99;
+    background-color: #ffffff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+}
+
+.problem-indicators {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  
+  .problem-indicators li {
+    display: inline-block;
+    margin-left:8px;
+    margin-right:8px;
+    margin-top:15px;
+    list-style: none;
+    width:20px;
+    height:20px;
+    background-color:#dbd5d5;
+    border-radius: 50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+  }
+
+  .btn-input-answer{
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 10px 30px 10px 30px;
+    font-size: 16px;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+    font-family: 'Noto Sans CJK SC Regular';
+    src: url('../../assets/font/NotoSansCJKsc-Regular.otf');
+  }
+  
+  .btn-theme {
+    color: rgb(255, 255, 255);
+    background-color: #76b852;
+    border-color: #76b852;
+  }
+  
+  .btn-theme:hover {
+    color: #fff;
+    background-color: #275c0a;
+    border-color: #275c0a;
+  }
+  
+  .btn-theme:focus, .btn-theme.focus {
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+  }
+  
+  .btn-theme.disabled, .btn-theme:disabled {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+  
+  .btn-theme:not(:disabled):not(.disabled):active, .btn-theme:not(:disabled):not(.disabled).active,
+  .show > .btn-theme.dropdown-toggle {
+    color: #fff;
+    background-color: #1e7e34;
+    border-color: #1c7430;
+  }
+  
+  .btn-theme:not(:disabled):not(.disabled):active:focus, .btn-theme:not(:disabled):not(.disabled).active:focus,
+  .show > .btn-theme.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+  }
+  
+  .problem-indicators .active {
+    border:2px solid #76b852;
+  }
+
+  .input-answer {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+  }
+
+  .problem-instruction{
+    height:50px;
+    line-height: 50px;
+    display: inline-block;
+    padding-left:20px;
+    padding-right:20px;
+    background-color: #76b852;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    margin: 0 auto;
+    font-family: 'Noto Sans CJK SC Regular';
+    src: url('../../assets/font/NotoSansCJKsc-Regular.otf');
+  }
+
+  .arrow{
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-left: 40px solid #76b852;
+    border-bottom: 25px solid transparent;
+  }
+
+  .problem-questions{
+    list-style-type: none;
+    padding:0;
+    margin:0;
+  }
+
+  .problem-questions li{
+    padding:0;
+    margin:0;
+  }
+
+  .symbol-input{
+    height:240px;
+    width:200px;
+    padding: 0;
+    position: absolute;
+    top: 150px;
+    right: 150px;
+    background-color: #ffffff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+  }
+
+
+  .input-group-text-customize {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #ffffff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+  }
+
+  .input-group-text-customize:hover{
+    background-color: #979797;
+  }
+
+  .symbol-input-title{
+    height:40px;
+    line-height:40px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    margin: 0 auto;
+    font-family: 'Noto Sans CJK SC Regular';
+    src: url('../../assets/font/NotoSansCJKsc-Regular.otf');
+    background-color:#76b852;
+    text-align:center;
+  }
+
+  .btn-symbol {
+    width: 50px !important;
+    height: 50px !important;
+    line-height:50px;
+    font-size: 20px;
+    background-color: #ffffff;
+    border: 1px solid #bbbbbb;
+    text-align:center;
+  }
+
+  .btn-symbol:hover {
+    background-color: #a3a3a3;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+  }
