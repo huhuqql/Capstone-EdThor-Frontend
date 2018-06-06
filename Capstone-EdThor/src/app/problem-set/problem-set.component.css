@@ -68,7 +68,7 @@ body {
 }
 
 .question{
-    color: #A4A4A4;
+    color: rgb(100, 100, 100);
     font-size: 16px;
     margin: 0 auto;
     font-family: 'Noto Sans CJK SC Regular';
@@ -235,6 +235,7 @@ body {
 
   .input-group-text-customize:hover{
     background-color: #979797;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
   }
 
   .symbol-input-title{
@@ -263,3 +264,57 @@ body {
     background-color: #a3a3a3;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
   }
+
+  .math-formula{
+    display:none;
+    height:600px;
+    width:900px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index:100;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+  }
+
+.arrow-last {
+  position: absolute;
+  top: 50%;
+  left: 2%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  border-top: 2px solid #22490d;
+  border-right: 2px solid #22490d;
+  transform: rotate(-135deg);
+}
+
+.arrow-last:hover {
+  border-top: 2px solid #76b852;
+  border-right: 2px solid #76b852;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+}
+
+
+.arrow-next {
+  position: absolute;
+  top: 50%;
+  left: 95%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  border-top: 2px solid #22490d;
+  border-right: 2px solid #22490d;
+  transform: rotate(45deg);
+}
+
+.arrow-next:hover {
+  border-top: 2px solid #76b852;
+  border-right: 2px solid #76b852;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+}
+
+.math-formula-img{
+  height:100%;
+  width:100%;
+}

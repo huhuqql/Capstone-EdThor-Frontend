@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProblemSetComponent } from './problem-set/problem-set.component';
 import { TestComponent } from './test/test.component';
+import { MathFormulaComponent } from './math-formula/math-formula.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TestComponent } from './test/test.component';
     LoginComponent,
     DashboardComponent,
     ProblemSetComponent,
-    TestComponent
+    TestComponent,
+    MathFormulaComponent
   ],
   imports: [
     BrowserModule,
