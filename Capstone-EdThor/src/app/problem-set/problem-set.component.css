@@ -178,7 +178,7 @@ body {
     padding-right:20px;
     background-color: #76b852;
     color: rgb(255, 255, 255);
-    font-size: 16px;
+    font-size: 14px;
     margin: 0 auto;
     font-family: 'Noto Sans CJK SC Regular';
     src: url('../../assets/font/NotoSansCJKsc-Regular.otf');
@@ -317,4 +317,78 @@ body {
 .math-formula-img{
   height:100%;
   width:100%;
+}
+
+.multiple-choice-options{
+  display:none;
+  padding:0;
+  margin-top:20px;
+}
+
+.check-answer-options{
+  display:none;
+  padding:0;
+  margin-top:20px;
+}
+
+.check-step-answer-options{
+  display:none;
+  list-style-type: none;
+  padding:0;
+  margin:0;
+}
+
+.check-step-answer-options li{
+  padding:0;
+  margin:0;
+}
+
+
+.multiple-choice-box{
+  min-height: 40px;
+  text-align: center;
+}
+
+.box{
+  width: 200px;
+  min-height: 40px;
+  text-align: center;
+}
+
+input{
+  display: none;
+}
+
+label{
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  position: relative;
+  line-height: 50px;
+  color: #999;
+}
+label:active{
+  background: #EEEEEE;
+}
+label:after{
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #335a1d;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  border-radius: 20px;
+}
+
+input:checked+label:after{
+  background-color: #76b852;
+}
+
+.line{
+  width: 100%;
+  height: 1px;
+  background: #ccc;
+  opacity: 0.2;
 }

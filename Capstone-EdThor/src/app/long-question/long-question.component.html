@@ -1,0 +1,164 @@
+<div style="margin:0;padding:0;position:absolute;top:88%;width:95%" class="row justify-content-end">
+  <div id="next-step-button" style="display:none" class="col-auto">
+    <button type="button" class="btn-input-answer btn-theme" (click)="showAnswer()">下一小题</button>
+  </div>
+  <div id="check-solution-button" style="display:none" class="col-auto">
+    <button type="button" class="btn-input-answer btn-theme" (click)="showAnswer()">查看解析</button>
+  </div>
+  <div id="check-answer-button" style="display:none" class="col-auto">
+    <button type="button" class="btn-input-answer btn-theme" (click)="showAnswer()">查看答案</button>
+  </div>
+</div>
+
+
+
+<div class="question">
+  <p id="problem-text"></p>
+  <ul class="problem-questions">
+    <li *ngFor="let question of this.cur_problem.problem_questions; let i=index">
+      <p id="problem-question-{{i}}"></p>
+    </li>
+  </ul>
+  <div style="margin:0;padding:0;margin-top:20px;" class="row ">
+    <div style="margin:0;padding:0" class="col-auto">
+      <p id="problem-instruction" class="problem-instruction">{{this.cur_problem.problem_answer_instruction[this.cur_step]}}</p>
+    </div>
+    <div style="margin:0;padding:0" class="col-auto">
+      <div class="arrow"></div>
+    </div>
+  </div>
+
+
+  <ul id="target" class="problem-questions">
+    <li style="margin-top:16px" *ngFor="let questions_target of this.cur_problem.problem_questions_target; let i=index">
+      <p id="problem-questions-target-{{i}}"></p>
+      <p>
+        <span class="mq-root" id="problem-questions-target-input-{{i}}"></span>
+      </p>
+      <div class="input-group col-7">
+        <div class="input-group-append">
+          <span class="input-group-text-customize">
+            <img ref="javascript:void(0);" (click)="showSymbolInput(i)" style="height:35px;width:35px" src="../../assets/img/symbol.png">
+          </span>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <div class="check-answer-options" id="check-answer-options">
+    <div class="box">
+      <input type="radio" id="check-answer-options-a" name="check-answer" />
+      <label for="check-answer-options-a">
+        <p>我做对了</p>
+      </label>
+    </div>
+    <div class="box">
+      <input type="radio" id="check-answer-options-b" name="check-answer" />
+      <label for="check-answer-options-b">
+        <p>我做错了</p>
+      </label>
+    </div>
+  </div>
+
+
+  <ul id="check-step-answer-options" class="check-step-answer-options">
+
+  </ul>
+
+</div>
+
+<div style="display:none" class="symbol-input" id="symbol-input">
+  <div class="row justify-content-md-center">
+    <div class="col">
+      <p class="symbol-input-title">符号输入器</p>
+    </div>
+  </div>
+  <div class="row">
+    <div style="margin:0;padding-right:0;" class="col-auto">
+      <div href="#" class="btn-symbol">
+        sign
+      </div>
+    </div>
+    <div style="margin:0;padding:0;" class="col-auto">
+      <div href="#" class="btn-symbol">
+        sign
+      </div>
+    </div>
+    <div style="margin:0;padding:0;" class="col-auto">
+      <div href="#" class="btn-symbol">
+        sign
+      </div>
+    </div>
+    <div style="margin:0;padding:0;" class="col-auto">
+      <div href="#" class="btn-symbol">
+        sign
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div style="margin:0;padding-right:0;" class="col-auto">
+      <div href="#" class="btn-symbol">
+        sign
+      </div>
+    </div>
+    <div style="margin:0;padding:0;" class="col-auto">
+      <div href="#" class="btn-symbol">
+        sign
+      </div>
+    </div>
+    <div style="margin:0;padding:0;" class="col-auto">
+      <div href="#" class="btn-symbol">
+        sign
+      </div>
+    </div>
+    <div style="margin:0;padding:0;" class="col-auto">
+      <div href="#" class="btn-symbol">
+        sign
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div style="margin:0;padding-right:0;" class="col-auto">
+      <div href="javascript:void(0);" (click)="addSymbol('(');" class="btn-symbol">
+        (
+      </div>
+    </div>
+    <div style="margin:0;padding:0;" class="col-auto">
+      <div href="javascript:void(0);" (click)="addSymbol(')');" class="btn-symbol">
+        )
+      </div>
+    </div>
+    <div style="margin:0;padding:0;" class="col-auto">
+      <div href="javascript:void(0);" (click)="addSymbol('+');" class="btn-symbol">
+        +
+      </div>
+    </div>
+    <div style="margin:0;padding:0;" class="col-auto">
+      <div href="javascript:void(0);" (click)="addSymbol('-');" class="btn-symbol">
+        -
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div style="margin:0;padding-right:0;" class="col-auto">
+      <div href="javascript:void(0);" (click)="addSymbol('/');" class="btn-symbol">
+        /
+      </div>
+    </div>
+    <div style="margin:0;padding:0;" class="col-auto">
+      <div href="javascript:void(0);" (click)="addSymbol('sin');" class="btn-symbol">
+        sin
+      </div>
+    </div>
+    <div style="margin:0;padding:0;" class="col-auto">
+      <div href="javascript:void(0);" (click)="addSymbol('cos');" class="btn-symbol">
+        cos
+      </div>
+    </div>
+    <div style="margin:0;padding:0;" class="col-auto">
+      <div href="javascript:void(0);" (click)="addSymbol('tan');" class="btn-symbol">
+        tan
+      </div>
+    </div>
+  </div>
+</div>

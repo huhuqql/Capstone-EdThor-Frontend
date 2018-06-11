@@ -9,21 +9,22 @@
 
   <title>Home</title>
 
+  <script src="../../assets/js/bootstrap.bundle.js"></script>
+  <link href="../../assets/css/mathquill.css" rel="stylesheet">
   <!-- Bootstrap core CSS -->
   <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
-  <script src="../../assets/js/bootstrap.bundle.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-alpha/dist/katex.min.css" integrity="sha384-BTL0nVi8DnMrNdMQZG1Ww6yasK9ZGnUxL1ZWukXQ7fygA1py52yPp9W4wrR00VML"
     crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-alpha/dist/katex.min.js" integrity="sha384-y6SGsNt7yZECc4Pf86XmQhC4hG2wxL6Upkt9N1efhFxfh6wlxBH0mJiTE8XYclC1"
     crossorigin="anonymous"></script>
   <script src="../../assets/js/mathquill.js"></script>
-  <script type="text/javascript" src="./problem-set.js"></script>
 
 
 
 </head>
 
 <body>
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-theme">
     <div class="col-2">
 
@@ -64,7 +65,6 @@
       </div>
 
       <div class="col-6">
-        <!-- <img style="height:24px;width:24px;" src="../../assets/img/search.png"> -->
         <div class="title-alternate">
           <button style="margin-left:5px;float:right" type="button" class="btn btn-outline-success" (click)="showMathFormula()">公式查询器</button>
         </div>
@@ -81,147 +81,16 @@
       <div class="col-8">
         <div style="margin:0;padding:0" class="row">
           <div class="problem-canvas">
-            <div class="question">
-              <p id="problem-text"></p>
-              <ul class="problem-questions">
-                <li *ngFor="let question of this.cur_problem.problem_questions; let i=index">
-                  <p id="problem-question-{{i}}"></p>
-                </li>
-              </ul>
-              <div style="margin:0;padding:0;margin-top:20px;" class="row ">
-                <div style="margin:0;padding:0" class="col-auto">
-                  <p class="problem-instruction">{{this.cur_problem.problem_instruction}}</p>
-                </div>
-                <div style="margin:0;padding:0" class="col-auto">
-                  <div class="arrow"></div>
-                </div>
-              </div>
 
-
-              <ul class="problem-questions">
-                <li style="margin-top:16px" *ngFor="let questions_target of this.cur_problem.problem_questions_target; let i=index">
-                  <p id="problem-questions-target-{{i}}"></p>
-                  <div class="input-group col-7">
-                    <input type="text" class="form-control">
-                    <div class="input-group-append">
-                      <span class="input-group-text-customize">
-                        <img ref="javascript:void(0);" (click)="showSymbolInput()" style="height:35px;width:35px" src="../../assets/img/symbol.png">
-                      </span>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            <div style="display:none" class="symbol-input" id="symbol-input">
-              <div class="row justify-content-md-center">
-                <div class="col">
-                  <p class="symbol-input-title">符号输入器</p>
-                </div>
-              </div>
-              <div class="row">
-                <div style="margin:0;padding-right:0;" class="col-auto">
-                  <div href="#" class="btn-symbol">
-                    sign
-                  </div>
-                </div>
-                <div style="margin:0;padding:0;" class="col-auto">
-                  <div href="#" class="btn-symbol">
-                    sign
-                  </div>
-                </div>
-                <div style="margin:0;padding:0;" class="col-auto">
-                  <div href="#" class="btn-symbol">
-                    sign
-                  </div>
-                </div>
-                <div style="margin:0;padding:0;" class="col-auto">
-                  <div href="#" class="btn-symbol">
-                    sign
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div style="margin:0;padding-right:0;" class="col-auto">
-                  <div href="#" class="btn-symbol">
-                    sign
-                  </div>
-                </div>
-                <div style="margin:0;padding:0;" class="col-auto">
-                  <div href="#" class="btn-symbol">
-                    sign
-                  </div>
-                </div>
-                <div style="margin:0;padding:0;" class="col-auto">
-                  <div href="#" class="btn-symbol">
-                    sign
-                  </div>
-                </div>
-                <div style="margin:0;padding:0;" class="col-auto">
-                  <div href="#" class="btn-symbol">
-                    sign
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div style="margin:0;padding-right:0;" class="col-auto">
-                  <div href="javascript:void(0);" onclick="addSymbol('(');" class="btn-symbol">
-                    (
-                  </div>
-                </div>
-                <div style="margin:0;padding:0;" class="col-auto">
-                  <div href="javascript:void(0);" onclick="addSymbol(')');" class="btn-symbol">
-                    )
-                  </div>
-                </div>
-                <div style="margin:0;padding:0;" class="col-auto">
-                  <div href="javascript:void(0);" onclick="addSymbol('+');" class="btn-symbol">
-                    +
-                  </div>
-                </div>
-                <div style="margin:0;padding:0;" class="col-auto">
-                  <div href="javascript:void(0);" onclick="addSymbol('-');" class="btn-symbol">
-                    -
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div style="margin:0;padding-right:0;" class="col-auto">
-                  <div href="javascript:void(0);" onclick="addSymbol('/');" class="btn-symbol">
-                    /
-                  </div>
-                </div>
-                <div style="margin:0;padding:0;" class="col-auto">
-                  <div href="javascript:void(0);" onclick="addSymbol('/sin');" class="btn-symbol">
-                    sin
-                  </div>
-                </div>
-                <div style="margin:0;padding:0;" class="col-auto">
-                  <div href="javascript:void(0);" onclick="addSymbol('/cos');" class="btn-symbol">
-                    cos
-                  </div>
-                </div>
-                <div style="margin:0;padding:0;" class="col-auto">
-                  <div href="javascript:void(0);" onclick="addSymbol('/tan');" class="btn-symbol">
-                    tan
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <div id="math-formula" class="math-formula">
               <div class="arrow-last" (click)="lastMathFormula()"></div>
               <div class="arrow-next" (click)="nextMathFormula()"></div>
               <img *ngFor="let formula of this.math_formula;let i=index" src="{{formula}}" id="math-formula-img-{{i}}" style="width:100%;height:100%;display:none">
-              <!-- <img id="math-formula-img-0" style="width:100%;height:100%" src="../../assets/img/test.jpg">
-              <img id="math-formula-img-1" style="display:none;width:100%;height:100%" src="../../assets/img/test1.jpg"> -->
-            </div>
-
-            <div class="input-answer">
-              <button type="button" class="btn-input-answer btn-theme">查看答案</button>
             </div>
 
 
+            <app-multiple-choice [cur_problem]="this.cur_problem" [cur_step]="this.cur_step" (nextStep)="nextStep()"></app-multiple-choice>
 
 
 

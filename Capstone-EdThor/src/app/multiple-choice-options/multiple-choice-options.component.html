@@ -1,0 +1,17 @@
+<div style="margin:0;padding:0;margin-top:20px;" class="row">
+  <div style="margin:0;padding:0" class="col-auto">
+    <p id="problem-instruction" class="problem-instruction"></p>
+  </div>
+  <div style="margin:0;padding:0" class="col-auto">
+    <div class="arrow"></div>
+  </div>
+</div>
+
+<div class="multiple-choice-options" id="multiple-choice-options">
+  <div class="multiple-choice-box" *ngFor="let question of this.cur_problem.problem_questions; let i=index">
+    <input type="radio" id="multiple-choice-options-{{i}}" name="check-answer" />
+    <label for="multiple-choice-options-{{i}}">
+      <p style="margin-left:40px;" id="problem-question-{{i}}"></p>
+    </label>
+  </div>
+</div>

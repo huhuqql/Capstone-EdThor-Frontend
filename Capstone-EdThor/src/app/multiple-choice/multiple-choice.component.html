@@ -1,0 +1,21 @@
+<div class="question" [@state]="this.cur_problem.state">
+  <p id="problem-text"></p>
+
+  <div [ngSwitch]="this.cur_step">
+    <app-multiple-choice-options *ngSwitchCase=0 [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"></app-multiple-choice-options>
+    <app-multiple-choice-answer *ngSwitchCase=1 [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"></app-multiple-choice-answer>
+  </div>
+
+
+  <div style="margin:0;padding:0;position:absolute;top:88%;width:95%" class="row justify-content-end">
+    <!-- <div id="next-step-button" style="display:none" class="col-auto">
+      <button type="button" class="btn-input-answer btn-theme" (click)="showAnswer()">下一题</button>
+    </div>
+    <div id="check-solution-button" style="display:none" class="col-auto">
+      <button type="button" class="btn-input-answer btn-theme" (click)="showAnswer()">查看解析</button>
+    </div> -->
+    <div id="check-answer-button" class="col-auto">
+      <button type="button" class="btn-input-answer btn-theme" (click)="enterNextStep()">提交答案</button>
+    </div>
+  </div>
+</div>
