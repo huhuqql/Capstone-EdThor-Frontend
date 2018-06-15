@@ -1,0 +1,22 @@
+<div class="question" [@state]="this.cur_problem.state">
+  <p id="problem-text"></p>
+
+  <div [ngSwitch]="this.cur_step">
+    <app-fill-in-blank-input *ngSwitchCase=0 [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"></app-fill-in-blank-input>
+    <app-fill-in-blank-check *ngSwitchCase=1 [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"></app-fill-in-blank-check>
+    <app-fill-in-blank-solution-steps *ngSwitchCase=2 [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"></app-fill-in-blank-solution-steps>
+  </div>
+
+
+  <div style="margin:0;padding:0;position:absolute;top:88%;width:95%" class="row justify-content-end">
+    <div class="col-auto">
+      <button id="next-step-button" type="button" class="btn-input-answer btn-theme" (click)="enterNextProblem()">下一题</button>
+    </div>
+    <div class="col-auto">
+      <button id="check-solution-button" type="button" class="btn-input-answer btn-theme" (click)="enterNextStep()">查看解析</button>
+    </div>
+    <div class="col-auto">
+      <button id="check-answer-button" type="button" class="btn-input-answer btn-theme" (click)="enterNextStep()">提交答案</button>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import {
   trigger,
   state,
@@ -16,4 +16,5 @@ export class MultipleChoiceOptionsComponent {
 
   @Input() cur_problem: Problem;
   @Input() cur_step: number;
+
 }

@@ -40,9 +40,15 @@ export class MultipleChoiceComponent {
   @Input() cur_problem: Problem;
   @Input() cur_step: number;
   @Output() nextStep = new EventEmitter();
+  @Output() nextProblem = new EventEmitter();
 
   enterNextStep(){
+    console.log("next");
     this.nextStep.emit();
+  }
+
+  enterNextProblem(){
+    this.nextProblem.emit();
   }
 
 }

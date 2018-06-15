@@ -1,0 +1,17 @@
+<div style="margin:0;padding:0;margin-top:20px;" class="row">
+  <div style="margin:0;padding:0" class="col-auto">
+    <p class="problem-instruction">请选择你错误的得分点</p>
+  </div>
+  <div style="margin:0;padding:0" class="col-auto">
+    <div class="arrow"></div>
+  </div>
+</div>
+
+<div class="check-answer-options" id="check-answer-options">
+  <div class="box" *ngFor="let solution of this.cur_problem.problem_long_question_solution[this.cur_sub_prob]; index as i">
+    <input type="radio" id="check-answer-options-{{i}}" name="check-answer" />
+    <label for="check-answer-options-{{i}}">
+      <p id="long-question-solution-check-{{i}}" style="margin-left:50px;"></p>
+    </label>
+  </div>
+</div>

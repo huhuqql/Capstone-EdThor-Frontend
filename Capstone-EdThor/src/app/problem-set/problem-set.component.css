@@ -144,8 +144,8 @@ body {
   
   .btn-theme.disabled, .btn-theme:disabled {
     color: #fff;
-    background-color: #28a745;
-    border-color: #28a745;
+    background-color: #868686;
+    border-color: #868686;
   }
   
   .btn-theme:not(:disabled):not(.disabled):active, .btn-theme:not(:disabled):not(.disabled).active,
@@ -320,19 +320,16 @@ body {
 }
 
 .multiple-choice-options{
-  display:none;
   padding:0;
   margin-top:20px;
 }
 
 .check-answer-options{
-  display:none;
   padding:0;
   margin-top:20px;
 }
 
 .check-step-answer-options{
-  display:none;
   list-style-type: none;
   padding:0;
   margin:0;
@@ -346,13 +343,13 @@ body {
 
 .multiple-choice-box{
   min-height: 40px;
-  text-align: center;
+  text-align: left;
 }
 
 .box{
   width: 200px;
   min-height: 40px;
-  text-align: center;
+  text-align: left;
 }
 
 input{
@@ -368,14 +365,14 @@ label{
   color: #999;
 }
 label:active{
-  background: #EEEEEE;
+  /* background: rgb(85, 78, 78); */
 }
 label:after{
   content: "";
   display: inline-block;
   width: 20px;
   height: 20px;
-  border: 1px solid #335a1d;
+  border: 1px solid #2b5a0f;
   position: absolute;
   top: 15px;
   left: 15px;
@@ -384,6 +381,11 @@ label:after{
 
 input:checked+label:after{
   background-color: #76b852;
+}
+
+input:disabled+label:after{
+  background-color: #c23737;
+  border: 1px solid #720d0d;
 }
 
 .line{
