@@ -7,27 +7,33 @@
   </div>
 </div>
 
-<div class="multiple-choice-options" id="multiple-choice-options">
-  <div class="multiple-choice-box">
+
+<!-- <div class="multiple-choice-box">
     <input type="radio" id="multiple-choice-options-answer" name="check-answer-0" checked/>
     <label for="">
       <p style="margin-left:50px;" id="problem-answer"></p>
     </label>
-  </div>
+  </div> -->
 
-  <div style="margin:0;padding:0;margin-top:20px;" class="row">
-    <div style="margin:0;padding:0" class="col-auto">
-      <p class="problem-instruction">你的选择：</p>
-    </div>
-    <div style="margin:0;padding:0" class="col-auto">
-      <div class="arrow"></div>
-    </div>
+<mat-radio-button class="check-radio-button" value="1" name="answer" checked>
+  <div style="height:50px;margin-left:15px">
+    <p class="check-radio-button-p" id="problem-answer"></p>
   </div>
+</mat-radio-button>
 
-  <div class="multiple-choice-box">
-    <input type="radio" id="multiple-choice-options-input" name="check-answer-1" />
-    <label for="">
-      <p style="margin-left:50px;" id="problem-answer-input"></p>
-    </label>
+
+<!-- <div style="margin:0;padding:0;margin-top:20px;" class="row">
+  <div style="margin:0;padding:0" class="col-auto">
+    <p class="problem-instruction">你的选择：</p>
+  </div>
+  <div style="margin:0;padding:0" class="col-auto">
+    <div class="arrow"></div>
   </div>
 </div>
+
+
+<mat-radio-button [disabled]="isDisabled" class="check-radio-button" value="2" id="multiple-choice-options-input" name="yourchoice">
+  <div style="height:50px;margin-left:15px">
+    <p class="check-radio-button-p" id="problem-answer-input"></p>
+  </div>
+</mat-radio-button> -->

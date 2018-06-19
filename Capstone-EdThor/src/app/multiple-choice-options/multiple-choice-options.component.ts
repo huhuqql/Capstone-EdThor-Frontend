@@ -1,4 +1,4 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input, Output, EventEmitter  } from '@angular/core';
 import {
   trigger,
   state,
@@ -14,7 +14,20 @@ import { Problem } from '../service/model/problem';
 })
 export class MultipleChoiceOptionsComponent {
 
+  choice: number;
+
   @Input() cur_problem: Problem;
   @Input() cur_step: number;
+  @Output() saveSubmitOptions = new EventEmitter<number>();
+
+  readySubmitOptions(){
+    const that = this;
+    setTimeout(function () {
+      console.log("ready to :" + that.choice);
+      if(that.choice != null){
+        that.saveSubmitOptions.emit(that.choice);
+      }
+    }, '100');
+  }
 
 }

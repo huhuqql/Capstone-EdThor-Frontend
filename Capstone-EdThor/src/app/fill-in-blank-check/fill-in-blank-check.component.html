@@ -7,17 +7,21 @@
   </div>
 </div>
 
-<div class="check-answer-options" id="check-answer-options">
-  <div class="box">
-    <input type="radio" id="check-answer-options-a" name="check-answer" />
-    <label for="check-answer-options-a">
-      <p style="margin-left:50px;">我做对了</p>
-    </label>
-  </div>
-  <div class="box">
-    <input type="radio" id="check-answer-options-b" name="check-answer" />
-    <label for="check-answer-options-b">
-      <p style="margin-left:50px;">我做错了</p>
-    </label>
+<div style="margin:0;padding:0;margin-top:20px;" class="row">
+  <div class="problem-answer">
+    <p id="problem-fill-in-blank-answer"></p>
   </div>
 </div>
+
+<mat-radio-group class="check-radio-group" name="my_options" [required]="isRequired" [(ngModel)]="choice" (click)="readySubmitOptions()">
+  <mat-radio-button class="check-radio-button" value="yes">
+    <div style="height:50px;margin-left:15px">
+      <p class="check-radio-button-p">我做对了</p>
+    </div>
+  </mat-radio-button>
+  <mat-radio-button class="check-radio-button" value="no">
+    <div style="height:50px;margin-left:15px">
+      <p class="check-radio-button-p">我做错了</p>
+    </div>
+  </mat-radio-button>
+</mat-radio-group>

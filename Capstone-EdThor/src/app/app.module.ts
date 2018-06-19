@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { KatexModule } from 'ng-katex';
 
@@ -28,6 +30,7 @@ import { FillInBlankSolutionStepsComponent } from './fill-in-blank-solution-step
 import { LongQuestionInputComponent } from './long-question-input/long-question-input.component';
 import { LongQuestionCheckComponent } from './long-question-check/long-question-check.component';
 import { LongQuestionStepCheckComponent } from './long-question-step-check/long-question-step-check.component';
+import { SummaryComponent } from './summary/summary.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,8 @@ import { LongQuestionStepCheckComponent } from './long-question-step-check/long-
     FillInBlankSolutionStepsComponent,
     LongQuestionInputComponent,
     LongQuestionCheckComponent,
-    LongQuestionStepCheckComponent
+    LongQuestionStepCheckComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,9 @@ import { LongQuestionStepCheckComponent } from './long-question-step-check/long-
     HttpClientModule,
     FormsModule,
     KatexModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
   providers: [
     MemberService

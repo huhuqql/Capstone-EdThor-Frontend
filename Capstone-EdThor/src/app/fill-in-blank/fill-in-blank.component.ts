@@ -18,18 +18,11 @@ import { Problem } from '../service/model/problem';
       transition('inactive => active', animate('100ms ease-in')),
       transition('active => inactive', animate('100ms ease-out')),
       transition('void => inactive', [
-        style({ transform: 'translateX(-100%) scale(1)' }),
-        animate(100)
+        style({ opacity: 0 }),
+        animate('300ms ease-in-out', style({ opacity: 1 }))
       ]),
       transition('inactive => void', [
-        animate(100, style({ transform: 'translateX(100%) scale(1)' }))
-      ]),
-      transition('void => active', [
-        style({ transform: 'translateX(0) scale(0)' }),
-        animate(200)
-      ]),
-      transition('active => void', [
-        animate(200, style({ transform: 'translateX(0) scale(0)' }))
+        animate('300ms ease-in-out', style({ opacity: 0 }))
       ])
     ])
   ]
@@ -38,15 +31,38 @@ export class FillInBlankComponent {
 
   @Input() cur_problem: Problem;
   @Input() cur_step: number;
+  @Input() cur_problem_number: number;
   @Output() nextStep = new EventEmitter();
   @Output() nextProblem = new EventEmitter();
+  @Output() submitOptions = new EventEmitter<string>();
 
-  enterNextStep(){
+  my_option: string;
+
+  enterNextStep() {
     console.log("next");
-    this.nextStep.emit();
+    if (this.my_option != null && this.cur_step == 1) {
+      this.submitOptions.emit(this.my_option);
+      this.nextStep.emit();
+    }
+    else if (this.cur_step == 0) {
+      this.nextStep.emit();
+    }
+    this.my_option = null;
   }
 
-  enterNextProblem(){
-    this.nextProblem.emit();
+  enterNextProblem() {
+    if (this.my_option != null && this.cur_step == 1) {
+      this.submitOptions.emit(this.my_option);
+      this.nextProblem.emit();
+    }
+    else if (this.cur_step == 0 || this.cur_step == 2) {
+      this.nextProblem.emit();
+    }
+    this.my_option = null;
+  }
+
+  saveSubmitOptions(option) {
+    this.my_option = option;
+    console.log("now you select:" + this.my_option);
   }
 }

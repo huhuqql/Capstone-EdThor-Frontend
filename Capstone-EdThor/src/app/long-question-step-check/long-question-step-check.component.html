@@ -7,11 +7,38 @@
   </div>
 </div>
 
-<div class="check-answer-options" id="check-answer-options">
-  <div class="box" *ngFor="let solution of this.cur_problem.problem_long_question_solution[this.cur_sub_prob]; index as i">
-    <input type="radio" id="check-answer-options-{{i}}" name="check-answer" />
-    <label for="check-answer-options-{{i}}">
-      <p id="long-question-solution-check-{{i}}" style="margin-left:50px;"></p>
-    </label>
-  </div>
+
+
+<!-- <ul>
+  <li *ngFor="let solution of this.cur_problem.problem_long_question_solution[this.cur_sub_prob]; index as i">
+    <mat-checkbox class="check-radio-button" value="option-{{i}}">
+      <div style="min-height:50px;margin-left:15px;">
+        <div class="check-radio-button-p" id="long-question-solution-check-{{i}}"></div>
+      </div>
+    </mat-checkbox>
+  </li>
+
+</ul> -->
+<div *ngFor="let solution of this.cur_problem.problem_long_question_solution[this.cur_sub_prob]; index as i">
+  <mat-checkbox class="check-radio-button" value="option-{{i}}">
+    <div style="min-height:50px;margin-left:15px;">
+      <div class="check-radio-button-p" id="long-question-solution-check-{{i}}"></div>
+    </div>
+  </mat-checkbox>
 </div>
+
+<!-- <div class="row">
+  <mat-checkbox class="check-radio-button" value="option-0">
+    <div style="min-height:50px;margin-left:15px;">
+      <div class="check-radio-button-p" id="00000"> hello</div>
+    </div>
+  </mat-checkbox>
+</div>
+
+<div class="row">
+  <mat-checkbox class="check-radio-button" value="option-1">
+    <div style="min-height:50px;margin-left:15px;">
+      <div class="check-radio-button-p" id="1111"> hello1</div>
+    </div>
+  </mat-checkbox>
+</div> -->

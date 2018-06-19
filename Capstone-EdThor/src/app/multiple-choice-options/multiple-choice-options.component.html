@@ -7,33 +7,25 @@
   </div>
 </div>
 
-<div class="multiple-choice-options" id="multiple-choice-options">
-  <div class="multiple-choice-box">
-    <input type="radio" id="multiple-choice-options-0" name="check-answer" />
-    <label for="multiple-choice-options-0">
-      <p style="margin-left:50px;" id="problem-question-0"></p>
-    </label>
-  </div>
-
-  <div class="multiple-choice-box">
-    <input type="radio" id="multiple-choice-options-1" name="check-answer" />
-    <label for="multiple-choice-options-1">
-      <p style="margin-left:50px;" id="problem-question-1"></p>
-    </label>
-  </div>
-
-  <div class="multiple-choice-box">
-    <input type="radio" id="multiple-choice-options-2" name="check-answer" />
-    <label for="multiple-choice-options-2">
-      <p style="margin-left:50px;" id="problem-question-2"></p>
-    </label>
-  </div>
-
-  <div class="multiple-choice-box">
-    <input type="radio" id="multiple-choice-options-3" name="check-answer" />
-    <label for="multiple-choice-options-3">
-      <p style="margin-left:50px;" id="problem-question-3"></p>
-    </label>
-  </div>
-</div>
-
+<mat-radio-group class="check-radio-group" name="my_options" [required]="isRequired" [(ngModel)]="choice" (click)="readySubmitOptions()">
+  <mat-radio-button class="check-radio-button" value="1">
+    <div style="height:50px;margin-left:15px">
+      <p class="check-radio-button-p" id="problem-question-0"></p>
+    </div>
+  </mat-radio-button>
+  <mat-radio-button class="check-radio-button" value="2">
+    <div style="height:50px;margin-left:15px">
+      <p class="check-radio-button-p" id="problem-question-1"></p>
+    </div>
+  </mat-radio-button>
+  <mat-radio-button class="check-radio-button" value="3">
+    <div style="height:50px;margin-left:15px">
+      <p class="check-radio-button-p" id="problem-question-2"></p>
+    </div>
+  </mat-radio-button>
+  <mat-radio-button class="check-radio-button" value="4">
+    <div style="height:50px;margin-left:15px">
+      <p class="check-radio-button-p" id="problem-question-3"></p>
+    </div>
+  </mat-radio-button>
+</mat-radio-group>

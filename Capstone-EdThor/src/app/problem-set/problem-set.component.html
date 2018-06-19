@@ -68,10 +68,20 @@
         <div class="title-alternate">
           <button style="margin-left:5px;float:right" type="button" class="btn btn-outline-success" (click)="showMathFormula()">公式查询器</button>
         </div>
+        <div class="title-alternate">
+          <button style="margin-left:5px;float:right" type="button" class="btn btn-outline-success" (click)="fortest()">测试小按钮嘻嘻</button>
+        </div>
       </div>
     </div>
 
   </div>
+
+  <!-- <div class="sk-folding-cube">
+    <div class="sk-cube1 sk-cube"></div>
+    <div class="sk-cube2 sk-cube"></div>
+    <div class="sk-cube4 sk-cube"></div>
+    <div class="sk-cube3 sk-cube"></div>
+  </div> -->
 
   <div style="margin-top:8px;" class="container-fluid">
     <div class="row">
@@ -82,7 +92,6 @@
         <div style="margin:0;padding:0" class="row">
           <div class="problem-canvas">
 
-
             <div id="math-formula" class="math-formula">
               <div class="arrow-last" (click)="lastMathFormula()"></div>
               <div class="arrow-next" (click)="nextMathFormula()"></div>
@@ -90,24 +99,23 @@
             </div>
 
             <div [ngSwitch]="this.selected_type">
-              <app-long-question *ngSwitchCase=1 [cur_problem]="this.cur_problem" [cur_step]="this.cur_step" (nextStep)="nextStep()" (nextProblem)="nextProblem()" [cur_sub_prob]="this.cur_sub_prob"></app-long-question>
-              <app-fill-in-blank *ngSwitchCase=2 [cur_problem]="this.cur_problem" [cur_step]="this.cur_step" (nextStep)="nextStep()" (nextProblem)="nextProblem()"></app-fill-in-blank>
-              <app-multiple-choice *ngSwitchCase=3 [cur_problem]="this.cur_problem" [cur_step]="this.cur_step" (nextStep)="nextStep()" (nextProblem)="nextProblem()"></app-multiple-choice>
+              <app-long-question *ngSwitchCase=1 [cur_problem_number]="this.cur_problem_number" [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"
+                (nextStep)="nextStep()" (nextProblem)="nextProblem()" [cur_sub_prob]="this.cur_sub_prob" (submitOptions)="submitOptions($event)"></app-long-question>
+              <app-fill-in-blank *ngSwitchCase=2 [cur_problem_number]="this.cur_problem_number" [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"
+                (nextStep)="nextStep()" (nextProblem)="nextProblem()" (submitOptions)="submitOptions($event)"></app-fill-in-blank>
+              <app-multiple-choice *ngSwitchCase=3 [cur_problem_number]="this.cur_problem_number" [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"
+                (nextStep)="nextStep()" (nextProblem)="nextProblem()" (submitMCOptions)="submitMCOptions($event)"></app-multiple-choice>
+              <app-summary *ngSwitchCase=4  [record_list]="this.record_list" [kc_set]="this.kc_set"></app-summary>
             </div>
 
           </div>
         </div>
-        <div style="margin:0;padding:0" class="row justify-content-md-center">
-          <ol class="problem-indicators">
-            <li class="active">
-            </li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ol>
+
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width:0%; background-color:#76b852" aria-valuenow="10" aria-valuemin="0"
+            aria-valuemax="100"></div>
         </div>
+
 
       </div>
 

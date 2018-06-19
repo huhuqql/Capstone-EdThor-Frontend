@@ -1,8 +1,11 @@
-<div class="question" [@state]="this.cur_problem.state">
+<div class="question" >
+  <blockquote style="margin:15px">
+    <p>题目{{this.cur_problem_number}}</p>
+  </blockquote>
   <p id="problem-text"></p>
 
-  <div [ngSwitch]="this.cur_step">
-    <app-multiple-choice-options *ngSwitchCase=0 [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"></app-multiple-choice-options>
+  <div [@state]="this.cur_problem.state" [ngSwitch]="this.cur_step">
+    <app-multiple-choice-options *ngSwitchCase=0 [cur_problem]="this.cur_problem" [cur_step]="this.cur_step" (saveSubmitOptions)="saveSubmitOptions($event)"></app-multiple-choice-options>
     <app-multiple-choice-answer *ngSwitchCase=1 [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"></app-multiple-choice-answer>
     <app-multiple-choice-solution-steps *ngSwitchCase=2 [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"></app-multiple-choice-solution-steps>
   </div>
