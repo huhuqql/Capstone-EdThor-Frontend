@@ -10,7 +10,7 @@ import { ProblemSetComponent } from '../problem-set/problem-set.component';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private router: Router, private global: GlobalsService) { }
+  constructor(private router: Router, global: GlobalsService) { }
 
   ngOnInit() {
 

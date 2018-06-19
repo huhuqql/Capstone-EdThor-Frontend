@@ -1,82 +1,71 @@
-<!doctype html>
-<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+<title>Home</title>
 
-  <title>Home</title>
+<!-- Bootstrap core CSS -->
+<link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
+<script src="../../assets/js/bootstrap.bundle.js"></script>
 
-  <!-- Bootstrap core CSS -->
-  <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
-  <script src="../../assets/js/bootstrap.bundle.js"></script>
 
-</head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-theme">
+  <div class="col-2">
 
-<body>
+  </div>
+  <a class="navbar-brand" href="#">
+    <img src="../../assets/logo.png" style="height:30px" alt="">
+  </a>
+  <div class="col-6">
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-theme">
-    <div class="col-2">
+  </div>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">学习主页
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">帮助</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">我的账户</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-alternate">
+  <div class="container">
+    <div class="row justify-content-center">
 
     </div>
-    <a class="navbar-brand" href="#">
-      <img src="../../assets/logo.png" style="height:30px" alt="">
-    </a>
-    <div class="col-6">
-
-    </div>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">学习主页
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">帮助</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">我的账户</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <div class="page-alternate">
-    <div class="container">
-      <div class="row justify-content-center">
-
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-auto">
-          <div class="card text-center border-success mb-3" style="max-width: 18rem;">
-            <div class="card-header text-success">测试</div>
-            <div class="card-body text-success">
-              <h5 class="card-title">三角函数训练</h5>
-              <p class="card-text">常见的三角函数题目包括正弦函数、余弦函数和三角形面积公式。</p>
-              <div class="btn btn-success" (click)="start_problem(this.global.sanjiaohanshu)">开始</div>
-            </div>
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <div class="card text-center border-success mb-3" style="max-width: 18rem;">
+          <div class="card-header text-success">测试</div>
+          <div class="card-body text-success">
+            <h5 class="card-title">三角函数训练</h5>
+            <p class="card-text">常见的三角函数题目包括正弦函数、余弦函数和三角形面积公式。</p>
+            <div class="btn btn-success" (click)="start_problem(global.sanjiaohanshu)">开始</div>
           </div>
         </div>
+      </div>
 
 
-        <div class="col-auto">
-          <div class="card text-center border-success mb-3" style="max-width: 18rem;">
-            <div class="card-header text-success">测试</div>
-            <div class="card-body text-success">
-              <h5 class="card-title">数列训练</h5>
-              <p class="card-text">常见的数列题目包括等差数列、等比数列，以及它们的定义和性质。</p>
-              <div class="btn btn-success" (click)="start_problem(this.global.shuzu)">开始</div>
-            </div>
+      <div class="col-auto">
+        <div class="card text-center border-success mb-3" style="max-width: 18rem;">
+          <div class="card-header text-success">测试</div>
+          <div class="card-body text-success">
+            <h5 class="card-title">数列训练</h5>
+            <p class="card-text">常见的数列题目包括等差数列、等比数列，以及它们的定义和性质。</p>
+            <div class="btn btn-success" (click)="start_problem(global.shuzu)">开始</div>
           </div>
         </div>
-
       </div>
+
     </div>
   </div>
-
-</body>
-
-</html>
+</div>

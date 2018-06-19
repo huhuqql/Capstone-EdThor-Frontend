@@ -2,7 +2,7 @@
   <blockquote style="margin:15px">
     <p>题目{{this.cur_problem_number}}</p>
   </blockquote>
-  <p id="problem-text"></p>
+  <p id="problem-text" [@state]="this.cur_problem.state"></p>
   <ul class="problem-questions">
     <li *ngFor="let question of this.cur_problem.problem_questions; let i=index">
       <p id="problem-question-{{i}}"></p>
