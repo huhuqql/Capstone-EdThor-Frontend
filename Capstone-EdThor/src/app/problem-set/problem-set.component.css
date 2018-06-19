@@ -32,17 +32,6 @@ body {
 }
 
 
-.title-page {
-    width: 90%;
-    margin-bottom: 40px;
-    margin-top: 20px;
-}
-.title-page .title {
-    color: #4CAF50;
-    font-size: 48px;
-    margin: 0 auto;
-    font-family: Arial;
-}
 .title-page .title-description {
     color: rgb(133, 133, 133);
     font-size: 20px;

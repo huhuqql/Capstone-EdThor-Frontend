@@ -25,7 +25,7 @@ body {
 
 .page-alternate {
 
-    padding: 100px 0;
+    padding: 100px 0 0 0;
     position: relative;
     z-index: 99;
     
@@ -51,3 +51,120 @@ body {
     font-family: Arial;
 }
 
+.large-canvas {
+    height:700px;
+    width:100%;
+    padding: 40px 32px 32px 40px;
+    position: relative;
+    z-index: 99;
+    background-color: #ffffff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+}
+
+.small-canvas {
+    height:325px;
+    width:100%;
+    padding: 40px 32px 32px 40px;
+    position: relative;
+    z-index: 99;
+    background-color: #ffffff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+}
+
+.small-canvas {
+    height:325px;
+    width:100%;
+    padding: 40px 32px 32px 40px;
+    position: relative;
+    z-index: 99;
+    background-color: #ffffff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+}
+
+.title{
+    color: #9b9b9b;
+    font-size: 18px;
+    margin: 0 auto;
+    font-family: 'Noto Sans CJK SC Regular';
+    src: url('../../assets/font/NotoSansCJKsc-Regular.otf');
+}
+
+.regular-text{
+    color: #4a4a4a;
+    font-size: 16px;
+    margin: 0 auto;
+    font-family: 'Noto Sans CJK SC Regular';
+    src: url('../../assets/font/NotoSansCJKsc-Regular.otf');
+}
+
+.regular-text-grey{
+    color: #9b9b9b;
+    font-size: 16px;
+    margin: 0 auto;
+    font-family: 'Noto Sans CJK SC Regular';
+    src: url('../../assets/font/NotoSansCJKsc-Regular.otf');
+    line-height:12px;
+}
+
+.title-alternate{
+    color: #81c784;
+    font-size: 18px;
+    margin: 0 auto;
+    font-family: 'Noto Sans CJK SC Regular';
+    src: url('../../assets/font/NotoSansCJKsc-Regular.otf');
+}
+
+.btn-theme {
+    color: rgb(255, 255, 255);
+    background-color: #76b852;
+    border-color: #76b852;
+  }
+  
+.btn-theme:hover {
+    color: #fff;
+    background-color: #275c0a;
+    border-color: #275c0a;
+}
+  
+.btn-theme:focus, .btn-theme.focus {
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+}
+  
+.btn-theme.disabled, .btn-theme:disabled {
+    color: #fff;
+    background-color: #868686;
+    border-color: #868686;
+}
+  
+.btn-theme:not(:disabled):not(.disabled):active, .btn-theme:not(:disabled):not(.disabled).active,
+.show > .btn-theme.dropdown-toggle {
+    color: #fff;
+    background-color: #1e7e34;
+    border-color: #1c7430;
+}
+  
+.btn-theme:not(:disabled):not(.disabled):active:focus, .btn-theme:not(:disabled):not(.disabled).active:focus,
+.show > .btn-theme.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+}
+
+.btn-input-answer{
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 10px 30px 10px 30px;
+    font-size: 16px;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+    font-family: 'Noto Sans CJK SC Regular';
+    src: url('../../assets/font/NotoSansCJKsc-Regular.otf');
+}

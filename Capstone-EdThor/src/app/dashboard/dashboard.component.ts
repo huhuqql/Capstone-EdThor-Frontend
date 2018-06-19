@@ -10,9 +10,16 @@ import { ProblemSetComponent } from '../problem-set/problem-set.component';
 })
 export class DashboardComponent implements OnInit {
 
+  subject = 'math';
+  topic = 'sanjiaohanshu';
+
   constructor(private router: Router, global: GlobalsService) { }
 
   ngOnInit() {
+
+  }
+  
+  check_record(){
 
   }
 

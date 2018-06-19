@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { MatSelectModule } from '@angular/material/select';
 
 import { KatexModule } from 'ng-katex';
 
@@ -64,11 +65,12 @@ import { SummaryComponent } from './summary/summary.component';
     KatexModule,
     BrowserAnimationsModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSelectModule
   ],
   providers: [
     MemberService,
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })
