@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { KatexModule } from 'ng-katex';
 
@@ -66,7 +67,8 @@ import { SummaryComponent } from './summary/summary.component';
     MatRadioModule
   ],
   providers: [
-    MemberService
+    MemberService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
