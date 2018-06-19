@@ -36,14 +36,22 @@ export class LongQuestionComponent {
   @Output() nextStep = new EventEmitter();
   @Output() nextProblem = new EventEmitter();
   @Output() submitOptions = new EventEmitter<string>();
+  @Output() jumpStep = new EventEmitter();
 
   my_option: string;
+
+
 
   enterNextStep() {
     console.log("next");
     if ((this.my_option != null) && (this.cur_step == 1 || this.cur_step == 3)) {
       this.submitOptions.emit(this.my_option);
-      this.nextStep.emit();
+      if(this.my_option == "yes"){
+        this.jumpStep.emit();
+      }
+      else{
+        this.nextStep.emit();
+      }
     }
     else if (this.cur_step == 0 || this.cur_step == 2) {
       this.nextStep.emit();

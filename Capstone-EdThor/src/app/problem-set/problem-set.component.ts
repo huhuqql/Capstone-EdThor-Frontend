@@ -143,6 +143,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
   generateProblem() {
     this.selected_num = 1;
+    // this.selected_type = 1;
     this.selected_type = this.getRandomInt(1,3);
     console.log(this.selected_type);
   }
@@ -512,7 +513,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     return (min + Math.round(Rand * Range));
   }
 
-  initButtons(){
+  initButtons() {
     this.check_answer_button.disabled = "";
     this.check_solution_button.disabled = "disabled";
     this.next_step_button.disabled = "disabled";
@@ -557,6 +558,21 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     }
     this.record_list.push(new_record);
     this.answer_list = [];
+  }
+
+  jumpStep() {
+    if (this.cur_problem.problem_type == 1) {
+      if (this.cur_step == 1) {
+        this.cur_problem.problem_long_question_solution[this.cur_sub_prob] = [];
+        this.cur_step++;
+        this.cur_step++;
+        this.cur_sub_prob++;
+        this.getLongquestionAnswer();
+      }
+      else{
+        this.nextProblem();
+      }
+    }
   }
 
   nextStep() {

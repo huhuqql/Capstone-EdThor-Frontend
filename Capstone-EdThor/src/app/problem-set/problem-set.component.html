@@ -69,7 +69,7 @@
           <button style="margin-left:5px;float:right" type="button" class="btn btn-outline-success" (click)="showMathFormula()">公式查询器</button>
         </div>
         <div class="title-alternate">
-          <button style="margin-left:5px;float:right" type="button" class="btn btn-outline-success" (click)="fortest()">测试小按钮嘻嘻</button>
+          <button style="margin-left:5px;float:right" type="button" class="btn btn-outline-success" (click)="fortest()">查看报告小按钮，按了就回不去了</button>
         </div>
       </div>
     </div>
@@ -100,7 +100,7 @@
 
             <div [ngSwitch]="this.selected_type">
               <app-long-question *ngSwitchCase=1 [cur_problem_number]="this.cur_problem_number" [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"
-                (nextStep)="nextStep()" (nextProblem)="nextProblem()" [cur_sub_prob]="this.cur_sub_prob" (submitOptions)="submitOptions($event)"></app-long-question>
+                (nextStep)="nextStep()" (nextProblem)="nextProblem()" [cur_sub_prob]="this.cur_sub_prob" (submitOptions)="submitOptions($event)" (jumpStep)="this.jumpStep()"></app-long-question>
               <app-fill-in-blank *ngSwitchCase=2 [cur_problem_number]="this.cur_problem_number" [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"
                 (nextStep)="nextStep()" (nextProblem)="nextProblem()" (submitOptions)="submitOptions($event)"></app-fill-in-blank>
               <app-multiple-choice *ngSwitchCase=3 [cur_problem_number]="this.cur_problem_number" [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"
