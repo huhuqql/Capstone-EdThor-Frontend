@@ -1,39 +1,31 @@
 <div style="margin:0;padding:0;margin-top:20px;" class="row">
   <div style="margin:0;padding:0" class="col-auto">
-    <p class="problem-instruction">答案是: </p>
+    <p class="problem-instruction">{{result}} </p>
   </div>
   <div style="margin:0;padding:0" class="col-auto">
     <div class="arrow"></div>
   </div>
 </div>
 
-
-<!-- <div class="multiple-choice-box">
-    <input type="radio" id="multiple-choice-options-answer" name="check-answer-0" checked/>
-    <label for="">
-      <p style="margin-left:50px;" id="problem-answer"></p>
-    </label>
-  </div> -->
-
-<mat-radio-button class="check-radio-button" value="1" name="answer" checked>
-  <div style="height:50px;margin-left:15px">
-    <p class="check-radio-button-forimg" [innerHTML]="cur_problem.problem_answers[0]"></p>
-  </div>
-</mat-radio-button>
-
-
-<!-- <div style="margin:0;padding:0;margin-top:20px;" class="row">
-  <div style="margin:0;padding:0" class="col-auto">
-    <p class="problem-instruction">你的选择：</p>
-  </div>
-  <div style="margin:0;padding:0" class="col-auto">
-    <div class="arrow"></div>
-  </div>
+<div class="check-radio-group">
+  <mat-radio-button class="check-radio-button" name='1' disabled [color]="color[0]" [checked]="checked[0]">
+    <div style="height:50px;margin-left:15px">
+      <div class="check-radio-button-forimg" [innerHTML]="cur_problem.problem_questions[0]"></div>
+    </div>
+  </mat-radio-button>
+  <mat-radio-button class="check-radio-button" name='2' disabled [color]="color[1]" [checked]="checked[1]">
+    <div style="height:50px;margin-left:15px">
+      <p class="check-radio-button-forimg" [innerHTML]="cur_problem.problem_questions[1]"></p>
+    </div>
+  </mat-radio-button>
+  <mat-radio-button class="check-radio-button" name='3' disabled [color]="color[2]" [checked]="checked[2]">
+    <div style="height:50px;margin-left:15px">
+      <p class="check-radio-button-forimg" [innerHTML]="cur_problem.problem_questions[2]"></p>
+    </div>
+  </mat-radio-button>
+  <mat-radio-button class="check-radio-button" name='4' disabled [color]="color[3]" [checked]="checked[3]">
+    <div style="height:50px;margin-left:15px">
+      <p class="check-radio-button-forimg" [innerHTML]="cur_problem.problem_questions[3]"></p>
+    </div>
+  </mat-radio-button>
 </div>
-
-
-<mat-radio-button [disabled]="isDisabled" class="check-radio-button" value="2" id="multiple-choice-options-input" name="yourchoice">
-  <div style="height:50px;margin-left:15px">
-    <p class="check-radio-button-p" id="problem-answer-input"></p>
-  </div>
-</mat-radio-button> -->

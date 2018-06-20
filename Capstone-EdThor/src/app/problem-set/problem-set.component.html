@@ -68,9 +68,9 @@
         <div class="title-alternate">
           <button style="margin-left:5px;float:right" type="button" class="btn btn-outline-success" (click)="showMathFormula()">公式查询器</button>
         </div>
-        <div class="title-alternate">
+        <!-- <div class="title-alternate">
           <button style="margin-left:5px;float:right" type="button" class="btn btn-outline-success" (click)="fortest()">查看报告小按钮，按了就回不去了</button>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -98,7 +98,7 @@
               <img *ngFor="let formula of this.math_formula;let i=index" src="{{formula}}" id="math-formula-img-{{i}}" style="width:100%;height:100%;display:none">
             </div>
 
-            <div [ngSwitch]="this.selected_type">
+            <div [ngSwitch]="selected_type">
               <app-long-question *ngSwitchCase=1 [cur_problem_number]="this.cur_problem_number" [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"
                 (nextStep)="nextStep()" (nextProblem)="nextProblem()" [cur_sub_prob]="this.cur_sub_prob" (submitOptions)="submitOptions($event)" (jumpStep)="this.jumpStep()"></app-long-question>
               <app-fill-in-blank *ngSwitchCase=2 [cur_problem_number]="this.cur_problem_number" [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"

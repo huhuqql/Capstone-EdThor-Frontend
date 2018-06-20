@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   trigger,
   state,
@@ -7,13 +7,36 @@ import {
   transition
 } from '@angular/animations';
 import { Problem } from '../service/model/problem';
+
 @Component({
   selector: 'app-multiple-choice-answer',
   templateUrl: './multiple-choice-answer.component.html',
-  styleUrls: ['./multiple-choice-answer.component.css','../problem-set/problem-set.component.css',"../../assets/css/bootstrap.min.css"]
+  styleUrls: ['./multiple-choice-answer.component.css', '../problem-set/problem-set.component.css', "../../assets/css/bootstrap.min.css"]
 })
-export class MultipleChoiceAnswerComponent {
+export class MultipleChoiceAnswerComponent implements OnInit {
 
   @Input() cur_problem: Problem;
   @Input() cur_step: number;
+
+  color = ['', '', '', ''];
+  checked = [false, false, false, false];
+  result: string = "";
+
+  ngOnInit() {
+    const that = this;
+    setTimeout(function () {
+      if (that.cur_problem.problem_answers[0] == that.cur_problem.problem_multiple_choice_answer) {
+        that.checked[that.cur_problem.problem_multiple_choice_answer] = true;
+        that.result = "你答对啦";
+      }
+      else {
+        that.color[that.cur_problem.problem_multiple_choice_answer] = 'warn';
+        that.checked[that.cur_problem.problem_multiple_choice_answer] = true;
+        that.checked[that.cur_problem.problem_answers[0]] = true;
+        that.result = "你答错了";
+      }
+    }, '190');
+
+  }
+
 }

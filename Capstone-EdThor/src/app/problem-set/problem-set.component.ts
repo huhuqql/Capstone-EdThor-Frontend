@@ -34,7 +34,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     problem_type_name: "",
     problem_text: "",
     problem_questions: [],
-    problem_answer_instruction: [],
     problem_answers: [],
     problem_solution_steps: "",
     problem_long_question_solution: [[], [], []],
@@ -58,8 +57,8 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   cur_step: number = 0;
   cur_sub_prob: number = 0;
 
-  selected_num: number;
-  selected_type: number;
+  selected_num: number = 0;
+  selected_type: number = 0;
 
   progress: number = 0;
 
@@ -120,42 +119,37 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
   generateProblem() {
     this.selected_num = 1;
-    //this.selected_type = 1;
-    this.selected_type = this.getRandomInt(1,3);
-    console.log("selected type =" + this.selected_type);
+    this.selected_type++;
+    // this.selected_type = this.getRandomInt(1, 3);
   }
 
   submitMCOptions(option) {
     console.log("final choice:" + option);
     var type_name = "multiple-choice";
-    this.cur_problem.problem_multiple_choice_answer = option - 1;
 
     this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "answer.html", { responseType: 'text' })
       .subscribe(data => {
-        var temp_answer = this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/answer/clip");
-        var temp;
-        if (this.cur_problem.problem_multiple_choice_answer == 0) {
-          temp = ">A<";
+        if (data.indexOf(">A<") > 0) {
+          this.cur_problem.problem_answers[0] = 0;
         }
-        else if (this.cur_problem.problem_multiple_choice_answer == 1) {
-          temp = ">B<";
+        else if (data.indexOf(">B<") > 0) {
+          this.cur_problem.problem_answers[0] = 1;
         }
-        else if (this.cur_problem.problem_multiple_choice_answer == 2) {
-          temp = ">C<";
+        else if (data.indexOf(">C<") > 0) {
+          this.cur_problem.problem_answers[0] = 2;
         }
-        else if (this.cur_problem.problem_multiple_choice_answer == 3) {
-          temp = ">D<";
+        else if (data.indexOf(">D<") > 0) {
+          this.cur_problem.problem_answers[0] = 3;
         }
 
-        if (temp_answer.indexOf(temp) < 0) {
-          console.log("you are wrong");
+        this.cur_problem.problem_multiple_choice_answer = option;
+
+        if (this.cur_problem.problem_answers[0] != option) {
           this.answer_list.push(false);
         }
         else {
-          console.log("you are right");
           this.answer_list.push(true);
         }
-        this.cur_problem.problem_answers[0] = this.transform(temp_answer);
       });
   }
 
@@ -310,7 +304,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         .subscribe(data => {
           this.cur_problem.problem_solution_steps = this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/solution-step/clip"));
         });
-
     }
 
   }
@@ -438,22 +431,26 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
   showNewProblem() {
     this.cur_problem_number++;
-    this.cur_problem.state = "void";
 
     var d = new Date();
     this.start_time = d.getTime();
-    this.initProblem();
-    this.getProblem();
-    this.getQuestion();
-    this.cur_step = 0;
-    this.cur_sub_prob = 1;
+    this.cur_problem.state = "inactive";
 
 
     const that = this;
     setTimeout(function () {
+      that.initProblem();
+      that.cur_step = 0;
+      that.cur_sub_prob = 1;
+      that.getProblem();
+      that.getQuestion();
       that.getButtons();
-      that.initButtons();     
-    }, '50');
+      that.initButtons();
+    }, '100');
+
+    setTimeout(function () {
+      that.cur_problem.state = "active";
+    }, '200');
 
 
   }
@@ -471,20 +468,38 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   }
 
   nextProblem() {
-    console.log("the step is now: " + this.cur_step);
-    var d = new Date();
-    this.end_time = d.getTime();
-    this.generateRecord();
-    console.log(this.record_list);
-    this.generateProblem();
-    this.showNewProblem();
-    var temp = this.progress;
-    $('.progress-bar').css("width", function (i) {
-      if (temp < 100) {
-        return temp + 10 + "%";
-      }
-    });
-    this.progress = this.progress + 10;
+    console.log(this.progress);
+    if (this.progress > 65) {
+      var d = new Date();
+      this.end_time = d.getTime();
+      this.generateRecord();
+      console.log("看报告啦");
+      var temp = this.progress;
+      $('.progress-bar').css("width", function (i) {
+        if (temp < 100) {
+          return temp + 34 + "%";
+        }
+      });
+      this.progress = this.progress + 34;
+      this.selected_type = 4;
+    }
+    else {
+      this.cur_problem.state = "active";
+      var d = new Date();
+      this.end_time = d.getTime();
+      this.generateRecord();
+      console.log(this.record_list);
+      this.generateProblem();
+      this.showNewProblem();
+      var temp = this.progress;
+      $('.progress-bar').css("width", function (i) {
+        if (temp < 100) {
+          return temp + 34 + "%";
+        }
+      });
+      this.progress = this.progress + 34;
+    }
+
   }
 
 
@@ -511,13 +526,20 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   }
 
   jumpStep() {
+    const that = this;
     if (this.cur_problem.problem_type == 1) {
       if (this.cur_step == 1) {
+        this.cur_problem.state = "inactive";
         this.cur_problem.problem_long_question_solution[this.cur_sub_prob] = [];
-        this.cur_step++;
-        this.cur_step++;
-        this.cur_sub_prob++;
-        this.getLongquestionAnswer();
+        setTimeout(function () {
+          that.cur_step++;
+          that.cur_step++;
+          that.cur_sub_prob++;
+          that.getLongquestionAnswer();
+        }, '100');
+        setTimeout(function () {
+          that.cur_problem.state = "active";
+        }, '200');
       }
       else {
         this.nextProblem();
@@ -526,64 +548,112 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   }
 
   nextStep() {
+    const that = this;
     if (this.cur_problem.problem_type == 1) {
       if (this.cur_step == 0) {
+        this.cur_problem.state = "inactive";
         this.check_answer_button.disabled = "disabled";
         this.check_solution_button.disabled = "";
-        this.cur_step++;
         this.getLongquestionAnswer();
+        setTimeout(function () {
+          that.cur_step++;
+        }, '100');
+        setTimeout(function () {
+          that.cur_problem.state = "active";
+        }, '200');
       }
       else if (this.cur_step == 1) {
-        this.cur_step++;
+        this.cur_problem.state = "inactive";
         this.getSolutionSteps();
+        setTimeout(function () {
+          that.cur_step++;
+        }, '100');
+        setTimeout(function () {
+          that.cur_problem.state = "active";
+        }, '200');
       }
       else if (this.cur_step == 2) {
+        this.cur_problem.state = "inactive";
         this.cur_problem.problem_long_question_solution[this.cur_sub_prob] = [];
-        this.cur_step++;
         this.cur_sub_prob++;
         this.getLongquestionAnswer();
+        setTimeout(function () {
+          that.cur_step++;
+        }, '100');
+        setTimeout(function () {
+          that.cur_problem.state = "active";
+        }, '200');
       }
       else if (this.cur_step == 3) {
-        this.cur_step++;
+        this.cur_problem.state = "inactive";
         this.next_step_button.disabled = "";
         this.check_solution_button.disabled = "disabled";
         this.getSolutionSteps();
+        setTimeout(function () {
+          that.cur_step++;
+        }, '100');
+        setTimeout(function () {
+          that.cur_problem.state = "active";
+        }, '200');
       }
-      console.log("the step is now: " + this.cur_step);
     }
     else if (this.cur_problem.problem_type == 2) {
-
       if (this.cur_step == 0) {
+        this.cur_problem.state = "inactive";
         this.check_answer_button.disabled = "disabled";
         this.check_solution_button.disabled = "";
         this.next_step_button.disabled = "";
-        this.cur_step++;
         this.getFillinblankAnswer();
+        setTimeout(function () {
+          that.cur_step++;
+        }, '100');
+        setTimeout(function () {
+          that.cur_problem.state = "active";
+        }, '200');
       }
       else if (this.cur_step == 1) {
+        this.cur_problem.state = "inactive";
         this.check_answer_button.disabled = "disabled";
         this.check_solution_button.disabled = "disabled";
         this.next_step_button.disabled = "";
-        this.cur_step++;
         this.getSolutionSteps();
+        setTimeout(function () {
+          that.cur_step++;
+        }, '100');
+        setTimeout(function () {
+          that.cur_problem.state = "active";
+        }, '200');
       }
-      console.log("the step is now: " + this.cur_step);
     }
     else if (this.cur_problem.problem_type == 3) {
       if (this.cur_step == 0) {
+        this.cur_problem.state = "inactive";
         this.check_answer_button.disabled = "disabled";
         this.check_solution_button.disabled = "";
         this.next_step_button.disabled = "";
-        this.cur_step++;
+        setTimeout(function () {
+          that.cur_step++;
+        }, '100');
+        setTimeout(function () {
+          that.cur_problem.state = "active";
+        }, '200');
+
       }
       else if (this.cur_step == 1) {
+        this.cur_problem.state = "inactive";
         this.check_answer_button.disabled = "disabled";
         this.check_solution_button.disabled = "disabled";
         this.next_step_button.disabled = "";
-        this.cur_step++;
         this.getSolutionSteps();
+        this.getSolutionSteps();
+        setTimeout(function () {
+          that.cur_step++;
+        }, '100');
+        setTimeout(function () {
+          that.cur_problem.state = "active";
+        }, '200');
+
       }
-      console.log("the step is now: " + this.cur_step);
     }
   }
 }

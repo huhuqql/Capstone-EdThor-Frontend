@@ -13,16 +13,14 @@ import { Problem } from '../service/model/problem';
   styleUrls: ['./fill-in-blank.component.css', '../problem-set/problem-set.component.css', "../../assets/css/bootstrap.min.css"],
   animations: [
     trigger('state', [
-      state('inactive', style({ transform: 'translateX(0) scale(1)' })),
-      state('active', style({ transform: 'translateX(0) scale(1.1)' })),
-      transition('inactive => active', animate('100ms ease-in')),
-      transition('active => inactive', animate('100ms ease-out')),
-      transition('void => inactive', [
+      state('active', style({ transform: 'translateX(0) scale(1)' })),
+      state('inactive', style({ opacity: 0 })),
+      transition('inactive => active', [
         style({ opacity: 0 }),
-        animate('300ms ease-in-out', style({ opacity: 1 }))
+        animate('200ms ease-in-out', style({ opacity: 1 }))
       ]),
-      transition('inactive => void', [
-        animate('300ms ease-in-out', style({ opacity: 0 }))
+      transition('active => inactive', [
+        animate('100ms ease-in-out', style({ opacity: 0 }))
       ])
     ])
   ]

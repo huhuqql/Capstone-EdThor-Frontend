@@ -14,16 +14,14 @@ import { Problem } from '../service/model/problem';
   styleUrls: ['./summary.component.css', '../problem-set/problem-set.component.css', "../../assets/css/bootstrap.min.css"],
   animations: [
     trigger('state', [
-      state('inactive', style({ transform: 'translateX(0) scale(1)' })),
-      state('active', style({ transform: 'translateX(0) scale(1.1)' })),
-      transition('inactive => active', animate('100ms ease-in')),
-      transition('active => inactive', animate('100ms ease-out')),
-      transition('void => inactive', [
+      state('active', style({ transform: 'translateX(0) scale(1)' })),
+      state('inactive', style({ opacity: 0 })),
+      transition('inactive => active', [
         style({ opacity: 0 }),
-        animate('600ms ease-in-out', style({ opacity: 1 }))
+        animate('500ms ease-in-out', style({ opacity: 1 }))
       ]),
-      transition('inactive => void', [
-        animate('600ms ease-in-out', style({ opacity: 0 }))
+      transition('active => inactive', [
+        animate('500ms ease-in-out', style({ opacity: 0 }))
       ])
     ])
   ]
@@ -99,12 +97,34 @@ export class SummaryComponent implements OnInit {
 
   answer_set: boolean[] = [];
 
+  state: string = "inactive";
+  step: number = 0;
+
   constructor() {
   }
 
   ngOnInit() {
     // this.setFillinblankProgress();
     const that = this;
+    setTimeout(function () {
+      that.state = "active"
+    }, '500');
+
+
+    setTimeout(function () {
+      that.state = "inactive"
+    }, '3000');
+
+    setTimeout(function () {
+      that.step = 1;
+    }, '3300');
+
+    setTimeout(function () {
+      that.state = "active";
+    }, '3500');
+
+
+
     setTimeout(function () {
       for (var i = 0; i < that.record_list.length; i++) {
         if (that.record_list[i].problem_type == 2 || that.record_list[i].problem_type == 3) {
@@ -175,9 +195,7 @@ export class SummaryComponent implements OnInit {
       else {
         that.avg_duration_multiple_choice = that.raw_duration_multiple_choice / 1000 / 60 / that.num_multiple_choice;
       }
-
       that.orderDuration();
-
     }, '200');
 
 

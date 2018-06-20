@@ -1,142 +1,166 @@
-<div style="margin:0;padding:0" class="row">
-  <div class="col-6">
-    <div class="row justify-content-md-center">
-      <div style="text-align:center" class="little-canvas">
+<div [ngSwitch]="step">
 
-        <img style="height:150px;width:150px;margin-top:30px" src="../../assets/img/trophy@4x.png">
-        <p style="margin-top:25px" class="summary-text-lg"> 恭喜你，你完成了本次练习全部{{this.record_list.length}}道题目</p>
-
+  <div *ngSwitchCase=0 style="margin-top:200px;" class="row justify-content-md-center" [@state]="state">
+    <div class="col-auto">
+      <div class="sk-folding-cube">
+        <div class="sk-cube1 sk-cube"></div>
+        <div class="sk-cube2 sk-cube"></div>
+        <div class="sk-cube4 sk-cube"></div>
+        <div class="sk-cube3 sk-cube"></div>
       </div>
     </div>
-    <div class="row justify-content-md-center">
-      <div style="text-align:center;" class="little-canvas">
-        <div style="margin-bottom:20px;" class="row">
-          <div style="margin:0;padding:0" class="col-auto">
-            <img style="height:20px;width:20px;" src="../../assets/img/pen@4x.png">
-          </div>
-          <div style="margin:0;padding:0;margin-left:10px;" class="col-auto">
-            <p class="summary-text-lg">本次练习中掌握的知识点</p>
-          </div>
-        </div>
-
-        <div style="margin-top:10px" class="row" *ngFor="let kc of this.kc_set">
-          <div style="margin:0;padding:0" class="col-auto">
-            <p class="summary-text-sm">{{kc[0]}}</p>
-          </div>
-          <div style="margin:0;padding:0;margin-left:10px;" class="col-auto">
-            <div [ngSwitch]="kc[1]">
-              <img *ngSwitchCase=1 style="height:20px;" src="../../assets/img/Star1@4x.png">
-              <img *ngSwitchCase=2 style="height:20px;" src="../../assets/img/Star2@4x.png">
-              <img *ngSwitchCase=3 style="height:20px;" src="../../assets/img/Star3@4x.png">
-              <img *ngSwitchCase=4 style="height:20px;" src="../../assets/img/Star4@4x.png">
-            </div>
-          </div>
-        </div>
-
-      </div>
+  </div>
+  <div *ngSwitchCase=0 style="margin-top:20px;" class="row justify-content-md-center" [@state]="state">
+    <div class="col-auto">
+      <p class="summary-text-lg">我们正在生成你的报告...</p>
     </div>
-
   </div>
 
-  <div class="col-6">
-    <div class="row">
-      <div class="little-canvas">
-        <div style="margin-bottom:20px;margin-top:30px" class="row">
-          <div style="margin:0;padding:0;margin-left:15px;" class="col-auto">
-            <img style="height:20px;width:15px;" src="../../assets/img/result@4x.png">
-          </div>
-          <div style="margin:0;padding:0;margin-left:10px;" class="col-auto">
-            <p class="summary-text-lg">结果统计</p>
-          </div>
+
+
+
+
+  <div *ngSwitchCase=1 style="margin:0;padding:0" class="row" [@state]="state">
+    <div class="col-6">
+      <div class="row justify-content-md-center">
+        <div style="text-align:center" class="little-canvas">
+
+          <img style="height:150px;width:150px;margin-top:30px" src="../../assets/img/trophy@4x.png">
+          <p style="margin-top:25px" class="summary-text-lg"> 恭喜你，你完成了本次练习全部{{this.record_list.length}}道题目</p>
+
         </div>
-
-        <p class="summary-text-sm">
-          <b style="color:#81c784">{{correct_num}}</b>道题正确，
-          <b style="color:#d0081b">{{incorrect_num}}</b>道题错误</p>
-        <p class="summary-text-sm-grey">点击图标查看相应题目的做题记录和答案解析</p>
-
-        <div style="margin-top:20px;margin-left:-10px;" class="row">
-          <div style="margin-right:0;padding:10px" class="col-auto" *ngFor="let item of this.answer_set">
-            <div [ngSwitch]="item">
-              <img *ngSwitchCase=true style="height:20px;width:20px;" src="../../assets/img/correct@4x.png">
-              <img *ngSwitchCase=false style="height:20px;width:20px;" src="../../assets/img/incorrect@4x.png">
-            </div>
-          </div>
-        </div>
-
-
-
       </div>
-    </div>
-    <div class="row">
-      <div class="little-canvas">
-        <div style="margin-bottom:15px;" class="row">
-          <div style="margin:0;padding:0;margin-left:15px;" class="col-auto">
-            <img style="height:20px;width:20px;" src="../../assets/img/time@4x.png">
+      <div class="row justify-content-md-center">
+        <div style="text-align:center;" class="little-canvas">
+          <div style="margin-bottom:20px;" class="row">
+            <div style="margin:0;padding:0" class="col-auto">
+              <img style="height:20px;width:20px;" src="../../assets/img/pen@4x.png">
+            </div>
+            <div style="margin:0;padding:0;margin-left:10px;" class="col-auto">
+              <p class="summary-text-lg">本次练习中掌握的知识点</p>
+            </div>
           </div>
-          <div style="margin:0;padding:0;margin-left:10px;" class="col-auto">
-            <p class="summary-text-lg">时间统计</p>
+
+          <div style="margin-top:10px" class="row" *ngFor="let kc of this.kc_set">
+            <div style="margin:0;padding:0" class="col-auto">
+              <p class="summary-text-sm">{{kc[0]}}</p>
+            </div>
+            <div style="margin:0;padding:0;margin-left:10px;" class="col-auto">
+              <div [ngSwitch]="kc[1]">
+                <img *ngSwitchCase=1 style="height:20px;" src="../../assets/img/Star1@4x.png">
+                <img *ngSwitchCase=2 style="height:20px;" src="../../assets/img/Star2@4x.png">
+                <img *ngSwitchCase=3 style="height:20px;" src="../../assets/img/Star3@4x.png">
+                <img *ngSwitchCase=4 style="height:20px;" src="../../assets/img/Star4@4x.png">
+              </div>
+            </div>
           </div>
+
         </div>
-
-        <p class="summary-text-sm">本次练习共计耗时{{total_duration.toFixed(1)}}分钟</p>
-
-
-        <div style="margin-top:20px;" class="row">
-          <div class="col-auto">
-            <div style="margin-top:5px;" class="summary-round-button">
-              <p class="summary-text-sm-green">填空</p>
-            </div>
-          </div>
-          <div class="col-auto">
-            <p class="summary-text-sm">完成{{num_fill_in_blank}}题，平均{{avg_duration_fill_in_blank.toFixed(1)}}分钟/题</p>
-          </div>
-          <div class="col-auto">
-            <div [ngStyle]="{'width.px': this.fill_in_blank_progress,'margin-top':'5px'}" class="progress">
-              <div class="progress-bar" role="progressbar" style="width:100%; background-color:#76b852" aria-valuenow="10" aria-valuemin="0"
-                aria-valuemax="100"></div>
-            </div>
-          </div>
-        </div>
-
-        <div style="margin-top:10px;" class="row">
-          <div class="col-auto">
-            <div style="margin-top:5px;" class="summary-round-button">
-              <p class="summary-text-sm-green">选择</p>
-            </div>
-          </div>
-          <div class="col-auto">
-            <p class="summary-text-sm">完成{{num_multiple_choice}}题，平均{{avg_duration_multiple_choice.toFixed(1)}}分钟/题</p>
-          </div>
-          <div class="col-auto">
-            <div [ngStyle]="{'width.px': this.multiple_choice_progress,'margin-top':'5px'}" class="progress">
-              <div class="progress-bar" role="progressbar" style="width:100%; background-color:#76b852" aria-valuenow="10" aria-valuemin="0"
-                aria-valuemax="100"></div>
-            </div>
-          </div>
-        </div>
-
-        <div style="margin-top:10px;" class="row">
-          <div class="col-auto">
-            <div style="margin-top:5px;" class="summary-round-button">
-              <p class="summary-text-sm-green">大题</p>
-            </div>
-          </div>
-          <div class="col-auto">
-            <p class="summary-text-sm">完成{{num_long_question}}题，平均{{avg_duration_long_question.toFixed(1)}}分钟/题</p>
-          </div>
-          <div class="col-auto">
-            <div [ngStyle]="{'width.px': this.long_question_progress,'margin-top':'5px'}" class="progress">
-              <div class="progress-bar" role="progressbar" style="width:100%; background-color:#76b852" aria-valuenow="10" aria-valuemin="0"
-                aria-valuemax="100"></div>
-            </div>
-          </div>
-        </div>
-
-
-
       </div>
+
     </div>
 
+    <div class="col-6">
+      <div class="row">
+        <div class="little-canvas">
+          <div style="margin-bottom:20px;margin-top:30px" class="row">
+            <div style="margin:0;padding:0;margin-left:15px;" class="col-auto">
+              <img style="height:20px;width:15px;" src="../../assets/img/result@4x.png">
+            </div>
+            <div style="margin:0;padding:0;margin-left:10px;" class="col-auto">
+              <p class="summary-text-lg">结果统计</p>
+            </div>
+          </div>
+
+          <p class="summary-text-sm">
+            <b style="color:#81c784">{{correct_num}}</b>道题正确，
+            <b style="color:#d0081b">{{incorrect_num}}</b>道题错误</p>
+          <p class="summary-text-sm-grey">点击图标查看相应题目的做题记录和答案解析</p>
+
+          <div style="margin-top:20px;margin-left:-10px;" class="row">
+            <div style="margin-right:0;padding:10px" class="col-auto" *ngFor="let item of this.answer_set">
+              <div [ngSwitch]="item">
+                <img *ngSwitchCase=true style="height:20px;width:20px;" src="../../assets/img/correct@4x.png">
+                <img *ngSwitchCase=false style="height:20px;width:20px;" src="../../assets/img/incorrect@4x.png">
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="little-canvas">
+          <div style="margin-bottom:15px;" class="row">
+            <div style="margin:0;padding:0;margin-left:15px;" class="col-auto">
+              <img style="height:20px;width:20px;" src="../../assets/img/time@4x.png">
+            </div>
+            <div style="margin:0;padding:0;margin-left:10px;" class="col-auto">
+              <p class="summary-text-lg">时间统计</p>
+            </div>
+          </div>
+
+          <p class="summary-text-sm">本次练习共计耗时{{total_duration.toFixed(1)}}分钟</p>
+
+
+          <div style="margin-top:20px;" class="row">
+            <div class="col-auto">
+              <div style="margin-top:5px;" class="summary-round-button">
+                <p class="summary-text-sm-green">填空</p>
+              </div>
+            </div>
+            <div class="col-auto">
+              <p class="summary-text-sm">完成{{num_fill_in_blank}}题，平均{{avg_duration_fill_in_blank.toFixed(1)}}分钟/题</p>
+            </div>
+            <div class="col-auto">
+              <div [ngStyle]="{'width.px': this.fill_in_blank_progress,'margin-top':'5px'}" class="progress">
+                <div class="progress-bar" role="progressbar" style="width:100%; background-color:#76b852" aria-valuenow="10" aria-valuemin="0"
+                  aria-valuemax="100"></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:10px;" class="row">
+            <div class="col-auto">
+              <div style="margin-top:5px;" class="summary-round-button">
+                <p class="summary-text-sm-green">选择</p>
+              </div>
+            </div>
+            <div class="col-auto">
+              <p class="summary-text-sm">完成{{num_multiple_choice}}题，平均{{avg_duration_multiple_choice.toFixed(1)}}分钟/题</p>
+            </div>
+            <div class="col-auto">
+              <div [ngStyle]="{'width.px': this.multiple_choice_progress,'margin-top':'5px'}" class="progress">
+                <div class="progress-bar" role="progressbar" style="width:100%; background-color:#76b852" aria-valuenow="10" aria-valuemin="0"
+                  aria-valuemax="100"></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:10px;" class="row">
+            <div class="col-auto">
+              <div style="margin-top:5px;" class="summary-round-button">
+                <p class="summary-text-sm-green">大题</p>
+              </div>
+            </div>
+            <div class="col-auto">
+              <p class="summary-text-sm">完成{{num_long_question}}题，平均{{avg_duration_long_question.toFixed(1)}}分钟/题</p>
+            </div>
+            <div class="col-auto">
+              <div [ngStyle]="{'width.px': this.long_question_progress,'margin-top':'5px'}" class="progress">
+                <div class="progress-bar" role="progressbar" style="width:100%; background-color:#76b852" aria-valuenow="10" aria-valuemin="0"
+                  aria-valuemax="100"></div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+
+    </div>
   </div>
+
 </div>

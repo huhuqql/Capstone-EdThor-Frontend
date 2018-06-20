@@ -419,8 +419,8 @@ blockquote a {
 
 .sk-folding-cube {
   margin: 20px auto;
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
   position: relative;
   -webkit-transform: rotateZ(45deg);
           transform: rotateZ(45deg);
@@ -442,7 +442,7 @@ blockquote a {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #333;
+  background-color: #76b852;
   -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
           animation: sk-foldCubeAngle 2.4s infinite linear both;
   -webkit-transform-origin: 100% 100%;
