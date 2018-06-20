@@ -51,8 +51,8 @@
         </div>
 
         <p class="summary-text-sm">
-          <b style="color:#81c784">{{this.correct_num}}</b>道题正确，
-          <b style="color:#d0081b">{{this.incorrect_num}}</b>道题错误</p>
+          <b style="color:#81c784">{{correct_num}}</b>道题正确，
+          <b style="color:#d0081b">{{incorrect_num}}</b>道题错误</p>
         <p class="summary-text-sm-grey">点击图标查看相应题目的做题记录和答案解析</p>
 
         <div style="margin-top:20px;margin-left:-10px;" class="row">
@@ -79,7 +79,7 @@
           </div>
         </div>
 
-        <p class="summary-text-sm">本次练习共计耗时{{this.total_duration}}分钟</p>
+        <p class="summary-text-sm">本次练习共计耗时{{total_duration.toFixed(1)}}分钟</p>
 
 
         <div style="margin-top:20px;" class="row">
@@ -89,7 +89,7 @@
             </div>
           </div>
           <div class="col-auto">
-            <p class="summary-text-sm">完成{{this.num_fill_in_blank}}题，平均{{this.avg_duration_fill_in_blank.toFixed(1)}}分钟/题</p>
+            <p class="summary-text-sm">完成{{num_fill_in_blank}}题，平均{{avg_duration_fill_in_blank.toFixed(1)}}分钟/题</p>
           </div>
           <div class="col-auto">
             <div [ngStyle]="{'width.px': this.fill_in_blank_progress,'margin-top':'5px'}" class="progress">
@@ -106,7 +106,7 @@
             </div>
           </div>
           <div class="col-auto">
-            <p class="summary-text-sm">完成{{this.num_multiple_choice}}题，平均{{this.avg_duration_multiple_choice.toFixed(1)}}分钟/题</p>
+            <p class="summary-text-sm">完成{{num_multiple_choice}}题，平均{{avg_duration_multiple_choice.toFixed(1)}}分钟/题</p>
           </div>
           <div class="col-auto">
             <div [ngStyle]="{'width.px': this.multiple_choice_progress,'margin-top':'5px'}" class="progress">
@@ -123,7 +123,7 @@
             </div>
           </div>
           <div class="col-auto">
-            <p class="summary-text-sm">完成{{this.num_long_question}}题，平均{{this.avg_duration_long_question.toFixed(1)}}分钟/题</p>
+            <p class="summary-text-sm">完成{{num_long_question}}题，平均{{avg_duration_long_question.toFixed(1)}}分钟/题</p>
           </div>
           <div class="col-auto">
             <div [ngStyle]="{'width.px': this.long_question_progress,'margin-top':'5px'}" class="progress">

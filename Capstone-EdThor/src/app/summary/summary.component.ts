@@ -46,7 +46,6 @@ export class SummaryComponent implements OnInit {
   timer_3: any;
 
   setFillinBlankProgress(num) {
-    console.log("fillinblank:" + num);
     this.fill_in_blank_progress++;
     const that = this;
     this.timer_1 = setTimeout(function () {
@@ -60,7 +59,6 @@ export class SummaryComponent implements OnInit {
   }
 
   setMultipleChoiceProgress(num) {
-    console.log("multiplechoice:" + num);
     this.multiple_choice_progress++;
     const that = this;
     this.timer_2 = setTimeout(function () {
@@ -74,7 +72,6 @@ export class SummaryComponent implements OnInit {
   }
 
   setLongQuestionProgress(num) {
-    console.log("longquestion:" + num);
     this.long_question_progress++;
     const that = this;
     this.timer_3 = setTimeout(function () {
@@ -153,7 +150,7 @@ export class SummaryComponent implements OnInit {
           that.num_multiple_choice++;
         }
       }
-      that.total_duration = Math.round((this.raw_duration_long_question + this.raw_duration_fill_in_blank + this.raw_duration_multiple_choice) / 1000 / 60);
+      that.total_duration = Math.round((that.raw_duration_long_question + that.raw_duration_fill_in_blank + that.raw_duration_multiple_choice) / 1000 / 60);
 
       if (that.num_long_question == 0) {
         that.raw_duration_long_question = 0;
@@ -206,30 +203,5 @@ export class SummaryComponent implements OnInit {
       this.setMultipleChoiceProgress(150*b/c);
       this.setLongQuestionProgress(150); 
     }
-    // if (c < a && c < b && b < a) {
-    // this.setFillinBlankProgress(150);
-    // this.setMultipleChoiceProgress(70);
-    // this.setLongQuestionProgress(60);
-    // } else if (c < a && b < c && b < a) {
-    //   this.setFillinBlankProgress(150);
-    //   this.setMultipleChoiceProgress(150*b/a);
-    //   this.setLongQuestionProgress(150*c/a);
-    // } else if (c < a && c < b && a < b) {
-    //   this.setFillinBlankProgress(150*a/b);
-    //   this.setMultipleChoiceProgress(150);
-    //   this.setLongQuestionProgress(150*c/b);
-    // } else if (a < c && a < b && c < b) {
-    //   this.setFillinBlankProgress(150*a/b);
-    //   this.setMultipleChoiceProgress(150);
-    //   this.setLongQuestionProgress(150*c/b);
-    // } else if (a < b && a < c && b < c) {
-    //   this.setFillinBlankProgress(150*a/c);
-    //   this.setMultipleChoiceProgress(150*b/c);
-    //   this.setLongQuestionProgress(150);
-    // } else if (b < a && b < c && a < c) {
-    //   this.setFillinBlankProgress(150*a/c);
-    //   this.setMultipleChoiceProgress(150*b/c);
-    //   this.setLongQuestionProgress(150);
-    // }
   }
 }

@@ -10,22 +10,22 @@
 <mat-radio-group class="check-radio-group" name="my_options" [(ngModel)]="choice" (click)="readySubmitOptions()">
   <mat-radio-button class="check-radio-button" value="1">
     <div style="height:50px;margin-left:15px">
-      <div class="check-radio-button-forimg" id="problem-question-0"></div>
+      <div class="check-radio-button-forimg" [innerHTML]="cur_problem.problem_questions[0]"></div>
     </div>
   </mat-radio-button>
   <mat-radio-button class="check-radio-button" value="2">
     <div style="height:50px;margin-left:15px">
-        <p class="check-radio-button-forimg" id="problem-question-1"></p>
+        <p class="check-radio-button-forimg" [innerHTML]="cur_problem.problem_questions[1]"></p>
     </div>
   </mat-radio-button>
   <mat-radio-button class="check-radio-button" value="3">
     <div style="height:50px;margin-left:15px">
-        <p class="check-radio-button-forimg" id="problem-question-2"></p>
+        <p class="check-radio-button-forimg" [innerHTML]="cur_problem.problem_questions[2]"></p>
     </div>
   </mat-radio-button>
   <mat-radio-button class="check-radio-button" value="4">
     <div style="height:50px;margin-left:15px">
-        <p class="check-radio-button-forimg" id="problem-question-3"></p>
+        <p class="check-radio-button-forimg" [innerHTML]="cur_problem.problem_questions[3]"></p>
     </div>
   </mat-radio-button>
 </mat-radio-group>

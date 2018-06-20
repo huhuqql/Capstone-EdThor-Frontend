@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GlobalsService } from '../globals.service';
 import * as problems from '../../assets/files/questions.json';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { Problem } from '../service/model/problem';
 import { Record } from '../service/model/record';
@@ -74,36 +75,19 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   // private symbol_input_element: any;
 
   //for all
-  private problem_text_element: any;
-  private problem_questions_element: any[] = [];
-  private check_answer_options_element: any;
   private check_answer_button: any;
   private next_step_button: any;
   private check_solution_button: any;
 
-  // private check_option_button_correct_element: any;
-  // private check_option_button_incorrect_element: any;
 
-  //multiple-choice & fill-in-blank
-  private problem_solution_steps_element: any;
-
-  //multiple choice
-  private multiple_choice_options_element: any[] = [];
-  private multiple_choice_answer_element: any;
-  private multiple_choice_input_element: any;
-  private multiple_choice_result_element: any;
-
-  //long-question element
-  private long_question_solution_check_element: any[] = [];
-  private long_question_answer_element: any;
-
-  //fill-in-blank
-  private fill_in_blank_answer_element: any;
-
-  constructor(private route: ActivatedRoute, private global: GlobalsService, private http: HttpClient, private userService: UserService) {
+  constructor(private sanitized: DomSanitizer, private route: ActivatedRoute, private global: GlobalsService, private http: HttpClient, private userService: UserService) {
     this.sub = route.params.subscribe(params => {
       this.topic = params['topic'];
     });
+  }
+
+  transform(value) {
+    return this.sanitized.bypassSecurityTrustHtml(value);
   }
 
   fortest() {
@@ -113,14 +97,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.math_formlua_element = null;
     this.math_formlua_img_element = null;
-    this.problem_text_element = null;
     // this.symbol_input_element = null;
-    this.problem_questions_element = null;
-    this.multiple_choice_options_element = null;
-    this.multiple_choice_answer_element = null;
-    this.multiple_choice_input_element = null;
-    this.multiple_choice_result_element = null;
-    this.long_question_solution_check_element = null;
     this.check_answer_button = null;
     this.next_step_button = null;
     this.check_solution_button = null;
@@ -143,9 +120,9 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
   generateProblem() {
     this.selected_num = 1;
-    // this.selected_type = 1;
+    //this.selected_type = 1;
     this.selected_type = this.getRandomInt(1,3);
-    console.log(this.selected_type);
+    console.log("selected type =" + this.selected_type);
   }
 
   submitMCOptions(option) {
@@ -155,8 +132,30 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
     this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "answer.html", { responseType: 'text' })
       .subscribe(data => {
-        this.cur_problem.problem_answers[0] = this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/answer/clip");
-        this.showAnswer();
+        var temp_answer = this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/answer/clip");
+        var temp;
+        if (this.cur_problem.problem_multiple_choice_answer == 0) {
+          temp = ">A<";
+        }
+        else if (this.cur_problem.problem_multiple_choice_answer == 1) {
+          temp = ">B<";
+        }
+        else if (this.cur_problem.problem_multiple_choice_answer == 2) {
+          temp = ">C<";
+        }
+        else if (this.cur_problem.problem_multiple_choice_answer == 3) {
+          temp = ">D<";
+        }
+
+        if (temp_answer.indexOf(temp) < 0) {
+          console.log("you are wrong");
+          this.answer_list.push(false);
+        }
+        else {
+          console.log("you are right");
+          this.answer_list.push(true);
+        }
+        this.cur_problem.problem_answers[0] = this.transform(temp_answer);
       });
   }
 
@@ -165,61 +164,47 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "answer_" + this.cur_sub_prob + ".html", { responseType: 'text' })
       .subscribe(data => {
         this.cur_problem.problem_answers[this.cur_sub_prob] = this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/answer_" + this.cur_sub_prob + "/clip");
-        this.showLongquestionAnswer();
       });
   }
 
-  showLongquestionAnswer() {
-    this.long_question_answer_element = document.getElementById("problem-long-question-answer");
-    this.long_question_answer_element.innerHTML = this.cur_problem.problem_answers[this.cur_sub_prob];
-  }
 
   getFillinblankAnswer() {
     var type_name = "fill-in-blank";
     this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "answer.html", { responseType: 'text' })
       .subscribe(data => {
-        this.cur_problem.problem_answers[0] = this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/answer/clip");
-        this.showFillinblankAnswer();
+        this.cur_problem.problem_answers[0] = this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/answer/clip"));
       });
   }
 
-  showFillinblankAnswer() {
-    this.fill_in_blank_answer_element = document.getElementById("problem-fill-in-blank-answer");
-    this.fill_in_blank_answer_element.innerHTML = this.cur_problem.problem_answers[0];
-  }
 
-  showAnswer() {
-    this.multiple_choice_answer_element = document.getElementById("problem-answer");
-    this.multiple_choice_answer_element.innerHTML = this.cur_problem.problem_answers[0];
+  // showAnswer() {
 
-    var temp;
-    if (this.cur_problem.problem_multiple_choice_answer == 0) {
-      temp = ">A<";
-    }
-    else if (this.cur_problem.problem_multiple_choice_answer == 1) {
-      temp = ">B<";
-    }
-    else if (this.cur_problem.problem_multiple_choice_answer == 2) {
-      temp = ">C<";
-    }
-    else if (this.cur_problem.problem_multiple_choice_answer == 3) {
-      temp = ">D<";
-    }
+  //   var temp;
+  //   if (this.cur_problem.problem_multiple_choice_answer == 0) {
+  //     temp = ">A<";
+  //   }
+  //   else if (this.cur_problem.problem_multiple_choice_answer == 1) {
+  //     temp = ">B<";
+  //   }
+  //   else if (this.cur_problem.problem_multiple_choice_answer == 2) {
+  //     temp = ">C<";
+  //   }
+  //   else if (this.cur_problem.problem_multiple_choice_answer == 3) {
+  //     temp = ">D<";
+  //   }
 
-    if (this.cur_problem.problem_answers[0].indexOf(temp) < 0) {
-      console.log("you are wrong");
-      this.answer_list.push(false);
-    }
-    else {
-      console.log("you are right");
-      this.answer_list.push(true);
-    }
+  //   if (this.cur_problem.problem_answers[0].indexOf(temp) < 0) {
+  //     console.log("you are wrong");
+  //     this.answer_list.push(false);
+  //   }
+  //   else {
+  //     console.log("you are right");
+  //     this.answer_list.push(true);
+  //   }
 
-    //free memory
-    this.multiple_choice_options_element = [];
-    this.problem_questions_element = [];
+  //   //free memory
 
-  }
+  // }
 
 
   // checkRightorWrong(){
@@ -258,13 +243,11 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
     this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "problem.html", { responseType: 'text' })
       .subscribe(data => {
-        this.cur_problem.problem_text = this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/problem/clip");
-        this.showProblemText();
+        this.cur_problem.problem_text = this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/problem/clip"));
       });
   }
 
   getQuestion() {
-    console.log("getQuestion!");
     var type_name: string;
     if (this.selected_type == 1) {
       type_name = "long-question";
@@ -275,64 +258,38 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     else if (this.selected_type == 3) {
       type_name = "multiple-choice";
 
-      for (var i = 0; i < 4; i++) {
-        this.problem_questions_element.push(document.getElementById("problem-question-" + i));
-      }
-
       this.http.get(this.base_url + type_name + "/" + this.selected_num + "/a.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_questions[0] = this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/a/clip");
-          this.showOptions(0);
-        }, error => console.log('oops', error));
+          this.cur_problem.problem_questions[0] = this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/a/clip"));
+        }, error => console.log(error));
 
       this.http.get(this.base_url + type_name + "/" + this.selected_num + "/b.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_questions[1] = this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/b/clip");
-          this.showOptions(1);
-        }, error => console.log('oops', error));
+          this.cur_problem.problem_questions[1] = this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/b/clip"));
+        }, error => console.log(error));
 
       this.http.get(this.base_url + type_name + "/" + this.selected_num + "/c.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_questions[2] = this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/c/clip");
-          this.showOptions(2);
-        }, error => console.log('oops', error));
+          this.cur_problem.problem_questions[2] = this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/c/clip"));
+        }, error => console.log(error));
 
       this.http.get(this.base_url + type_name + "/" + this.selected_num + "/d.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_questions[3] = this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/d/clip");
-          this.showOptions(3);
-        }, error => console.log('oops', error));
+          this.cur_problem.problem_questions[3] = this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/d/clip"));
+        }, error => console.log(error));
 
     }
-  }
-
-  showOptions(num) {
-    this.problem_questions_element[num].innerHTML = this.cur_problem.problem_questions[num];
   }
 
   requestSolutionSteps(type_name, num) {
     this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "/solution_" + this.cur_sub_prob + "/" + num + ".html", { responseType: 'text' })
       .subscribe(data => {
-        this.cur_problem.problem_long_question_solution[this.cur_sub_prob].push(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/solution_" + this.cur_sub_prob + "/" + num + "/clip"));
-        this.showSolutionCheck(num - 1);
+        this.cur_problem.problem_long_question_solution[this.cur_sub_prob].push(this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/solution_" + this.cur_sub_prob + "/" + num + "/clip")));
         this.requestSolutionSteps(type_name, num + 1);
-
       }, error => {
-        console.log('oops', error);
-        console.log(this.cur_problem.problem_long_question_solution);
+        console.log(error);
       });
   }
-
-  showSolutionCheck(num) {
-    console.log(this.cur_problem.problem_long_question_solution);
-    const that = this;
-    setTimeout(function () {
-      console.log(num);
-      that.long_question_solution_check_element[num] = document.getElementById("long-question-solution-check-" + num);
-      that.long_question_solution_check_element[num].innerHTML = that.cur_problem.problem_long_question_solution[that.cur_sub_prob][num];
-    }, '200');
-  }
-
 
   getSolutionSteps() {
     var type_name: string;
@@ -344,26 +301,24 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       type_name = "fill-in-blank";
       this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "solution-step.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_solution_steps = this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/solution-step/clip");
-          this.showSolutionSteps();
+          this.cur_problem.problem_solution_steps = this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/solution-step/clip"));
         });
     }
     else if (this.selected_type == 3) {
       type_name = "multiple-choice";
       this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "solution-step.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_solution_steps = this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/solution-step/clip");
-          this.showSolutionSteps();
+          this.cur_problem.problem_solution_steps = this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/solution-step/clip"));
         });
 
     }
 
   }
 
-  showSolutionSteps() {
-    this.problem_solution_steps_element = document.getElementById("problem-solution-steps");
-    this.problem_solution_steps_element.innerHTML = this.cur_problem.problem_solution_steps;
-  }
+  // showSolutionSteps() {
+  //   this.problem_solution_steps_element = document.getElementById("problem-solution-steps");
+  //   this.problem_solution_steps_element.innerHTML = this.cur_problem.problem_solution_steps;
+  // }
 
 
   changeImageUrl(content, target) {
@@ -407,11 +362,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       state: "inactive"
     }
     this.cur_problem = temp;
-  }
-
-  showProblemText() {
-    this.problem_text_element = document.getElementById("problem-text");
-    this.problem_text_element.innerHTML = this.cur_problem.problem_text;
   }
 
   // showSymbolInput(index) {
@@ -484,7 +434,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     else {
       this.answer_list.push(false);
     }
-    console.log(this.answer_list);
   }
 
   showNewProblem() {
@@ -493,18 +442,20 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
     var d = new Date();
     this.start_time = d.getTime();
+    this.initProblem();
+    this.getProblem();
+    this.getQuestion();
+    this.cur_step = 0;
+    this.cur_sub_prob = 1;
+
+
     const that = this;
     setTimeout(function () {
-      that.initProblem();
-      that.getProblem();
-      that.cur_step = 0;
-      that.cur_sub_prob = 1;
       that.getButtons();
-      that.initButtons();
-    }, '200');
-    setTimeout(function () {
-      that.getQuestion();
-    }, '400');
+      that.initButtons();     
+    }, '50');
+
+
   }
 
   getRandomInt(min: number, max: number): number {
@@ -534,7 +485,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       }
     });
     this.progress = this.progress + 10;
-    console.log("this progress = " + this.progress);
   }
 
 
@@ -569,7 +519,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         this.cur_sub_prob++;
         this.getLongquestionAnswer();
       }
-      else{
+      else {
         this.nextProblem();
       }
     }
