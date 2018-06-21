@@ -1,12 +1,14 @@
 <div style="margin:0;padding:0;margin-top:20px;" class="row">
   <div style="margin:0;padding:0" class="col-auto">
-    <p id="problem-instruction" class="problem-instruction">答案解析</p>
+    <p class="problem-instruction">做题记录</p>
   </div>
   <div style="margin:0;padding:0" class="col-auto">
     <div class="arrow"></div>
   </div>
 </div>
 
-<div>
-  <p [innerHTML]="cur_problem.problem_solution_steps"></p>
+<div style="margin:0;padding:0;margin-top:20px;" class="row">
+  <div class="problem-answer">
+    <p [innerHTML]="cur_problem.problem_answers[0]"></p>
+  </div>
 </div>

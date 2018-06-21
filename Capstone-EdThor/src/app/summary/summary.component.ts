@@ -30,6 +30,7 @@ export class SummaryComponent implements OnInit {
 
   @Input() record_list: any[];
   @Input() kc_set: any[];
+  @Input() problem_set: any[];
 
 
   correct_num: number = 0;
@@ -38,10 +39,25 @@ export class SummaryComponent implements OnInit {
   fill_in_blank_progress: number = 0;
   multiple_choice_progress: number = 0;
   long_question_progress: number = 0;
+  cur_problem: Problem;
 
   timer_1: any;
   timer_2: any;
   timer_3: any;
+
+  returnToReport() {
+    this.page = 1;
+  }
+
+  showReport(num) {
+    console.log(this.problem_set[num]);
+    this.cur_problem = this.problem_set[num];
+    this.cur_problem.state = "inactive";
+    this.type = this.cur_problem.problem_type;
+    this.page = 2;
+    console.log("type =" + this.type);
+    console.log("page =" + this.page);
+  }
 
   setFillinBlankProgress(num) {
     this.fill_in_blank_progress++;
@@ -98,12 +114,14 @@ export class SummaryComponent implements OnInit {
   answer_set: boolean[] = [];
 
   state: string = "inactive";
-  step: number = 0;
+  page: number = 0;
+  type: number = -1;
 
   constructor() {
   }
 
   ngOnInit() {
+    console.log(this.problem_set);
     // this.setFillinblankProgress();
     const that = this;
     setTimeout(function () {
@@ -116,7 +134,7 @@ export class SummaryComponent implements OnInit {
     }, '3000');
 
     setTimeout(function () {
-      that.step = 1;
+      that.page = 1;
     }, '3300');
 
     setTimeout(function () {
@@ -153,7 +171,7 @@ export class SummaryComponent implements OnInit {
           }
         }
       }
-    }, '200');
+    }, '3300');
 
     setTimeout(function () {
       for (var i = 0; i < that.record_list.length; i++) {
@@ -196,7 +214,7 @@ export class SummaryComponent implements OnInit {
         that.avg_duration_multiple_choice = that.raw_duration_multiple_choice / 1000 / 60 / that.num_multiple_choice;
       }
       that.orderDuration();
-    }, '200');
+    }, '3300');
 
 
   }
@@ -208,18 +226,18 @@ export class SummaryComponent implements OnInit {
     let c = this.avg_duration_long_question;
     if (a > b && a > c) {
       this.setFillinBlankProgress(150);
-      this.setMultipleChoiceProgress(150*b/a);
-      this.setLongQuestionProgress(150*c/a);
+      this.setMultipleChoiceProgress(150 * b / a);
+      this.setLongQuestionProgress(150 * c / a);
     }
-    else if( b > c && b > a){
-      this.setFillinBlankProgress(150*a/b);
+    else if (b > c && b > a) {
+      this.setFillinBlankProgress(150 * a / b);
       this.setMultipleChoiceProgress(150);
-      this.setLongQuestionProgress(150*c/b);
+      this.setLongQuestionProgress(150 * c / b);
     }
-    else if( c > a && c > b){
-      this.setFillinBlankProgress(150*a/c);
-      this.setMultipleChoiceProgress(150*b/c);
-      this.setLongQuestionProgress(150); 
+    else if (c > a && c > b) {
+      this.setFillinBlankProgress(150 * a / c);
+      this.setMultipleChoiceProgress(150 * b / c);
+      this.setLongQuestionProgress(150);
     }
   }
 }

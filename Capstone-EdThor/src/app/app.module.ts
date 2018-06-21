@@ -33,6 +33,15 @@ import { LongQuestionInputComponent } from './long-question-input/long-question-
 import { LongQuestionCheckComponent } from './long-question-check/long-question-check.component';
 import { LongQuestionStepCheckComponent } from './long-question-step-check/long-question-step-check.component';
 import { SummaryComponent } from './summary/summary.component';
+import { FillInBlankReportComponent } from './fill-in-blank-report/fill-in-blank-report.component';
+import { MultipleChoiceReportComponent } from './multiple-choice-report/multiple-choice-report.component';
+import { MultipleChoiceReportAnswerComponent } from './multiple-choice-report-answer/multiple-choice-report-answer.component';
+import { MultipleChoiceReportSolutionStepsComponent } from './multiple-choice-report-solution-steps/multiple-choice-report-solution-steps.component';
+import { FillInBlankReportAnswerComponent } from './fill-in-blank-report-answer/fill-in-blank-report-answer.component';
+import { FillInBlankReportSolutionStepsComponent } from './fill-in-blank-report-solution-steps/fill-in-blank-report-solution-steps.component';
+import { LongQuestionReportComponent } from './long-question-report/long-question-report.component';
+import { LongQuestionReportAnswerComponent } from './long-question-report-answer/long-question-report-answer.component';
+import { LongQuestionReportSolutionStepsComponent } from './long-question-report-solution-steps/long-question-report-solution-steps.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +64,16 @@ import { SummaryComponent } from './summary/summary.component';
     LongQuestionInputComponent,
     LongQuestionCheckComponent,
     LongQuestionStepCheckComponent,
-    SummaryComponent
+    SummaryComponent,
+    FillInBlankReportComponent,
+    MultipleChoiceReportComponent,
+    MultipleChoiceReportAnswerComponent,
+    MultipleChoiceReportSolutionStepsComponent,
+    FillInBlankReportAnswerComponent,
+    FillInBlankReportSolutionStepsComponent,
+    LongQuestionReportComponent,
+    LongQuestionReportAnswerComponent,
+    LongQuestionReportSolutionStepsComponent
   ],
   imports: [
     BrowserModule,

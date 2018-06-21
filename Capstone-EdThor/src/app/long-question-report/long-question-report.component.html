@@ -1,0 +1,27 @@
+<div class="question">
+  <blockquote style="margin:15px">
+    <p>题目</p>
+  </blockquote>
+  <p [innerHtml]="cur_problem.problem_text" [@state]="this.cur_problem.state"></p>
+
+  <div [@state]="this.cur_problem.state" [ngSwitch]="page">
+    <app-long-question-report-answer *ngSwitchCase=0 [cur_problem]="cur_problem" [sub_prob]="sub_prob"></app-long-question-report-answer>
+    <app-long-question-report-solution-steps *ngSwitchCase=1 [cur_problem]="cur_problem" [sub_prob]="sub_prob"></app-long-question-report-solution-steps>
+  </div>
+
+  <div style="margin:0;padding:0;position:absolute;top:88%;width:95%" class="row justify-content-end">
+    <div class="col-auto">
+      <button id="check-solution-button" type="button" class="btn-input-answer btn-theme" (click)="switchPage_1()">{{button_1_text}}</button>
+    </div>
+    <div class="col-auto">
+      <button id="check-solution-button" type="button" class="btn-input-answer btn-theme" (click)="switchPage_2()">{{button_2_text}}</button>
+    </div>
+  </div>
+
+  <div style="margin:0;padding:0;position:absolute;top:4%;width:94%" class="row justify-content-end">
+    <div class="col-auto">
+      <a href="javascript:void(0);" (click)="goReturnToReport()" style="color:#76b852">返回报告</a>
+    </div>
+  </div>
+
+</div>

@@ -1,5 +1,6 @@
 export class Problem {
     problem_id?: number;
+    problem_num?: number;
     problem_topic_name?: any;
     problem_type?: number;
     problem_type_name?: any;

@@ -43,7 +43,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
   topic: any;
   topic_name: any;
-  problem_set: any[] = ["1", "2", "3"];
+  problem_set: any[] = [];
   kc_set: any[] = [["正弦定理的理解与应用", 4], ["余弦定理的理解与应用", 3], ["三角函数的图像与性质", 2], ["同角三角形的基本关系和诱导公式", 1]];
   answer_set: any[] = [true, false, true];
   type_set: any[] = [];
@@ -154,51 +154,31 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   }
 
   getLongquestionAnswer() {
-    var type_name = "long-question";
-    this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "answer_" + this.cur_sub_prob + ".html", { responseType: 'text' })
-      .subscribe(data => {
-        this.cur_problem.problem_answers[this.cur_sub_prob] = this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/answer_" + this.cur_sub_prob + "/clip");
-      });
+    if (this.cur_problem.problem_type == 1) {
+      var type_name = "long-question";
+      this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "answer_1.html", { responseType: 'text' })
+        .subscribe(data => {
+          this.cur_problem.problem_answers[1] = this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/answer_1/clip");
+        });
+
+        this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "answer_2.html", { responseType: 'text' })
+        .subscribe(data => {
+          this.cur_problem.problem_answers[2] = this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/answer_2/clip");
+        });
+    }
   }
 
 
   getFillinblankAnswer() {
-    var type_name = "fill-in-blank";
-    this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "answer.html", { responseType: 'text' })
-      .subscribe(data => {
-        this.cur_problem.problem_answers[0] = this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/answer/clip"));
-      });
+    if (this.cur_problem.problem_type == 2) {
+      var type_name = "fill-in-blank";
+      this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "answer.html", { responseType: 'text' })
+        .subscribe(data => {
+          this.cur_problem.problem_answers[0] = this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/answer/clip"));
+        });
+    }
   }
 
-
-  // showAnswer() {
-
-  //   var temp;
-  //   if (this.cur_problem.problem_multiple_choice_answer == 0) {
-  //     temp = ">A<";
-  //   }
-  //   else if (this.cur_problem.problem_multiple_choice_answer == 1) {
-  //     temp = ">B<";
-  //   }
-  //   else if (this.cur_problem.problem_multiple_choice_answer == 2) {
-  //     temp = ">C<";
-  //   }
-  //   else if (this.cur_problem.problem_multiple_choice_answer == 3) {
-  //     temp = ">D<";
-  //   }
-
-  //   if (this.cur_problem.problem_answers[0].indexOf(temp) < 0) {
-  //     console.log("you are wrong");
-  //     this.answer_list.push(false);
-  //   }
-  //   else {
-  //     console.log("you are right");
-  //     this.answer_list.push(true);
-  //   }
-
-  //   //free memory
-
-  // }
 
 
   // checkRightorWrong(){
@@ -222,6 +202,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   getProblem() {
     this.cur_problem.problem_id = this.selected_num;
     this.cur_problem.problem_type = this.selected_type;
+    this.cur_problem.problem_num = this.selected_num;
 
     var type_name: string;
     if (this.selected_type == 1) {
@@ -275,11 +256,11 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     }
   }
 
-  requestSolutionSteps(type_name, num) {
-    this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "/solution_" + this.cur_sub_prob + "/" + num + ".html", { responseType: 'text' })
+  requestSolutionSteps(type_name, num, sub_problem) {
+    this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "/solution_" + sub_problem + "/" + num + ".html", { responseType: 'text' })
       .subscribe(data => {
-        this.cur_problem.problem_long_question_solution[this.cur_sub_prob].push(this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/solution_" + this.cur_sub_prob + "/" + num + "/clip")));
-        this.requestSolutionSteps(type_name, num + 1);
+        this.cur_problem.problem_long_question_solution[sub_problem].push(this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/solution_" + sub_problem + "/" + num + "/clip")));
+        this.requestSolutionSteps(type_name, num + 1, sub_problem);
       }, error => {
         console.log(error);
       });
@@ -289,7 +270,8 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     var type_name: string;
     if (this.selected_type == 1) {
       type_name = "long-question";
-      this.requestSolutionSteps(type_name, 1);
+      this.requestSolutionSteps(type_name, 1, 1);
+      this.requestSolutionSteps(type_name, 1, 2);
     }
     else if (this.selected_type == 2) {
       type_name = "fill-in-blank";
@@ -308,10 +290,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
   }
 
-  // showSolutionSteps() {
-  //   this.problem_solution_steps_element = document.getElementById("problem-solution-steps");
-  //   this.problem_solution_steps_element.innerHTML = this.cur_problem.problem_solution_steps;
-  // }
 
 
   changeImageUrl(content, target) {
@@ -430,12 +408,17 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   }
 
   showNewProblem() {
+    this.cur_problem.state = "inactive";
     this.cur_problem_number++;
+    // console.log("你刚刚做的题是：");
+    // console.log(this.cur_problem);
 
     var d = new Date();
     this.start_time = d.getTime();
-    this.cur_problem.state = "inactive";
 
+
+    // console.log("把这题加入记录...");
+    // console.log(this.problem_set);
 
     const that = this;
     setTimeout(function () {
@@ -446,6 +429,9 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       that.getQuestion();
       that.getButtons();
       that.initButtons();
+      that.getSolutionSteps();
+      that.getLongquestionAnswer();
+      that.getFillinblankAnswer();
     }, '100');
 
     setTimeout(function () {
@@ -468,6 +454,9 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   }
 
   nextProblem() {
+    if (this.cur_problem_number > 0) {
+      this.problem_set.push(this.cur_problem);
+    }
     console.log(this.progress);
     if (this.progress > 65) {
       var d = new Date();
@@ -554,7 +543,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         this.cur_problem.state = "inactive";
         this.check_answer_button.disabled = "disabled";
         this.check_solution_button.disabled = "";
-        this.getLongquestionAnswer();
         setTimeout(function () {
           that.cur_step++;
         }, '100');
@@ -564,7 +552,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       }
       else if (this.cur_step == 1) {
         this.cur_problem.state = "inactive";
-        this.getSolutionSteps();
         setTimeout(function () {
           that.cur_step++;
         }, '100');
@@ -574,11 +561,10 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       }
       else if (this.cur_step == 2) {
         this.cur_problem.state = "inactive";
-        this.cur_problem.problem_long_question_solution[this.cur_sub_prob] = [];
-        this.cur_sub_prob++;
-        this.getLongquestionAnswer();
+        // this.cur_sub_prob++;
         setTimeout(function () {
           that.cur_step++;
+          that.cur_sub_prob++;
         }, '100');
         setTimeout(function () {
           that.cur_problem.state = "active";
@@ -588,7 +574,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         this.cur_problem.state = "inactive";
         this.next_step_button.disabled = "";
         this.check_solution_button.disabled = "disabled";
-        this.getSolutionSteps();
         setTimeout(function () {
           that.cur_step++;
         }, '100');
@@ -603,7 +588,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         this.check_answer_button.disabled = "disabled";
         this.check_solution_button.disabled = "";
         this.next_step_button.disabled = "";
-        this.getFillinblankAnswer();
         setTimeout(function () {
           that.cur_step++;
         }, '100');
@@ -616,7 +600,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         this.check_answer_button.disabled = "disabled";
         this.check_solution_button.disabled = "disabled";
         this.next_step_button.disabled = "";
-        this.getSolutionSteps();
+        // this.getSolutionSteps();
         setTimeout(function () {
           that.cur_step++;
         }, '100');
@@ -644,8 +628,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         this.check_answer_button.disabled = "disabled";
         this.check_solution_button.disabled = "disabled";
         this.next_step_button.disabled = "";
-        this.getSolutionSteps();
-        this.getSolutionSteps();
         setTimeout(function () {
           that.cur_step++;
         }, '100');

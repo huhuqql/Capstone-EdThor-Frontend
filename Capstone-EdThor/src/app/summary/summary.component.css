@@ -45,5 +45,12 @@
     text-align: center;
 }
 
+.arrow-return {
+    width: 15px;
+    height: 15px;
+    border-top: 2px solid #22490d;
+    border-right: 2px solid #22490d;
+    transform: rotate(45deg);
+}
 
   

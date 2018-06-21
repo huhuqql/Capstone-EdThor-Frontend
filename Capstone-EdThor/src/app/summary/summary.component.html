@@ -1,4 +1,4 @@
-<div [ngSwitch]="step">
+<div [ngSwitch]="page">
 
   <div *ngSwitchCase=0 style="margin-top:200px;" class="row justify-content-md-center" [@state]="state">
     <div class="col-auto">
@@ -16,7 +16,13 @@
     </div>
   </div>
 
-
+  <div *ngSwitchCase=2>
+    <div [ngSwitch]="type">
+      <app-long-question-report *ngSwitchCase=1 [cur_problem]="cur_problem" (returnToReport)="returnToReport()"></app-long-question-report>
+      <app-fill-in-blank-report *ngSwitchCase=2 [cur_problem]="cur_problem" (returnToReport)="returnToReport()"></app-fill-in-blank-report>
+      <app-multiple-choice-report *ngSwitchCase=3 [cur_problem]="cur_problem" (returnToReport)="returnToReport()"></app-multiple-choice-report>
+    </div>
+  </div>
 
 
 
@@ -78,8 +84,8 @@
           <p class="summary-text-sm-grey">点击图标查看相应题目的做题记录和答案解析</p>
 
           <div style="margin-top:20px;margin-left:-10px;" class="row">
-            <div style="margin-right:0;padding:10px" class="col-auto" *ngFor="let item of this.answer_set">
-              <div [ngSwitch]="item">
+            <div style="margin-right:0;padding:10px" class="col-auto" *ngFor="let item of this.answer_set;index as i">
+              <div [ngSwitch]="item" (click)="showReport(i)">
                 <img *ngSwitchCase=true style="height:20px;width:20px;" src="../../assets/img/correct@4x.png">
                 <img *ngSwitchCase=false style="height:20px;width:20px;" src="../../assets/img/incorrect@4x.png">
               </div>
@@ -154,9 +160,6 @@
               </div>
             </div>
           </div>
-
-
-
         </div>
       </div>
 
