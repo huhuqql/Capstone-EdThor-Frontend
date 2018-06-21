@@ -18,10 +18,14 @@ export class LongQuestionReportSolutionStepsComponent {
   @Input() cur_problem: Problem;
   @Input() sub_prob: number;
 
+  checked = [true,true,true,true,true];
+  disabled = ['disabled','disabled','disabled','disabled','disabled'];
+
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.cur_problem);
   }
 
 }

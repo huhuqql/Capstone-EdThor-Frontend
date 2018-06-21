@@ -53,4 +53,7 @@
     transform: rotate(45deg);
 }
 
-  
+.single-report-button:hover{
+    background-color:rgb(255, 255, 255);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+}

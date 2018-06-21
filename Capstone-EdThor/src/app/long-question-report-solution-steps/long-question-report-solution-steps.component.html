@@ -1,19 +1,17 @@
 <div style="margin:0;padding:0;margin-top:20px;" class="row">
-    <div style="margin:0;padding:0" class="col-auto">
-      <p class="problem-instruction">第({{sub_prob}})小题的分步解析:</p>
-    </div>
-    <div style="margin:0;padding:0" class="col-auto">
-      <div class="arrow"></div>
-    </div>
+  <div style="margin:0;padding:0" class="col-auto">
+    <p class="problem-instruction">第({{sub_prob}})小题的分步解析:</p>
   </div>
-  
-  
-  <div *ngFor="let solution of cur_problem.problem_long_question_solution[sub_prob]; index as i">
-    <mat-checkbox class="check-radio-button" value="option-{{i}}" disabled>
-      <div style="min-height:50px;margin-left:15px;">
-        <div class="check-radio-button-forimg" [innerHTML]="cur_problem.problem_long_question_solution[sub_prob][i]"></div>
-      </div>
-    </mat-checkbox>
+  <div style="margin:0;padding:0" class="col-auto">
+    <div class="arrow"></div>
   </div>
-  
-  
+</div>
+
+
+<div *ngFor="let solution of cur_problem.problem_long_question_solution[sub_prob]; index as i">
+  <mat-checkbox class="check-radio-button" value="option-{{i}}" [checked]="checked[i]" [disabled]="disabled[i]">
+    <div style="min-height:50px;margin-left:15px;">
+      <div class="check-radio-button-forimg" [innerHTML]="cur_problem.problem_long_question_solution[sub_prob][i]"></div>
+    </div>
+  </mat-checkbox>
+</div>

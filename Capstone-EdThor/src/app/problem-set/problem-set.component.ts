@@ -519,7 +519,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     if (this.cur_problem.problem_type == 1) {
       if (this.cur_step == 1) {
         this.cur_problem.state = "inactive";
-        this.cur_problem.problem_long_question_solution[this.cur_sub_prob] = [];
         setTimeout(function () {
           that.cur_step++;
           that.cur_step++;

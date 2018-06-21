@@ -86,8 +86,8 @@
           <div style="margin-top:20px;margin-left:-10px;" class="row">
             <div style="margin-right:0;padding:10px" class="col-auto" *ngFor="let item of this.answer_set;index as i">
               <div [ngSwitch]="item" (click)="showReport(i)">
-                <img *ngSwitchCase=true style="height:20px;width:20px;" src="../../assets/img/correct@4x.png">
-                <img *ngSwitchCase=false style="height:20px;width:20px;" src="../../assets/img/incorrect@4x.png">
+                <img class="single-report-button" *ngSwitchCase=true style="height:20px;width:20px;" src="../../assets/img/correct@4x.png">
+                <img class="single-report-button" *ngSwitchCase=false style="height:20px;width:20px;" src="../../assets/img/incorrect@4x.png">
               </div>
             </div>
           </div>
