@@ -25,19 +25,28 @@
       </div>
     </div>
 
-    <div style="margin-top:20px;" class="form">
+    <div [ngSwitch]="page" class="question">
+      <div *ngSwitchCase=0 style="margin-top:20px;" class="form">
+        <input type="text" [(ngModel)]="curUser.username" placeholder="用户名" />
+        <input type="password" [(ngModel)]="curUser.password" placeholder="密码" />
+        <p style="color:rgb(211, 12, 12)" *ngIf="warning_display">{{warning}}</p>
+        <p style="color:#4CAF50" *ngIf="message_display">{{message}}</p>
+        <button (click)='login()'>登录</button>
+        <p class="message">没有账号？
+          <a href="javascript:void(0);" (click)="switchPage()">点击注册</a>
+        </p>
+      </div>
 
-      <input type="text" [(ngModel)]="myUser.username" placeholder="username" />
-      <input type="password" [(ngModel)]="myUser.password" placeholder="password" />
-      <button (click)='login()'>登录</button>
-      <p class="message">Not registered?
-        <a href="javascript:void(0);" (click)="register()">Create an account</a>
-      </p>
-      <p class="message">For test
-        <a href="javascript:void(0);" (click)="seeAllUsers()">Test</a>
-      </p>
+      <div *ngSwitchCase=1 style="margin-top:20px;" class="form">
+        <input type="text" [(ngModel)]="register_username" placeholder="请输入用户名" />
+        <input type="password" [(ngModel)]="register_password[0]" placeholder="请输入你的密码" />
+        <input type="password" [(ngModel)]="register_password[1]" placeholder="请再次输入密码" />
+        <p style="color:rgb(255, 0, 0)" *ngIf="warning_display">{{warning}}</p>
+        <button (click)='register()'>注册</button>
+      </div>
 
     </div>
+
   </div>
 
 

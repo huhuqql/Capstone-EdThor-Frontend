@@ -111,3 +111,10 @@ logo {
   height:30px;
 }
   
+.question{
+  color: rgb(59, 59, 59);
+  font-size: 16px;
+  margin: 0 auto;
+  font-family: 'Noto Sans CJK SC Regular';
+  src: url('../../assets/font/NotoSansCJKsc-Regular.otf');
+}

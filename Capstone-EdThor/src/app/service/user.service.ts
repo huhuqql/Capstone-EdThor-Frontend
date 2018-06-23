@@ -23,19 +23,31 @@ export class UserService {
     this.baseUrl = environment.base_url + "/ws/users";
   }
 
-  getUser() {
-
-  }
-
   getStudentId() {
     return this.my_user.student_id;
+  }
+
+  setStudentId(student_id){
+    this.my_user.student_id = student_id;
+  }
+
+  setUsername(username){
+    this.my_user.username = username;
+  }
+
+  setPassword(password){
+    this.my_user.password = password;
   }
 
   public getUsers(): Observable<User[]> {
     return this.httpService.get<User[]>(this.baseUrl);
   }
 
-  public saveUser(u: User): Observable<User> {
-    return this.httpService.post<User>(this.baseUrl + '/register', u);
+  public saveUser(u: User): Observable<number> {
+    return this.httpService.post<number>(this.baseUrl + '/register', u);
+  }
+
+  public getUser(u: User): Observable<number> {
+    return this.httpService.post<number>(this.baseUrl + '/login', u);
   }
 }
