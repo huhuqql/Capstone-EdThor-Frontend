@@ -22,18 +22,18 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.router.navigate(['/', 'dashboard']).then(nav => {
-      console.log(nav); 
+      console.log(nav);
     }, err => {
-      console.log(err) 
+      console.log(err)
     });
     console.log("login");
   }
 
-  register(){
+  register() {
     this.addUser();
   }
 
-  seeAllUsers(){
+  seeAllUsers() {
     this.getUsers();
   }
 
@@ -48,9 +48,10 @@ export class LoginComponent implements OnInit {
   public addUser(): void {
     console.log(this.myUser);
     this.userService.saveUser(this.myUser).subscribe(
-      () => {
-        this.myUser = new User();
-        console.log(this.myUser);
+      (data) => {
+        console.log(data);
+        // this.myUser = new User();
+        // console.log(this.myUser);
         this.getUsers();
       }
     )
