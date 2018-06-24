@@ -16,7 +16,7 @@ export class MemberService {
     this.baseUrl = environment.base_url + "/ws/members";
   }
 
-  public  getMembers(): Observable<Member[]> {
+  public getMembers(): Observable<Member[]> {
     return this.httpService.get<Member[]>(this.baseUrl);
   }
 

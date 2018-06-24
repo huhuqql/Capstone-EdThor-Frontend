@@ -67,6 +67,8 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
   record_list: Record[] = [];
   answer_list: boolean[] = [];
+  LQ_answer_list_1: boolean[] = [];
+  LQ_answer_list_2: boolean[] = [];
 
 
   private math_formlua_element: any;
@@ -79,7 +81,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   private check_solution_button: any;
 
 
-  constructor(private sanitized: DomSanitizer, private route: ActivatedRoute, private global: GlobalsService, private http: HttpClient, private userService: UserService) {
+  constructor(private recordService: RecordService, private sanitized: DomSanitizer, private route: ActivatedRoute, private global: GlobalsService, private http: HttpClient, private userService: UserService) {
     this.sub = route.params.subscribe(params => {
       this.topic = params['topic'];
     });
@@ -290,8 +292,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
   }
 
-
-
   changeImageUrl(content, target) {
     var pattern = /img src="(\S*)clip/g;
     var temp = content.replace(pattern, target);
@@ -407,6 +407,17 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     }
   }
 
+  submitLQOptions(options){
+    if(this.cur_sub_prob == 1){
+      this.LQ_answer_list_1 = options;
+      console.log(this.LQ_answer_list_1);
+    }
+    else if(this.cur_sub_prob == 2){
+      this.LQ_answer_list_2 = options;
+      console.log(this.LQ_answer_list_2);
+    }
+  }
+
   showNewProblem() {
     this.cur_problem.state = "inactive";
     this.cur_problem_number++;
@@ -433,7 +444,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       that.getLongquestionAnswer();
       that.getFillinblankAnswer();
     }, '100');
-
     setTimeout(function () {
       that.cur_problem.state = "active";
     }, '200');
@@ -477,7 +487,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       var d = new Date();
       this.end_time = d.getTime();
       this.generateRecord();
-      console.log(this.record_list);
       this.generateProblem();
       this.showNewProblem();
       var temp = this.progress;
@@ -494,24 +503,31 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
   generateRecord() {
     let new_record: Record = {
-      student_id: this.userService.getStudentId(),
-      problem_id: this.cur_problem.problem_id,
-      problem_type: this.cur_problem.problem_type,
-      problem_num: this.selected_num,
-      problem_duration: this.end_time - this.start_time,
-      problem_answer: [],
-      problem_kc: [],
+      studentId: this.userService.getStudentId(),
+      problemId: this.cur_problem.problem_id,
+      problemType: this.cur_problem.problem_type,
+      problemNum: this.selected_num,
+      problemDuration: this.end_time - this.start_time,
+      problemResult: [],
+      problemKc: [],
+      problemLongquestionAnswer: []
     }
     if (this.selected_type == 1) {
       for (var i = 0; i < this.answer_list.length; i++) {
-        new_record.problem_answer[i] = this.answer_list[i];
+        new_record.problemResult[i] = this.answer_list[i];
       }
     }
     else if (this.selected_type == 2 || this.selected_type == 3) {
-      new_record.problem_answer[0] = this.answer_list[0];
+      new_record.problemResult[0] = this.answer_list[0];
     }
+    new_record.problemLongquestionAnswer[0] = this.LQ_answer_list_1;
+    new_record.problemLongquestionAnswer[1] = this.LQ_answer_list_2;
     this.record_list.push(new_record);
     this.answer_list = [];
+    this.LQ_answer_list_1 = [];
+    this.LQ_answer_list_2 = [];
+    console.log(this.record_list);
+    this.recordService.saveRecords(new_record);
   }
 
   jumpStep() {
@@ -620,7 +636,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         setTimeout(function () {
           that.cur_problem.state = "active";
         }, '200');
-
       }
       else if (this.cur_step == 1) {
         this.cur_problem.state = "inactive";

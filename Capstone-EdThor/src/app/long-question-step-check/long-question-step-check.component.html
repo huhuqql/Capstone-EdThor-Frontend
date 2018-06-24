@@ -8,8 +8,8 @@
 </div>
 
 
-<div *ngFor="let solution of cur_problem.problem_long_question_solution[cur_sub_prob]; index as i">
-  <mat-checkbox class="check-radio-button" value="option-{{i}}">
+<div *ngFor="let solution of cur_problem.problem_long_question_solution[cur_sub_prob]; index as i" (click)="readySubmitOptions()">
+  <mat-checkbox class="check-radio-button" value="option-{{i}}" [(ngModel)]="checked[i]">
     <div style="min-height:50px;margin-left:15px;">
       <div class="check-radio-button-forimg" [innerHTML]="cur_problem.problem_long_question_solution[cur_sub_prob][i]"></div>
     </div>

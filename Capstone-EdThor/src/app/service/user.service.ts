@@ -23,6 +23,13 @@ export class UserService {
     this.baseUrl = environment.base_url + "/ws/users";
   }
 
+  clearUser(){
+    this.my_user.username = '';
+    this.my_user.password = '';
+    this.my_user.pseudoname = '';
+    this.my_user.student_id = -1;
+  }
+
   getStudentId() {
     return this.my_user.student_id;
   }

@@ -145,8 +145,8 @@ export class SummaryComponent implements OnInit {
 
     setTimeout(function () {
       for (var i = 0; i < that.record_list.length; i++) {
-        if (that.record_list[i].problem_type == 2 || that.record_list[i].problem_type == 3) {
-          if (that.record_list[i].problem_answer[0] == true) {
+        if (that.record_list[i].problemType == 2 || that.record_list[i].problemType == 3) {
+          if (that.record_list[i].problemResult[0] == true) {
             that.correct_num++;
             that.answer_set.push(true);
           }
@@ -155,10 +155,10 @@ export class SummaryComponent implements OnInit {
             that.answer_set.push(false);
           }
         }
-        else if (that.record_list[i].problem_type == 1) {
+        else if (that.record_list[i].problemType == 1) {
           var temp = 0;
-          for (var j = 0; j < that.record_list[i].problem_answer.length; j++) {
-            if (that.record_list[i].problem_answer[j] == false) {
+          for (var j = 0; j < that.record_list[i].problemResult.length; j++) {
+            if (that.record_list[i].problemResult[j] == false) {
               that.incorrect_num++;
               that.answer_set.push(false);
               temp = 1;
@@ -175,16 +175,16 @@ export class SummaryComponent implements OnInit {
 
     setTimeout(function () {
       for (var i = 0; i < that.record_list.length; i++) {
-        if (that.record_list[i].problem_type == 1) {
-          that.raw_duration_long_question += that.record_list[i].problem_duration;
+        if (that.record_list[i].problemType == 1) {
+          that.raw_duration_long_question += that.record_list[i].problemDuration;
           that.num_long_question++;
         }
-        else if (that.record_list[i].problem_type == 2) {
-          that.raw_duration_fill_in_blank += that.record_list[i].problem_duration;
+        else if (that.record_list[i].problemType == 2) {
+          that.raw_duration_fill_in_blank += that.record_list[i].problemDuration;
           that.num_fill_in_blank++;
         }
-        else if (that.record_list[i].problem_type == 3) {
-          that.raw_duration_multiple_choice += that.record_list[i].problem_duration;
+        else if (that.record_list[i].problemType == 3) {
+          that.raw_duration_multiple_choice += that.record_list[i].problemDuration;
           that.num_multiple_choice++;
         }
       }

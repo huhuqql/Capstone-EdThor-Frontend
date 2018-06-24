@@ -33,6 +33,9 @@
       <li class="nav-item">
         <a class="nav-link" href="#">我的账户</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0);" (click)="logout()">登出</a>
+      </li>
     </ul>
   </div>
 
@@ -51,7 +54,7 @@
             <p style="float:left;margin-top:-75px;margin-left:-40px;">开始练习</p>
           </div>
           <div class="regular-text">
-            <p>Hi，欢迎使用Edthor学习系统</p>
+            <p>你好，<b style="color:rgb(0, 0, 0)">{{userService.my_user.username}}</b>！欢迎使用Edthor学习系统</p>
             <p>请选择你今天想要练习的学科和单元</p>
           </div>
           <div class="row">

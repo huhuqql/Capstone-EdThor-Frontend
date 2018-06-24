@@ -34,11 +34,11 @@ export class LongQuestionComponent {
   @Output() nextStep = new EventEmitter();
   @Output() nextProblem = new EventEmitter();
   @Output() submitOptions = new EventEmitter<string>();
+  @Output() submitLQOptions = new EventEmitter<boolean[]>();
   @Output() jumpStep = new EventEmitter();
 
   my_option: string;
-
-
+  step_check_options: boolean[];
 
   enterNextStep() {
     console.log("next");
@@ -51,10 +51,15 @@ export class LongQuestionComponent {
         this.nextStep.emit();
       }
     }
-    else if (this.cur_step == 0 || this.cur_step == 2) {
+    else if (this.cur_step == 0) {
+      this.nextStep.emit();
+    }
+    else if(this.cur_step == 2){
+      this.submitLQOptions.emit(this.step_check_options);
       this.nextStep.emit();
     }
     this.my_option = null;
+    this.step_check_options = [];
   }
 
   enterNextProblem() {
@@ -62,14 +67,23 @@ export class LongQuestionComponent {
       this.submitOptions.emit(this.my_option);
       this.nextProblem.emit();
     }
-    else if (this.cur_step == 0 || this.cur_step == 2 || this.cur_step == 4) {
+    else if (this.cur_step == 0 || this.cur_step == 2) {
+      this.nextProblem.emit();
+    }
+    else if(this.cur_step == 4){
+      this.submitLQOptions.emit(this.step_check_options);
       this.nextProblem.emit();
     }
     this.my_option = null;
+    this.step_check_options = [];
   }
 
   saveSubmitOptions(option) {
     this.my_option = option;
-    console.log("now you select:" + this.my_option);
   }
+
+  saveStepCheckOptions(options){
+    this.step_check_options = options;
+  }
+
 }

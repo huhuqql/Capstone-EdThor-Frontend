@@ -2,7 +2,7 @@
   <blockquote style="margin:15px">
     <p>题目{{cur_problem_number}}</p>
   </blockquote>
-  <p [innerHTML]="cur_problem.problem_text"  [@state]="cur_problem.state"></p>
+  <p [innerHTML]="cur_problem.problem_text" [@state]="cur_problem.state"></p>
   <ul class="problem-questions">
     <li *ngFor="let question of cur_problem.problem_questions; let i=index">
       <p id="problem-question-{{i}}"></p>
@@ -13,10 +13,12 @@
     <app-long-question-input *ngSwitchCase=0 [cur_problem]="cur_problem" [cur_step]="cur_step" [cur_sub_prob]="cur_sub_prob"></app-long-question-input>
     <app-long-question-check *ngSwitchCase=1 [cur_problem]="cur_problem" [cur_step]="cur_step" [cur_sub_prob]="cur_sub_prob"
       (saveSubmitOptions)="saveSubmitOptions($event)"></app-long-question-check>
-    <app-long-question-step-check *ngSwitchCase=2 [cur_problem]="cur_problem" [cur_step]="cur_step" [cur_sub_prob]="cur_sub_prob"></app-long-question-step-check>
+    <app-long-question-step-check *ngSwitchCase=2 [cur_problem]="cur_problem" [cur_step]="cur_step" [cur_sub_prob]="cur_sub_prob"
+      (saveStepCheckOptions)="saveStepCheckOptions($event)"></app-long-question-step-check>
     <app-long-question-check *ngSwitchCase=3 [cur_problem]="cur_problem" [cur_step]="cur_step" [cur_sub_prob]="cur_sub_prob"
       (saveSubmitOptions)="saveSubmitOptions($event)"></app-long-question-check>
-    <app-long-question-step-check *ngSwitchCase=4 [cur_problem]="cur_problem" [cur_step]="cur_step" [cur_sub_prob]="cur_sub_prob"></app-long-question-step-check>
+    <app-long-question-step-check *ngSwitchCase=4 [cur_problem]="cur_problem" [cur_step]="cur_step" [cur_sub_prob]="cur_sub_prob"
+      (saveStepCheckOptions)="saveStepCheckOptions($event)"></app-long-question-step-check>
   </div>
 
 

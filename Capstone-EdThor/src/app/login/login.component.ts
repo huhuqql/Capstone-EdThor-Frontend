@@ -23,7 +23,9 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
-    // this.getUsers();
+    if(this.userService.my_user.student_id != -1){
+      this.toDashboard();
+    }
   }
 
 
