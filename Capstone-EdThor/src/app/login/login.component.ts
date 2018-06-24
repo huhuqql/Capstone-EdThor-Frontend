@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
-    if(this.userService.my_user.student_id != -1){
+    if(this.userService.getStudentId() != -1){
       this.toDashboard();
     }
   }

@@ -14,11 +14,12 @@ export class DashboardComponent implements OnInit {
 
   subject = 'math';
   topic = 'sanjiaohanshu';
+  username = '';
 
   constructor(private router: Router, global: GlobalsService, private userService: UserService) { }
 
   ngOnInit() {
-
+    this.username = this.userService.getUsername();
   }
   
   check_record(){

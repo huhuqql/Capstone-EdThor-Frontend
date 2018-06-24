@@ -30,6 +30,10 @@ export class UserService {
     this.my_user.student_id = -1;
   }
 
+  public getUsername(){
+    return this.my_user.username;
+  }
+
   public getStudentId() {
     return this.my_user.student_id;
   }
