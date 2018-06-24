@@ -20,7 +20,7 @@ export class RecordService {
     return this.httpService.get<Record[]>(this.baseUrl);
   }
 
-  public saveRecords(r: Record): Observable<Record> {
+  public saveRecord(r: Record): Observable<Record> {
     return this.httpService.post<Record>(this.baseUrl, r);
   }
 

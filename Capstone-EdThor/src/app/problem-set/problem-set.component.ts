@@ -163,7 +163,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
           this.cur_problem.problem_answers[1] = this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/answer_1/clip");
         });
 
-        this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "answer_2.html", { responseType: 'text' })
+      this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "answer_2.html", { responseType: 'text' })
         .subscribe(data => {
           this.cur_problem.problem_answers[2] = this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/answer_2/clip");
         });
@@ -407,12 +407,12 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     }
   }
 
-  submitLQOptions(options){
-    if(this.cur_sub_prob == 1){
+  submitLQOptions(options) {
+    if (this.cur_sub_prob == 1) {
       this.LQ_answer_list_1 = options;
       console.log(this.LQ_answer_list_1);
     }
-    else if(this.cur_sub_prob == 2){
+    else if (this.cur_sub_prob == 2) {
       this.LQ_answer_list_2 = options;
       console.log(this.LQ_answer_list_2);
     }
@@ -527,7 +527,18 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     this.LQ_answer_list_1 = [];
     this.LQ_answer_list_2 = [];
     console.log(this.record_list);
-    this.recordService.saveRecords(new_record);
+    this.addRecord(new_record);
+  }
+
+  public addRecord(new_record): void {
+
+    this.recordService.saveRecord(new_record).subscribe(
+      (data) => {
+        console.log("Save the record ---->");
+        console.log(data);
+      }
+    )
+
   }
 
   jumpStep() {
