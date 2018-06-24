@@ -4,7 +4,7 @@ export class Record {
     problemType?: number;
     problemNum?: number;
     problemDuration?: number;
-    problemKc?: any;
+    problemKc?: number[];
     problemResult?: boolean[];
     problemLongquestionAnswer?: boolean[][];
 }

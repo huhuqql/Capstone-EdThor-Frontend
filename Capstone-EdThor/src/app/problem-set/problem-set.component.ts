@@ -531,7 +531,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   }
 
   public addRecord(new_record): void {
-
     this.recordService.saveRecord(new_record).subscribe(
       (data) => {
         console.log("Save the record ---->");
