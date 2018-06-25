@@ -24,9 +24,9 @@ export class RecordService {
     return this.httpService.post<Record>(this.baseUrl, r);
   }
 
-  public getRecord(r: Record): Observable<Record[]> {
+  public getRecord(r: Record): Observable<any> {
     const params = new HttpParams().set('studentId', r.studentId.toString());
-    return this.httpService.get<Record[]>(this.baseUrl, { params: params });
+    return this.httpService.get<any>(this.baseUrl, { params: params });
   }
 
 
