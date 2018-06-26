@@ -512,6 +512,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       problemKc: [],
       problemLongquestionAnswer: []
     }
+
     if (this.selected_type == 1) {
       for (var i = 0; i < this.answer_list.length; i++) {
         new_record.problemResult[i] = this.answer_list[i];
@@ -520,21 +521,46 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     else if (this.selected_type == 2 || this.selected_type == 3) {
       new_record.problemResult[0] = this.answer_list[0];
     }
-    new_record.problemLongquestionAnswer[0] = this.LQ_answer_list_1;
-    new_record.problemLongquestionAnswer[1] = this.LQ_answer_list_2;
+    console.log(this.LQ_answer_list_1);
+    console.log(this.LQ_answer_list_2);
+    if (this.selected_type == 1) {
+      if (new_record.problemResult[0] == true) {
+        for (var i = 0; i < this.cur_problem.problem_long_question_solution[1].length; i++) {
+          new_record.problemLongquestionAnswer.push(true);
+        }
+      }
+      else {
+        for (var i = 0; i < this.cur_problem.problem_long_question_solution[1].length; i++) {
+          new_record.problemLongquestionAnswer.push(!this.LQ_answer_list_1[i]);
+        }
+      }
+
+      if (new_record.problemResult[1] == true) {
+        for (var i = 0; i < this.cur_problem.problem_long_question_solution[2].length; i++) {
+          new_record.problemLongquestionAnswer.push(true);
+        }
+      }
+      else {
+        for (var i = 0; i < this.cur_problem.problem_long_question_solution[2].length; i++) {
+          new_record.problemLongquestionAnswer.push(!this.LQ_answer_list_2[i]);
+        }
+      }
+    }
+
+
     this.record_list.push(new_record);
     this.answer_list = [];
     this.LQ_answer_list_1 = [];
     this.LQ_answer_list_2 = [];
     console.log(this.record_list);
-    this.addRecord(new_record);
+    // this.addRecord(new_record);
   }
 
   public addRecord(new_record): void {
     this.recordService.saveRecord(new_record).subscribe(
       (data) => {
         console.log("Save the record ---->");
-        console.log(data);  
+        console.log(data);
       }
     )
 
