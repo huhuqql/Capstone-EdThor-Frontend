@@ -11,8 +11,8 @@ import { User } from "./model/user";
 export class UserService {
 
   my_user: User = {
-    student_id: 1,
-    username: 'haha',
+    student_id: -1,
+    username: '',
     password: '',
     pseudoname: ''
   }
