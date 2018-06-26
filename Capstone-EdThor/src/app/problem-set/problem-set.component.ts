@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GlobalsService } from '../globals.service';
-import * as problems from '../../assets/files/questions.json';
+import * as KC from '../../assets/files/kc.json';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { Problem } from '../service/model/problem';
@@ -105,7 +105,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.topic_name = problems[0].problem_topic_name;
+    this.topic_name = "三角函数";
     for (var i = 0; i < this.global.MATHFORMULA_NUM; i++) {
       this.math_formula.push("../../assets/img/mathformula/" + i + ".jpg");
     }
@@ -119,9 +119,13 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     this.showNewProblem();
   }
 
+  testArray = [78,48,9];
+  testnumber = 0;
+
   generateProblem() {
-    this.selected_num = 1;
-    this.selected_type++;
+    this.selected_num = this.testArray[this.testnumber];
+    this.selected_type = KC[this.selected_num - 1].problemType;
+    this.testnumber++;
     // this.selected_type = this.getRandomInt(1, 3);
   }
 
@@ -205,6 +209,13 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     this.cur_problem.problem_id = this.selected_num;
     this.cur_problem.problem_type = this.selected_type;
     this.cur_problem.problem_num = this.selected_num;
+
+    let result_kc = KC[this.selected_num - 1].problemKc.split(",");
+    for(var i = 0; i < result_kc.length; i++){
+      result_kc[i] = Number(result_kc[i]);
+    } 
+    console.log(result_kc);
+    this.cur_problem.problem_kc = result_kc;
 
     var type_name: string;
     if (this.selected_type == 1) {
@@ -509,7 +520,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       problemNum: this.selected_num,
       problemDuration: this.end_time - this.start_time,
       problemResult: [],
-      problemKc: [],
+      problemKc: this.cur_problem.problem_kc,
       problemLongquestionAnswer: []
     }
 

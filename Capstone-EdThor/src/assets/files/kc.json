@@ -1,0 +1,412 @@
+[
+ {
+   "problemId": 1,
+   "problemType": 2,
+   "problemKc": "1"
+ },
+ {
+   "problemId": 2,
+   "problemType": 2,
+   "problemKc": "1"
+ },
+ {
+   "problemId": 3,
+   "problemType": 2,
+   "problemKc": "1"
+ },
+ {
+   "problemId": 4,
+   "problemType": 2,
+   "problemKc": "1"
+ },
+ {
+   "problemId": 5,
+   "problemType": 2,
+   "problemKc": "1"
+ },
+ {
+   "problemId": 6,
+   "problemType": 2,
+   "problemKc": "1"
+ },
+ {
+   "problemId": 7,
+   "problemType": 2,
+   "problemKc": "1"
+ },
+ {
+   "problemId": 8,
+   "problemType": 2,
+   "problemKc": "1"
+ },
+ {
+   "problemId": 9,
+   "problemType": 3,
+   "problemKc": "1"
+ },
+ {
+   "problemId": 10,
+   "problemType": 2,
+   "problemKc": "1"
+ },
+ {
+   "problemId": 11,
+   "problemType": 2,
+   "problemKc": "1"
+ },
+ {
+   "problemId": 12,
+   "problemType": 3,
+   "problemKc": "2"
+ },
+ {
+   "problemId": 13,
+   "problemType": 3,
+   "problemKc": "2"
+ },
+ {
+   "problemId": 14,
+   "problemType": 2,
+   "problemKc": "2"
+ },
+ {
+   "problemId": 15,
+   "problemType": 2,
+   "problemKc": "2"
+ },
+ {
+   "problemId": 16,
+   "problemType": 3,
+   "problemKc": "2"
+ },
+ {
+   "problemId": 17,
+   "problemType": 3,
+   "problemKc": "2"
+ },
+ {
+   "problemId": 18,
+   "problemType": 3,
+   "problemKc": "2"
+ },
+ {
+   "problemId": 19,
+   "problemType": 3,
+   "problemKc": "2"
+ },
+ {
+   "problemId": 20,
+   "problemType": 3,
+   "problemKc": "2"
+ },
+ {
+   "problemId": 21,
+   "problemType": 3,
+   "problemKc": "2"
+ },
+ {
+   "problemId": 22,
+   "problemType": 3,
+   "problemKc": "2"
+ },
+ {
+   "problemId": 23,
+   "problemType": 3,
+   "problemKc": "3"
+ },
+ {
+   "problemId": 24,
+   "problemType": 2,
+   "problemKc": "3"
+ },
+ {
+   "problemId": 25,
+   "problemType": 3,
+   "problemKc": "3"
+ },
+ {
+   "problemId": 26,
+   "problemType": 3,
+   "problemKc": "3"
+ },
+ {
+   "problemId": 27,
+   "problemType": 2,
+   "problemKc": "3"
+ },
+ {
+   "problemId": 28,
+   "problemType": 2,
+   "problemKc": "3"
+ },
+ {
+   "problemId": 29,
+   "problemType": 2,
+   "problemKc": "3"
+ },
+ {
+   "problemId": 30,
+   "problemType": 2,
+   "problemKc": "3"
+ },
+ {
+   "problemId": 31,
+   "problemType": 2,
+   "problemKc": "3"
+ },
+ {
+   "problemId": 32,
+   "problemType": 2,
+   "problemKc": "3"
+ },
+ {
+   "problemId": 33,
+   "problemType": 2,
+   "problemKc": "3"
+ },
+ {
+   "problemId": 34,
+   "problemType": 3,
+   "problemKc": "4"
+ },
+ {
+   "problemId": 35,
+   "problemType": 3,
+   "problemKc": "4"
+ },
+ {
+   "problemId": 36,
+   "problemType": 3,
+   "problemKc": "4"
+ },
+ {
+   "problemId": 37,
+   "problemType": 2,
+   "problemKc": "4"
+ },
+ {
+   "problemId": 38,
+   "problemType": 3,
+   "problemKc": "4"
+ },
+ {
+   "problemId": 39,
+   "problemType": 2,
+   "problemKc": "4"
+ },
+ {
+   "problemId": 40,
+   "problemType": 3,
+   "problemKc": "4"
+ },
+ {
+   "problemId": 41,
+   "problemType": 3,
+   "problemKc": "4"
+ },
+ {
+   "problemId": 42,
+   "problemType": 3,
+   "problemKc": "4"
+ },
+ {
+   "problemId": 43,
+   "problemType": 2,
+   "problemKc": "4"
+ },
+ {
+   "problemId": 44,
+   "problemType": 3,
+   "problemKc": "4"
+ },
+ {
+   "problemId": 45,
+   "problemType": 2,
+   "problemKc": "5"
+ },
+ {
+   "problemId": 46,
+   "problemType": 2,
+   "problemKc": "5"
+ },
+ {
+   "problemId": 47,
+   "problemType": 2,
+   "problemKc": "5"
+ },
+ {
+   "problemId": 48,
+   "problemType": 2,
+   "problemKc": "5"
+ },
+ {
+   "problemId": 49,
+   "problemType": 2,
+   "problemKc": "5"
+ },
+ {
+   "problemId": 50,
+   "problemType": 3,
+   "problemKc": "5"
+ },
+ {
+   "problemId": 51,
+   "problemType": 3,
+   "problemKc": "5"
+ },
+ {
+   "problemId": 52,
+   "problemType": 3,
+   "problemKc": "5"
+ },
+ {
+   "problemId": 53,
+   "problemType": 3,
+   "problemKc": "5"
+ },
+ {
+   "problemId": 54,
+   "problemType": 2,
+   "problemKc": "5"
+ },
+ {
+   "problemId": 55,
+   "problemType": 2,
+   "problemKc": "5"
+ },
+ {
+   "problemId": 56,
+   "problemType": 2,
+   "problemKc": "6"
+ },
+ {
+   "problemId": 57,
+   "problemType": 2,
+   "problemKc": "6"
+ },
+ {
+   "problemId": 58,
+   "problemType": 2,
+   "problemKc": "6"
+ },
+ {
+   "problemId": 59,
+   "problemType": 2,
+   "problemKc": "6"
+ },
+ {
+   "problemId": 60,
+   "problemType": 2,
+   "problemKc": "6"
+ },
+ {
+   "problemId": 61,
+   "problemType": 2,
+   "problemKc": "6"
+ },
+ {
+   "problemId": 62,
+   "problemType": 2,
+   "problemKc": "6"
+ },
+ {
+   "problemId": 63,
+   "problemType": 3,
+   "problemKc": "6"
+ },
+ {
+   "problemId": 64,
+   "problemType": 2,
+   "problemKc": "6"
+ },
+ {
+   "problemId": 65,
+   "problemType": 2,
+   "problemKc": "6"
+ },
+ {
+   "problemId": 66,
+   "problemType": 2,
+   "problemKc": "6"
+ },
+ {
+   "problemId": 67,
+   "problemType": 2,
+   "problemKc": "7"
+ },
+ {
+   "problemId": 68,
+   "problemType": 2,
+   "problemKc": "7"
+ },
+ {
+   "problemId": 69,
+   "problemType": 2,
+   "problemKc": "7"
+ },
+ {
+   "problemId": 70,
+   "problemType": 2,
+   "problemKc": "7"
+ },
+ {
+   "problemId": 71,
+   "problemType": 2,
+   "problemKc": "7"
+ },
+ {
+   "problemId": 72,
+   "problemType": 2,
+   "problemKc": "7"
+ },
+ {
+   "problemId": 73,
+   "problemType": 2,
+   "problemKc": "7"
+ },
+ {
+   "problemId": 74,
+   "problemType": 2,
+   "problemKc": "7"
+ },
+ {
+   "problemId": 75,
+   "problemType": 2,
+   "problemKc": "7"
+ },
+ {
+   "problemId": 76,
+   "problemType": 2,
+   "problemKc": "7"
+ },
+ {
+   "problemId": 77,
+   "problemType": 2,
+   "problemKc": "7"
+ },
+ {
+   "problemId": 78,
+   "problemType": 1,
+   "problemKc": "5,2,6,7"
+ },
+ {
+   "problemId": 79,
+   "problemType": 1,
+   "problemKc": "5,2,1,6,5"
+ },
+ {
+   "problemId": 80,
+   "problemType": 1,
+   "problemKc": "6,1,5,7"
+ },
+ {
+   "problemId": 81,
+   "problemType": 1,
+   "problemKc": "2,5,1,-1,7"
+ },
+ {
+   "problemId": 82,
+   "problemType": 1,
+   "problemKc": "5,-1,1,6,-1,-1"
+ }
+]

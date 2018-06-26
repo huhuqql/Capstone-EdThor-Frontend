@@ -4,7 +4,7 @@ export class Problem {
     problem_topic_name?: any;
     problem_type?: number;
     problem_type_name?: any;
-    problem_kc?: number;
+    problem_kc?: number[];
     problem_kc_name?: any;
     problem_text?: any;
     problem_questions?: any[];
