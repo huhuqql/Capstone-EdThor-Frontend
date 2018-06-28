@@ -9,5 +9,6 @@ export class GlobalsService {
   public shuzu = 2;
 
   public MATHFORMULA_NUM = 4;
+  public NUMBERPROBLEM = 82;
 
 }

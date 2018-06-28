@@ -24,7 +24,7 @@ export declare var MathQuill;
 })
 export class ProblemSetComponent implements OnInit, OnDestroy {
 
-  private base_url = "../../assets/files/";
+  private base_url = "../../assets/files/questions/";
   private sub: any;
 
   cur_problem: Problem = {
@@ -119,7 +119,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     this.showNewProblem();
   }
 
-  testArray = [78,48,9];
+  testArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
   testnumber = 0;
 
   generateProblem() {
@@ -129,11 +129,23 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     // this.selected_type = this.getRandomInt(1, 3);
   }
 
+  randomProblemFromKc(kc: number){
+    let list : number[];
+    for(var i = 0; i < this.global.NUMBERPROBLEM; i++){
+      if(KC[i].problemKc == kc && KC[i].problemId != this.selected_num){
+        list.push(KC[i].problemId);
+      }
+    }
+    console.log(list);
+    let num: number = this.getRandomInt(0, list.length - 1);
+    console.log("random number = " + num);
+    return list[num];
+  }
+
   submitMCOptions(option) {
     console.log("final choice:" + option);
-    var type_name = "multiple-choice";
 
-    this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "answer.html", { responseType: 'text' })
+    this.http.get(this.base_url + this.selected_num + "/" + "answer.html", { responseType: 'text' })
       .subscribe(data => {
         if (data.indexOf(">A<") > 0) {
           this.cur_problem.problem_answers[0] = 0;
@@ -161,15 +173,14 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
   getLongquestionAnswer() {
     if (this.cur_problem.problem_type == 1) {
-      var type_name = "long-question";
-      this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "answer_1.html", { responseType: 'text' })
+      this.http.get(this.base_url + this.selected_num + "/" + "answer_1.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_answers[1] = this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/answer_1/clip");
+          this.cur_problem.problem_answers[1] = this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/answer_1/clip");
         });
 
-      this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "answer_2.html", { responseType: 'text' })
+      this.http.get(this.base_url + this.selected_num + "/" + "answer_2.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_answers[2] = this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/answer_2/clip");
+          this.cur_problem.problem_answers[2] = this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/answer_2/clip");
         });
     }
   }
@@ -177,10 +188,9 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
   getFillinblankAnswer() {
     if (this.cur_problem.problem_type == 2) {
-      var type_name = "fill-in-blank";
-      this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "answer.html", { responseType: 'text' })
+      this.http.get(this.base_url + this.selected_num + "/" + "answer.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_answers[0] = this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/answer/clip"));
+          this.cur_problem.problem_answers[0] = this.transform(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/answer/clip"));
         });
     }
   }
@@ -211,100 +221,81 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     this.cur_problem.problem_num = this.selected_num;
 
     let result_kc = KC[this.selected_num - 1].problemKc.split(",");
-    for(var i = 0; i < result_kc.length; i++){
+    for (var i = 0; i < result_kc.length; i++) {
       result_kc[i] = Number(result_kc[i]);
-    } 
+    }
     console.log(result_kc);
     this.cur_problem.problem_kc = result_kc;
 
-    var type_name: string;
-    if (this.selected_type == 1) {
-      type_name = "long-question";
-      this.cur_sub_prob = 1;
-    }
-    else if (this.selected_type == 2) {
-      type_name = "fill-in-blank";
-    }
-    else if (this.selected_type == 3) {
-      type_name = "multiple-choice";
-    }
-
-    this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "problem.html", { responseType: 'text' })
+    this.http.get(this.base_url + this.selected_num + "/" + "problem.html", { responseType: 'text' })
       .subscribe(data => {
-        this.cur_problem.problem_text = this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/problem/clip"));
+        this.cur_problem.problem_text = this.transform(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/problem/clip"));
       });
   }
 
   getQuestion() {
-    var type_name: string;
     if (this.selected_type == 1) {
-      type_name = "long-question";
+
     }
     else if (this.selected_type == 2) {
-      type_name = "fill-in-blank";
+
     }
     else if (this.selected_type == 3) {
-      type_name = "multiple-choice";
-
-      this.http.get(this.base_url + type_name + "/" + this.selected_num + "/a.html", { responseType: 'text' })
+      this.http.get(this.base_url + this.selected_num + "/a.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_questions[0] = this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/a/clip"));
+          this.cur_problem.problem_questions[0] = this.transform(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/a/clip"));
         }, error => console.log(error));
 
-      this.http.get(this.base_url + type_name + "/" + this.selected_num + "/b.html", { responseType: 'text' })
+      this.http.get(this.base_url + this.selected_num + "/b.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_questions[1] = this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/b/clip"));
+          this.cur_problem.problem_questions[1] = this.transform(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/b/clip"));
         }, error => console.log(error));
 
-      this.http.get(this.base_url + type_name + "/" + this.selected_num + "/c.html", { responseType: 'text' })
+      this.http.get(this.base_url + this.selected_num + "/c.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_questions[2] = this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/c/clip"));
+          this.cur_problem.problem_questions[2] = this.transform(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/c/clip"));
         }, error => console.log(error));
 
-      this.http.get(this.base_url + type_name + "/" + this.selected_num + "/d.html", { responseType: 'text' })
+      this.http.get(this.base_url + this.selected_num + "/d.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_questions[3] = this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/d/clip"));
+          this.cur_problem.problem_questions[3] = this.transform(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/d/clip"));
         }, error => console.log(error));
 
     }
   }
 
-  requestSolutionSteps(type_name, num, sub_problem) {
-    this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "/solution_" + sub_problem + "/" + num + ".html", { responseType: 'text' })
+  requestSolutionSteps(num, sub_problem) {
+    this.http.get(this.base_url + this.selected_num + "/" + "/solution_" + sub_problem + "/" + num + ".html", { responseType: 'text' })
       .subscribe(data => {
-        this.cur_problem.problem_long_question_solution[sub_problem].push(this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/solution_" + sub_problem + "/" + num + "/clip")));
-        this.requestSolutionSteps(type_name, num + 1, sub_problem);
+        this.cur_problem.problem_long_question_solution[sub_problem].push(this.transform(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/solution_" + sub_problem + "/" + num + "/clip")));
+        this.requestSolutionSteps(num + 1, sub_problem);
       }, error => {
         console.log(error);
       });
   }
 
   getSolutionSteps() {
-    var type_name: string;
     if (this.selected_type == 1) {
-      type_name = "long-question";
-      this.requestSolutionSteps(type_name, 1, 1);
-      this.requestSolutionSteps(type_name, 1, 2);
+      this.requestSolutionSteps(1, 1);
+      this.requestSolutionSteps(1, 2);
     }
     else if (this.selected_type == 2) {
-      type_name = "fill-in-blank";
-      this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "solution-step.html", { responseType: 'text' })
+      this.http.get(this.base_url + this.selected_num + "/" + "solution-step.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_solution_steps = this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/solution-step/clip"));
+          this.cur_problem.problem_solution_steps = this.transform(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/solution-step/clip"));
         });
     }
     else if (this.selected_type == 3) {
-      type_name = "multiple-choice";
-      this.http.get(this.base_url + type_name + "/" + this.selected_num + "/" + "solution-step.html", { responseType: 'text' })
+      this.http.get(this.base_url + this.selected_num + "/" + "solution-step.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_solution_steps = this.transform(this.changeImageUrl(data, "img src=&quot;" + this.base_url + type_name + "/" + this.selected_num + "/solution-step/clip"));
+          this.cur_problem.problem_solution_steps = this.transform(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/solution-step/clip"));
         });
     }
 
   }
 
   changeImageUrl(content, target) {
-    var pattern = /img src="(\S*)clip/g;
+    var pattern = /src="(\S*)clip/g;
     var temp = content.replace(pattern, target);
     var pattern1 = /&quot;/g;
     temp = temp.replace(pattern1, '"');
@@ -487,10 +478,10 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       var temp = this.progress;
       $('.progress-bar').css("width", function (i) {
         if (temp < 100) {
-          return temp + 34 + "%";
+          return temp + 1 + "%";
         }
       });
-      this.progress = this.progress + 34;
+      this.progress = this.progress + 1;
       this.selected_type = 4;
     }
     else {
@@ -503,10 +494,10 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       var temp = this.progress;
       $('.progress-bar').css("width", function (i) {
         if (temp < 100) {
-          return temp + 34 + "%";
+          return temp + 1 + "%";
         }
       });
-      this.progress = this.progress + 34;
+      this.progress = this.progress + 1;
     }
 
   }
@@ -564,7 +555,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     this.LQ_answer_list_1 = [];
     this.LQ_answer_list_2 = [];
     console.log(this.record_list);
-    // this.addRecord(new_record);
+    this.addRecord(new_record);
   }
 
   public addRecord(new_record): void {
