@@ -616,9 +616,9 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
       if (data[i].length < tempKcs.length + 1 && findKc == 1) {
         this.ready_selected_num = tempKcs[data[i].length - 1];
-        this.ready_selected_type = KC[this.selected_num - 1].problemType;
-        console.log("selected problem id ----------> " + this.selected_num);
-        console.log("selected problem type ----------> " + this.selected_type);
+        this.ready_selected_type = KC[this.ready_selected_num - 1].problemType;
+        console.log("selected problem id ----------> " + this.ready_selected_num);
+        console.log("selected problem type ----------> " + this.ready_selected_type);
         return 1;
       }
 
