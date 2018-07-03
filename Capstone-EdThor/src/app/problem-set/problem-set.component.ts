@@ -119,15 +119,17 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   ngAfterViewInit() {
     this.getMathFormula();
     const that = this;
-    console.log("ready show problem");
+    console.log("ready prepare problem...");
     setTimeout(function () {
       that.generateProblem();
-    }, '500');
-    
+      console.log("done prepare problem!");
+    }, '1000');
+
     setTimeout(function () {
+      console.log("ready generate problem...");  
       that.getButtons();
       that.showNewProblem();
-    }, '1000');
+    }, '2000');
   }
 
 
