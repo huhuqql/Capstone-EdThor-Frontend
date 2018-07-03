@@ -109,7 +109,9 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     for (var i = 0; i < this.global.MATHFORMULA_NUM; i++) {
       this.math_formula.push("../../assets/img/mathformula/" + i + ".jpg");
     }
-    this.retrieveRecord();
+    // this.retrieveRecord();
+    this.selected_num = 13;
+    this.selected_type = 3;
   }
 
 
@@ -117,9 +119,10 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     this.getMathFormula();
     this.getButtons();
     const that = this;
+    console.log("ready show problem");
     setTimeout(function () {
       that.showNewProblem();
-    }, '500');
+    }, '1000');
   }
 
 
@@ -417,16 +420,11 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   showNewProblem() {
     this.cur_problem.state = "inactive";
     this.cur_problem_number++;
-    // console.log("你刚刚做的题是：");
-    // console.log(this.cur_problem);
 
     var d = new Date();
     this.start_time = d.getTime();
 
-
-    // console.log("把这题加入记录...");
-    // console.log(this.problem_set);
-
+    console.log("problem generating...");
     const that = this;
     setTimeout(function () {
       that.initProblem();
@@ -454,9 +452,11 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   }
 
   initButtons() {
+    console.log("init buttons...");
     this.check_answer_button.disabled = "";
     this.check_solution_button.disabled = "disabled";
     this.next_step_button.disabled = "disabled";
+    console.log("done init buttons!");
   }
 
   nextProblem() {
