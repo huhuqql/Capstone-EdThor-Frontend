@@ -470,6 +470,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   }
 
   nextProblem() {
+    this.next_step_button.disabled = "disabled";
     if (this.cur_problem_number > 0) {
       this.problem_set.push(this.cur_problem);
     }
@@ -482,10 +483,10 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       var temp = this.progress;
       $('.progress-bar').css("width", function (i) {
         if (temp < 100) {
-          return temp + 1 + "%";
+          return temp + 10 + "%";
         }
       });
-      this.progress = this.progress + 1;
+      this.progress = this.progress + 10;
       this.selected_type = 4;
     }
     else {
@@ -504,10 +505,10 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       var temp = this.progress;
       $('.progress-bar').css("width", function (i) {
         if (temp < 100) {
-          return temp + 1 + "%";
+          return temp + 10 + "%";
         }
       });
-      this.progress = this.progress + 1;
+      this.progress = this.progress + 10;
     }
   }
 
@@ -633,6 +634,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         console.log("You have complete all the questions!");
         console.log("You have complete all the questions!");
         console.log("You have complete all the questions!");
+        this.selected_type = 4;
       }
 
     }
