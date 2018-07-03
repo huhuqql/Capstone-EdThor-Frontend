@@ -113,7 +113,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       this.math_formula.push("../../assets/img/mathformula/" + i + ".jpg");
     }
     this.retrieveRecord();
-    this.generateProblem();
   }
 
 
@@ -121,6 +120,10 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     this.getMathFormula();
     const that = this;
     console.log("ready show problem");
+    setTimeout(function () {
+      that.generateProblem();
+    }, '500');
+    
     setTimeout(function () {
       that.getButtons();
       that.showNewProblem();
