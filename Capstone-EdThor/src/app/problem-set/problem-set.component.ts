@@ -598,7 +598,10 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       }
     }
 
-    for (curKc; curKc < data.length; curKc++) {
+    console.log("KC needs improve ----->" + curKc);
+    console.log("Mode: " + includeLongQ);
+
+    for (curKc; curKc <= data.length; curKc++) {
 
       let tempKcs: number[] = [];
 
