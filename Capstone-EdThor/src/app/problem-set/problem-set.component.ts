@@ -136,6 +136,8 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   generateProblem() {
     this.selected_num = this.ready_selected_num;
     this.selected_type = this.ready_selected_type;
+    console.log("set problem num ---------->" + this.selected_num);
+    console.log("set problem type ---------->" + this.selected_type);
   }
 
   randomProblemFromKc(kc: number) {
