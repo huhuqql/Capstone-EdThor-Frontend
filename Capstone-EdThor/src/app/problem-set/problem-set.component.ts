@@ -484,10 +484,10 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       const that = this;
       setTimeout(function () {
         that.retrieveRecord();
-      }, '500');
+      }, '300');
       setTimeout(function () {
         that.showNewProblem();
-      }, '1000');
+      }, '600');
       var temp = this.progress;
       $('.progress-bar').css("width", function (i) {
         if (temp < 100) {
@@ -573,65 +573,54 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   }
 
   processBKTrecords(data) {
-    let curKc: number = -1;
     let includeLongQ: number = 0;
 
+    // console.log("KC needs improve ----->" + curKc);
+    // console.log("Mode: " + includeLongQ);
+
     for (var i = 0; i < data.length; i++) {
-      let tempKc = data[i];
-      if (tempKc[tempKc.length - 1] <= 0.8) {
-        curKc = i + 1;
-        break;
-      }
-    }
-
-    if (curKc == -1) {
-      for (var i = 0; i < data.length; i++) {
-        let tempKc = data[i];
-        if (tempKc[tempKc.length - 1] <= 0.95) {
-          curKc = i + 1;
-          includeLongQ = 1;
-          break;
-        }
-      }
-      if (curKc == -1) {
-        return -1;
-      }
-    }
-
-    console.log("KC needs improve ----->" + curKc);
-    console.log("Mode: " + includeLongQ);
-
-    for (curKc; curKc <= data.length; curKc++) {
 
       let tempKcs: number[] = [];
 
       if (includeLongQ == 0) {
-        let tempKc = data[curKc - 1];
+        let tempKc = data[i];
         if(tempKc[tempKc.length - 1] <= 0.8){
-          tempKcs = this.getFMProblemsFromKc(curKc);
+          tempKcs = this.getFMProblemsFromKc(i + 1);
         }
         else continue;
       }
       else {
-        let tempKc = data[curKc - 1];
+        let tempKc = data[i];
         if(tempKc[tempKc.length - 1] <= 0.95){
-          tempKcs = this.getAllProblemsFromKc(curKc);
+          tempKcs = this.getAllProblemsFromKc(i + 1);
         }
         else continue;
       }
 
-      console.log("curKC = " + curKc);
+      console.log("curKC = " + i+1);
       console.log("questions to this KC ------->");
       console.log(tempKcs);
 
-      if (data[curKc - 1].length < tempKcs.length + 1) {
-        this.selected_num = tempKcs[data[curKc - 1].length - 1];
+      if (data[i].length < tempKcs.length + 1) {
+        this.selected_num = tempKcs[data[i].length - 1];
         this.selected_type = KC[this.selected_num - 1].problemType;
+        console.log("selected problem id ----------> " + this.selected_num);
+        console.log("selected problem type ----------> " + this.selected_type);
         return 1;
       }
 
-      console.log("selected problem id ----------> " + this.selected_num);
-      console.log("selected problem type ----------> " + this.selected_type);
+      if(i == data.length - 1 && includeLongQ == 0){
+        includeLongQ = 1;
+        i = 0;
+      }
+
+      if(i == data.length - 1 && includeLongQ == 1){
+        console.log("You have complete all the questions!");
+        console.log("You have complete all the questions!");
+        console.log("You have complete all the questions!");
+        console.log("You have complete all the questions!");
+        console.log("You have complete all the questions!");
+      }
 
     }
 
