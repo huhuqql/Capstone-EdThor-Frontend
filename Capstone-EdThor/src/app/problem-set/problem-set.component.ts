@@ -112,11 +112,11 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     for (var i = 0; i < this.global.MATHFORMULA_NUM; i++) {
       this.math_formula.push("../../assets/img/mathformula/" + i + ".jpg");
     }
-    this.retrieveRecord();
   }
 
 
   ngAfterViewInit() {
+    this.retrieveRecord();
     this.getMathFormula();
     const that = this;
     console.log("ready prepare problem...");
