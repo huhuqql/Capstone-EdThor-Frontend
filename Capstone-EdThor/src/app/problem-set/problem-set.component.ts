@@ -592,29 +592,29 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     // console.log("Mode: " + includeLongQ);
 
     for (var i = 0; i < data.length; i++) {
-
+      let findKc: number = 0;
       let tempKcs: number[] = [];
 
       if (includeLongQ == 0) {
         let tempKc = data[i];
         if(tempKc[tempKc.length - 1] <= 0.8){
           tempKcs = this.getFMProblemsFromKc(i + 1);
+          findKc = 1;
         }
-        else continue;
       }
       else {
         let tempKc = data[i];
         if(tempKc[tempKc.length - 1] <= 0.95){
           tempKcs = this.getAllProblemsFromKc(i + 1);
+          findKc = 1;
         }
-        else continue;
       }
 
-      console.log("curKC = " + i+1);
+      console.log("curKC = " + i);
       console.log("questions to this KC ------->");
       console.log(tempKcs);
 
-      if (data[i].length < tempKcs.length + 1) {
+      if (data[i].length < tempKcs.length + 1 && findKc == 1) {
         this.ready_selected_num = tempKcs[data[i].length - 1];
         this.ready_selected_type = KC[this.selected_num - 1].problemType;
         console.log("selected problem id ----------> " + this.selected_num);
