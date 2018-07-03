@@ -109,30 +109,28 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     for (var i = 0; i < this.global.MATHFORMULA_NUM; i++) {
       this.math_formula.push("../../assets/img/mathformula/" + i + ".jpg");
     }
-    this.generateProblem();
+    this.retrieveRecord();
   }
 
 
   ngAfterViewInit() {
     this.getMathFormula();
     this.getButtons();
-    this.showNewProblem();
+    const that = this;
+    setTimeout(function () {
+      that.showNewProblem();
+    }, '500');
   }
 
-  testArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
-  testnumber = 0;
 
-  generateProblem() {
-    this.selected_num = this.testArray[this.testnumber];
-    this.selected_type = KC[this.selected_num - 1].problemType;
-    this.testnumber++;
-    // this.selected_type = this.getRandomInt(1, 3);
-  }
+  // generateProblem() {
+  //   this.selected_type = KC[this.selected_num - 1].problemType;
+  // }
 
-  randomProblemFromKc(kc: number){
-    let list : number[];
-    for(var i = 0; i < this.global.NUMBERPROBLEM; i++){
-      if(KC[i].problemKc == kc && KC[i].problemId != this.selected_num){
+  randomProblemFromKc(kc: number) {
+    let list: number[];
+    for (var i = 0; i < this.global.NUMBERPROBLEM; i++) {
+      if (KC[i].problemKc == kc && KC[i].problemId != this.selected_num) {
         list.push(KC[i].problemId);
       }
     }
@@ -144,7 +142,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
   submitMCOptions(option) {
     console.log("final choice:" + option);
-
     this.http.get(this.base_url + this.selected_num + "/" + "answer.html", { responseType: 'text' })
       .subscribe(data => {
         if (data.indexOf(">A<") > 0) {
@@ -159,7 +156,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         else if (data.indexOf(">D<") > 0) {
           this.cur_problem.problem_answers[0] = 3;
         }
-
         this.cur_problem.problem_multiple_choice_answer = option;
 
         if (this.cur_problem.problem_answers[0] != option) {
@@ -194,8 +190,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         });
     }
   }
-
-
 
   // checkRightorWrong(){
   //   console.log("看看你有没有做对...");
@@ -470,7 +464,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       this.problem_set.push(this.cur_problem);
     }
     console.log(this.progress);
-    if (this.progress > 65) {
+    if (this.progress > 99) {
       var d = new Date();
       this.end_time = d.getTime();
       this.generateRecord();
@@ -489,8 +483,13 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       var d = new Date();
       this.end_time = d.getTime();
       this.generateRecord();
-      this.generateProblem();
-      this.showNewProblem();
+      const that = this;
+      setTimeout(function () {
+        that.retrieveRecord();
+      }, '500');
+      setTimeout(function () {
+        that.showNewProblem();
+      }, '1000');
       var temp = this.progress;
       $('.progress-bar').css("width", function (i) {
         if (temp < 100) {
@@ -499,7 +498,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       });
       this.progress = this.progress + 1;
     }
-
   }
 
 
@@ -554,18 +552,92 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     this.answer_list = [];
     this.LQ_answer_list_1 = [];
     this.LQ_answer_list_2 = [];
-    console.log(this.record_list);
     this.addRecord(new_record);
   }
 
   public addRecord(new_record): void {
     this.recordService.saveRecord(new_record).subscribe(
-      (data) => {
-        console.log("Save the record ---->");
-        console.log(data);
+      () => {
+        console.log("Save the record!");
       }
     )
+  }
 
+  public retrieveRecord(): void {
+    let temp_user_id = this.userService.getStudentId();
+    this.recordService.getRecordMasteryLevel(temp_user_id).subscribe(
+      (data) => {
+        console.log("retrieve data ----->");
+        console.log(data);
+        this.processBKTrecords(data);
+      }
+    )
+  }
+
+  processBKTrecords(data) {
+    let curKc: number = -1;
+
+    for (var i = 0; i < data.length; i++) {
+      let tempKc = data[i];
+      if (tempKc[tempKc.length - 1] <= 0.8) {
+        curKc = i + 1;
+        break;
+      }
+    }
+
+    if(curKc == -1){
+      for (var i = 0; i < data.length; i++) {
+        let tempKc = data[i];
+        if (tempKc[tempKc.length - 1] <= 0.95) {
+          curKc = i + 1;
+          break;
+        }
+      } 
+      if(curKc == -1){
+        return 2;
+      }
+    }
+
+    let tempKcs: number[] = this.getProblemsFromKc(curKc);
+
+    console.log("curKC = " + curKc);
+    console.log("questions to this KC ------->");
+    console.log(tempKcs);
+
+    if(data[curKc - 1].length < tempKcs.length + 1){
+      this.selected_num = tempKcs[data[curKc - 1].length];
+      this.selected_type = KC[this.selected_num - 1].problemType;
+    }
+    else{
+      this.selected_num = tempKcs[0];
+      this.selected_type = KC[this.selected_num - 1].problemType;
+    }
+
+    console.log("selected problem id ----------> " + this.selected_num);
+    console.log("selected problem type ----------> " + this.selected_type);
+    
+  }
+
+  getProblemsFromKc(curKc: number): number[]{
+    let tempKcs: number[] = [];
+    for(var i = 0; i < this.global.NUMBERPROBLEM; i++){
+      if(KC[i].problemType == 1){
+        let result_kc = KC[i].problemKc.split(",");
+        for (var j = 0; j < result_kc.length; j++) {
+          result_kc[i] = Number(result_kc[i]);
+          if(curKc == result_kc[i]){
+            tempKcs.push(KC[i].problemId);
+            break;
+          }
+        } 
+      }
+      else{
+        if(curKc == KC[i].problemKc){
+          tempKcs.push(KC[i].problemId);
+        }
+      }
+    }
+    return tempKcs;
   }
 
   jumpStep() {
