@@ -57,6 +57,9 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   cur_step: number = 0;
   cur_sub_prob: number = 0;
 
+  ready_selected_num: number = 0;
+  ready_selected_type: number = 0;
+
   selected_num: number = 0;
   selected_type: number = 0;
 
@@ -110,6 +113,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       this.math_formula.push("../../assets/img/mathformula/" + i + ".jpg");
     }
     this.retrieveRecord();
+    this.generateProblem();
   }
 
 
@@ -124,9 +128,10 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   }
 
 
-  // generateProblem() {
-  //   this.selected_type = KC[this.selected_num - 1].problemType;
-  // }
+  generateProblem() {
+    this.selected_num = this.ready_selected_num;
+    this.selected_type = this.ready_selected_type;
+  }
 
   randomProblemFromKc(kc: number) {
     let list: number[];
@@ -486,6 +491,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         that.retrieveRecord();
       }, '300');
       setTimeout(function () {
+        that.generateProblem();
         that.showNewProblem();
       }, '600');
       var temp = this.progress;
@@ -602,8 +608,8 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       console.log(tempKcs);
 
       if (data[i].length < tempKcs.length + 1) {
-        this.selected_num = tempKcs[data[i].length - 1];
-        this.selected_type = KC[this.selected_num - 1].problemType;
+        this.ready_selected_num = tempKcs[data[i].length - 1];
+        this.ready_selected_type = KC[this.selected_num - 1].problemType;
         console.log("selected problem id ----------> " + this.selected_num);
         console.log("selected problem type ----------> " + this.selected_type);
         return 1;
