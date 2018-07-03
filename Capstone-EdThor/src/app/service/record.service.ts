@@ -26,7 +26,7 @@ export class RecordService {
 
   public getRecordMasteryLevel(studentId: number): Observable<any> {
     const params = new HttpParams().set('studentId', studentId.toString());
-    return this.httpService.get<any>(this.baseUrl + "/mastery", { params: params });
+    return this.httpService.get<any>(this.baseUrl + "/mastery/", { params: params });
   }
 
   // public getRecommendation(studentId: number): Observable<any> {
