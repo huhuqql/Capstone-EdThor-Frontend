@@ -109,9 +109,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     for (var i = 0; i < this.global.MATHFORMULA_NUM; i++) {
       this.math_formula.push("../../assets/img/mathformula/" + i + ".jpg");
     }
-    // this.retrieveRecord();
-    this.selected_num = 13;
-    this.selected_type = 3;
+    this.retrieveRecord();
   }
 
 
@@ -576,6 +574,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
   processBKTrecords(data) {
     let curKc: number = -1;
+    let includeLongQ: number = 0;
 
     for (var i = 0; i < data.length; i++) {
       let tempKc = data[i];
@@ -585,54 +584,83 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       }
     }
 
-    if(curKc == -1){
+    if (curKc == -1) {
       for (var i = 0; i < data.length; i++) {
         let tempKc = data[i];
         if (tempKc[tempKc.length - 1] <= 0.95) {
           curKc = i + 1;
+          includeLongQ = 1;
           break;
         }
-      } 
-      if(curKc == -1){
-        return 2;
+      }
+      if (curKc == -1) {
+        return -1;
       }
     }
 
-    let tempKcs: number[] = this.getProblemsFromKc(curKc);
+    for (curKc; curKc < data.length; curKc++) {
 
-    console.log("curKC = " + curKc);
-    console.log("questions to this KC ------->");
-    console.log(tempKcs);
+      let tempKcs: number[] = [];
 
-    if(data[curKc - 1].length < tempKcs.length + 1){
-      this.selected_num = tempKcs[data[curKc - 1].length];
-      this.selected_type = KC[this.selected_num - 1].problemType;
+      if (includeLongQ == 0) {
+        let tempKc = data[curKc - 1];
+        if(tempKc[tempKc.length - 1] <= 0.8){
+          tempKcs = this.getFMProblemsFromKc(curKc);
+        }
+        else continue;
+      }
+      else {
+        let tempKc = data[curKc - 1];
+        if(tempKc[tempKc.length - 1] <= 0.95){
+          tempKcs = this.getAllProblemsFromKc(curKc);
+        }
+        else continue;
+      }
+
+      console.log("curKC = " + curKc);
+      console.log("questions to this KC ------->");
+      console.log(tempKcs);
+
+      if (data[curKc - 1].length < tempKcs.length + 1) {
+        this.selected_num = tempKcs[data[curKc - 1].length - 1];
+        this.selected_type = KC[this.selected_num - 1].problemType;
+        return 1;
+      }
+
+      console.log("selected problem id ----------> " + this.selected_num);
+      console.log("selected problem type ----------> " + this.selected_type);
+
     }
-    else{
-      this.selected_num = tempKcs[0];
-      this.selected_type = KC[this.selected_num - 1].problemType;
-    }
 
-    console.log("selected problem id ----------> " + this.selected_num);
-    console.log("selected problem type ----------> " + this.selected_type);
-    
   }
 
-  getProblemsFromKc(curKc: number): number[]{
+  getFMProblemsFromKc(curKc: number): number[] {
     let tempKcs: number[] = [];
-    for(var i = 0; i < this.global.NUMBERPROBLEM; i++){
-      if(KC[i].problemType == 1){
+    for (var i = 0; i < this.global.NUMBERPROBLEM; i++) {
+      if (KC[i].problemType != 1) {
+        if (curKc == KC[i].problemKc) {
+          tempKcs.push(KC[i].problemId);
+        }
+      }
+    }
+    return tempKcs;
+  }
+
+  getAllProblemsFromKc(curKc: number): number[] {
+    let tempKcs: number[] = [];
+    for (var i = 0; i < this.global.NUMBERPROBLEM; i++) {
+      if (KC[i].problemType == 1) {
         let result_kc = KC[i].problemKc.split(",");
         for (var j = 0; j < result_kc.length; j++) {
-          result_kc[i] = Number(result_kc[i]);
-          if(curKc == result_kc[i]){
+          result_kc[j] = Number(result_kc[j]);
+          if (curKc == result_kc[j]) {
             tempKcs.push(KC[i].problemId);
             break;
           }
-        } 
+        }
       }
-      else{
-        if(curKc == KC[i].problemKc){
+      else {
+        if (curKc == KC[i].problemKc) {
           tempKcs.push(KC[i].problemId);
         }
       }
