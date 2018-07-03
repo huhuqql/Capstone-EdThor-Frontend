@@ -117,27 +117,31 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
   ngAfterViewInit() {
     this.retrieveRecord();
-    this.getMathFormula();
+
     const that = this;
     console.log("ready prepare problem...");
     setTimeout(function () {
-      that.generateProblem();
-      console.log("done prepare problem!");
+      if (that.selected_type != 4) {
+        that.generateProblem();
+        console.log("done prepare problem!");
+      }
     }, '1000');
 
     setTimeout(function () {
-      console.log("ready generate problem...");  
-      that.getButtons();
-      that.showNewProblem();
+      if (that.selected_type != 4) {
+        console.log("ready generate problem...");
+        that.getButtons();
+        that.showNewProblem();
+      }
     }, '2000');
+
+    this.getMathFormula();
   }
 
 
   generateProblem() {
     this.selected_num = this.ready_selected_num;
     this.selected_type = this.ready_selected_type;
-    console.log("set problem num ---------->" + this.selected_num);
-    console.log("set problem type ---------->" + this.selected_type);
   }
 
   randomProblemFromKc(kc: number) {
@@ -475,7 +479,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       this.problem_set.push(this.cur_problem);
     }
     console.log(this.progress);
-    if (this.progress > 99) {
+    if (this.progress > 89) {
       var d = new Date();
       this.end_time = d.getTime();
       this.generateRecord();
@@ -499,8 +503,10 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         that.retrieveRecord();
       }, '300');
       setTimeout(function () {
-        that.generateProblem();
-        that.showNewProblem();
+        if (that.selected_type != 4) {
+          that.generateProblem();
+          that.showNewProblem();
+        }
       }, '600');
       var temp = this.progress;
       $('.progress-bar').css("width", function (i) {
@@ -598,43 +604,44 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
       if (includeLongQ == 0) {
         let tempKc = data[i];
-        if(tempKc[tempKc.length - 1] <= 0.8){
+        if (tempKc[tempKc.length - 1] <= 0.8) {
           tempKcs = this.getFMProblemsFromKc(i + 1);
           findKc = 1;
         }
       }
       else {
         let tempKc = data[i];
-        if(tempKc[tempKc.length - 1] <= 0.95){
+        if (tempKc[tempKc.length - 1] <= 0.95) {
           tempKcs = this.getAllProblemsFromKc(i + 1);
           findKc = 1;
         }
       }
 
-      console.log("curKC = " + i);
-      console.log("questions to this KC ------->");
-      console.log(tempKcs);
+      // console.log("curKC = " + i);
+      // console.log("questions to this KC ------->");
+      // console.log(tempKcs);
 
       if (data[i].length < tempKcs.length + 1 && findKc == 1) {
         this.ready_selected_num = tempKcs[data[i].length - 1];
         this.ready_selected_type = KC[this.ready_selected_num - 1].problemType;
-        console.log("selected problem id ----------> " + this.ready_selected_num);
-        console.log("selected problem type ----------> " + this.ready_selected_type);
+        console.log("现在显示的这道题的序号是 ----------> " + this.ready_selected_num);
+        console.log("现在显示的这道题的体型是 ----------> " + this.ready_selected_type);
         return 1;
       }
 
-      if(i == data.length - 1 && includeLongQ == 0){
+      if (i == data.length - 1 && includeLongQ == 0) {
         includeLongQ = 1;
         i = 0;
       }
 
-      if(i == data.length - 1 && includeLongQ == 1){
+      if (i == data.length - 1 && includeLongQ == 1) {
         console.log("You have complete all the questions!");
         console.log("You have complete all the questions!");
         console.log("You have complete all the questions!");
         console.log("You have complete all the questions!");
         console.log("You have complete all the questions!");
         this.selected_type = 4;
+        return -1;
       }
 
     }
