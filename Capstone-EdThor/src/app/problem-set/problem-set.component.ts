@@ -1,4 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GlobalsService } from '../globals.service';
 import * as KC from '../../assets/files/kc.json';
@@ -20,7 +27,20 @@ export declare var MathQuill;
 @Component({
   selector: 'app-problem-set',
   templateUrl: './problem-set.component.html',
-  styleUrls: ['./problem-set.component.css']
+  styleUrls: ['./problem-set.component.css'],
+  animations: [
+    trigger('state', [
+      state('active', style({ transform: 'translateX(0) scale(1)' })),
+      state('inactive', style({ opacity: 0 })),
+      transition('inactive => active', [
+        style({ opacity: 0 }),
+        animate('500ms ease-in-out', style({ opacity: 1 }))
+      ]),
+      transition('active => inactive', [
+        animate('500ms ease-in-out', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class ProblemSetComponent implements OnInit, OnDestroy {
 
@@ -72,6 +92,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   answer_list: boolean[] = [];
   LQ_answer_list_1: boolean[] = [];
   LQ_answer_list_2: boolean[] = [];
+  state: string = "active";
 
 
   private math_formlua_element: any;
@@ -112,6 +133,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     for (var i = 0; i < this.global.MATHFORMULA_NUM; i++) {
       this.math_formula.push("../../assets/img/mathformula/" + i + ".jpg");
     }
+    this.selected_type = 0;
   }
 
 
@@ -119,13 +141,20 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     this.retrieveRecord();
 
     const that = this;
+
+    setTimeout(function () {
+      if (that.selected_type != 4) {
+        that.state = "inactive";
+      }
+    }, '3000');
+
     console.log("ready prepare problem...");
     setTimeout(function () {
       if (that.selected_type != 4) {
         that.generateProblem();
         console.log("done prepare problem!");
       }
-    }, '1000');
+    }, '3500');
 
     setTimeout(function () {
       if (that.selected_type != 4) {
@@ -133,7 +162,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         that.getButtons();
         that.showNewProblem();
       }
-    }, '2000');
+    }, '3600');
 
     this.getMathFormula();
   }
@@ -142,6 +171,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   generateProblem() {
     this.selected_num = this.ready_selected_num;
     this.selected_type = this.ready_selected_type;
+
   }
 
   randomProblemFromKc(kc: number) {

@@ -31,6 +31,13 @@ body {
     
 }
 
+.summary-text-lg{
+  color: #81c784;
+  font-size: 20px;
+  margin: 0 auto;
+  font-family: 'Noto Sans CJK SC Regular';
+  src: url('../../assets/font/NotoSansCJKsc-Regular.otf');
+}
 
 .title-page .title-description {
     color: rgb(133, 133, 133);
