@@ -95,6 +95,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   state: string = "active";
 
 
+
   private math_formlua_element: any;
   private math_formlua_img_element: any[] = [];
   // private symbol_input_element: any;
@@ -104,12 +105,69 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   private next_step_button: any;
   private check_solution_button: any;
 
+  GMcode: string;
+  GMinput_display: string = "none";
+  GMinputConfirm_display: string = "none";
+  warning_display = false;
+  message_display = false;
+  GMmodeJump_display = "none";
+  GMmodeJumpInput_display = "none";
+  GMmode_entrance_display = "";
+  JumpNumber: number;
+
+
 
   constructor(private recordService: RecordService, private sanitized: DomSanitizer, private route: ActivatedRoute, private global: GlobalsService, private http: HttpClient, private userService: UserService) {
     this.sub = route.params.subscribe(params => {
       this.topic = params['topic'];
     });
   }
+
+  GMmode() {
+    if (this.GMinput_display == "none") {
+      this.GMinput_display = "";
+      this.GMinputConfirm_display = "";
+    }
+    else {
+      this.GMinput_display = "none";
+      this.GMinputConfirm_display = "none";
+    }
+    console.log("show input");
+  }
+
+  GMmodeConfirm() {
+    if (this.GMcode == "chensiyushiwonanshen") {
+      this.warning_display = false;
+      this.message_display = true;
+      this.GMinput_display = "none";
+      this.GMinputConfirm_display = "none";
+      this.GMmodeJump_display = "";
+      this.GMmodeJumpInput_display = "";
+      this.GMmode_entrance_display = "none";
+      const that = this;
+
+      setTimeout(function () {
+        that.message_display = false;
+      }, '1500');
+
+    }
+    else {
+      this.message_display = false;
+      this.warning_display = true;
+    }
+  }
+
+  GMmodeJump() {
+    if (this.JumpNumber > 0 && this.JumpNumber < 83) {
+
+      this.ready_selected_num = this.JumpNumber;
+      this.ready_selected_type = KC[this.ready_selected_num - 1].problemType;
+      this.generateProblem();
+      this.showNewProblem();
+
+    }
+  }
+
 
   transform(value) {
     return this.sanitized.bypassSecurityTrustHtml(value);

@@ -69,8 +69,27 @@
           <button style="margin-left:5px;float:right" type="button" class="btn btn-outline-success" (click)="showMathFormula()">公式查询器</button>
         </div> -->
         <div class="title-alternate">
-            <button style="margin-left:5px;float:right" type="button" class="btn btn-outline-success">公式查询器</button>
-          </div>
+          <button style="margin-left:5px;float:right" type="button" class="btn btn-outline-success">公式查询器</button>
+        </div>
+        <div class="title-alternate" [style.display]="GMmode_entrance_display">
+          <button style="margin-left:5px;float:right" type="button" class="btn btn-outline-success" (click)="GMmode()">GM专用通道</button>
+        </div>
+        <div class="title-alternate" [style.display]="GMinputConfirm_display">
+          <button style="margin-left:5px;float:right" type="button" class="btn btn-outline-success" (click)="GMmodeConfirm()">确认</button>
+        </div>
+        <div style="float:right;width:200px;" class="input-group" [style.display]="GMinput_display">
+          <input type="text" class="form-control" [(ngModel)]="GMcode" placeholder="认爹码">
+        </div>
+        <div class="title-alternate" [style.display]="GMmodeJump_display">
+          <button style="margin-left:5px;float:right" type="button" class="btn btn-outline-success" (click)="GMmodeJump()">点击跳转</button>
+        </div>
+        <div style="float:right;width:100px;" class="input-group" [style.display]="GMmodeJumpInput_display">
+          <input type="text" class="form-control" [(ngModel)]="JumpNumber" placeholder="题号">
+        </div>
+        <div class="title-alternate" style="vertical-align:middle">
+          <p style="color:rgb(211, 12, 12);margin-left:5px;margin-right:10px;float:right" *ngIf="warning_display">错了老铁</p>
+          <p style="color:#4CAF50;margin-left:5px;margin-right:10px;float:right" *ngIf="message_display">恭喜你获得GM权限</p>
+        </div>
         <!-- <div class="title-alternate">
           <button style="margin-left:5px;float:right" type="button" class="btn btn-outline-success" (click)="fortest()">查看报告小按钮，按了就回不去了</button>
         </div> -->
