@@ -686,6 +686,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     this.LQ_answer_list_1 = [];
     this.LQ_answer_list_2 = [];
     this.step_duration = [];
+    this.LQ_answer_alternate = [];
     this.addRecord(new_record);
   }
 
