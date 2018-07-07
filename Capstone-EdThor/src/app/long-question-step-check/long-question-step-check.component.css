@@ -1,0 +1,19 @@
+.vertical-middle{
+    position: absolute;
+    top:50%;
+    left:50%;
+    width:100%;
+    transform:translate(-50%,-50%);
+    text-align: center;
+    color: #76b852;
+    font-size:12px;   
+}
+
+.summary-round-button{ 
+    height:20px;
+    border-radius: 10px; 
+    border-top-right-radius: 10px; 
+    border-top-left-radius: 10px; 
+    border: 2px solid #76b852;
+    text-align: center;
+}

@@ -20,11 +20,28 @@ export class LongQuestionStepCheckComponent implements OnInit {
 
   @Output() saveStepCheckOptions = new EventEmitter<boolean[]>();
   checked: boolean[] = [];
+  cur_kcs: string[] = [];
+  kc_names = ['任意角的弧度制和任意角的三角函数', '同角三角函数的基本关系式和诱导公式', '三角函数的图像与性质', '三角函数图像变换', '正弦定理', '余弦定理', '斜三角形面积公式'];
+
 
   ngOnInit() {
     for (var i = 0; i < this.cur_problem.problem_long_question_solution[this.cur_sub_prob].length; i++) {
       this.checked[i] = false;
     }
+
+    if (this.cur_sub_prob == 1) {
+      for (var i = 0; i < this.cur_problem.problem_long_question_solution[this.cur_sub_prob].length; i++) {
+        this.cur_kcs.push(this.kc_names[this.cur_problem.problem_kc[i] - 1]);
+      }
+    }
+    else {
+      var templength = this.cur_problem.problem_kc.length - this.cur_problem.problem_long_question_solution[this.cur_sub_prob].length;
+      for (var i = 0; i < this.cur_problem.problem_long_question_solution[this.cur_sub_prob].length; i++) {
+        this.cur_kcs.push(this.kc_names[this.cur_problem.problem_kc[templength + i] - 1]);
+      }
+    }
+
+    console.log(this.cur_kcs);
   }
 
 

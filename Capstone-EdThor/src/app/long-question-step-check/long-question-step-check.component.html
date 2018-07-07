@@ -10,9 +10,15 @@
 
 <div *ngFor="let solution of cur_problem.problem_long_question_solution[cur_sub_prob]; index as i" (click)="readySubmitOptions()">
   <mat-checkbox class="check-radio-button" value="option-{{i}}" [(ngModel)]="checked[i]">
-    <div style="min-height:50px;margin-left:15px;">
-      <div class="check-radio-button-forimg" [innerHTML]="cur_problem.problem_long_question_solution[cur_sub_prob][i]"></div>
+    <div class="row">
+      <div class="col-auto">
+        <div style="min-height:30px;margin-left:15px;">
+          <div class="check-radio-button-forimg" [innerHTML]="cur_problem.problem_long_question_solution[cur_sub_prob][i]"></div>
+        </div>
+      </div>
+      <div style="margin-left:10px;" class="col-auto">
+            <p class="vertical-middle"> • • • • • • • • • &nbsp;&nbsp;&nbsp;&nbsp; 知识点：{{cur_kcs[i]}}</p>
+      </div>
     </div>
   </mat-checkbox>
 </div>
-
