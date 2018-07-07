@@ -94,6 +94,9 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   LQ_answer_list_2: boolean[] = [];
   state: string = "active";
 
+  step_duration: number[] = [];
+  step_start_time: number = 0;
+  step_end_time: number = 0;
 
 
   private math_formlua_element: any;
@@ -533,6 +536,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
     var d = new Date();
     this.start_time = d.getTime();
+    this.step_start_time = d.getTime();
 
     console.log("problem generating...");
     const that = this;
@@ -570,6 +574,10 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   }
 
   nextProblem() {
+    var d1 = new Date();
+    this.step_end_time = d1.getTime();
+    this.step_duration.push(this.step_end_time - this.step_start_time);
+
     this.next_step_button.disabled = "disabled";
     if (this.cur_problem_number > 0) {
       this.problem_set.push(this.cur_problem);
@@ -624,7 +632,8 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       problemDuration: this.end_time - this.start_time,
       problemResult: [],
       problemKc: this.cur_problem.problem_kc,
-      problemLongquestionAnswer: []
+      problemLongquestionAnswer: [],
+      problemStepDuration: this.step_duration
     }
 
     if (this.selected_type == 1) {
@@ -666,6 +675,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     this.answer_list = [];
     this.LQ_answer_list_1 = [];
     this.LQ_answer_list_2 = [];
+    this.step_duration = [];
     this.addRecord(new_record);
   }
 
@@ -779,6 +789,12 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   }
 
   jumpStep() {
+    var d = new Date();
+    this.step_end_time = d.getTime();
+    this.step_duration.push(this.step_end_time - this.step_start_time);
+    this.step_duration.push(0);
+    this.step_start_time = d.getTime();
+    
     const that = this;
     if (this.cur_problem.problem_type == 1) {
       if (this.cur_step == 1) {
@@ -801,6 +817,12 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
   nextStep() {
     const that = this;
+
+    var d = new Date();
+    this.step_end_time = d.getTime();
+    this.step_duration.push(this.step_end_time - this.step_start_time);
+    this.step_start_time = d.getTime();
+
     if (this.cur_problem.problem_type == 1) {
       if (this.cur_step == 0) {
         this.cur_problem.state = "inactive";
