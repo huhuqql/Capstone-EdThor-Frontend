@@ -136,7 +136,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   }
 
   GMmodeConfirm() {
-    if (this.GMcode == "chensiyushiwonanshen") {
+    if (this.GMcode == "chensiyudashuaibi") {
       this.warning_display = false;
       this.message_display = true;
       this.GMinput_display = "none";
