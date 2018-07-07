@@ -8,4 +8,5 @@ export class Record {
     problemResult?: boolean[];
     problemLongquestionAnswer?: boolean[];
     problemStepDuration?: number[];
+    problemLongquestionAnswerifAlternate?:boolean[];
 }

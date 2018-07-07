@@ -14,11 +14,11 @@
     <app-long-question-check *ngSwitchCase=1 [cur_problem]="cur_problem" [cur_step]="cur_step" [cur_sub_prob]="cur_sub_prob"
       (saveSubmitOptions)="saveSubmitOptions($event)"></app-long-question-check>
     <app-long-question-step-check *ngSwitchCase=2 [cur_problem]="cur_problem" [cur_step]="cur_step" [cur_sub_prob]="cur_sub_prob"
-      (saveStepCheckOptions)="saveStepCheckOptions($event)"></app-long-question-step-check>
+      (saveStepCheckOptions)="saveStepCheckOptions($event)" (saveStepCheckOptionsAlternate)="saveStepCheckOptionsAlternate($event)"></app-long-question-step-check>
     <app-long-question-check *ngSwitchCase=3 [cur_problem]="cur_problem" [cur_step]="cur_step" [cur_sub_prob]="cur_sub_prob"
       (saveSubmitOptions)="saveSubmitOptions($event)"></app-long-question-check>
     <app-long-question-step-check *ngSwitchCase=4 [cur_problem]="cur_problem" [cur_step]="cur_step" [cur_sub_prob]="cur_sub_prob"
-      (saveStepCheckOptions)="saveStepCheckOptions($event)"></app-long-question-step-check>
+      (saveStepCheckOptions)="saveStepCheckOptions($event)" (saveStepCheckOptionsAlternate)="saveStepCheckOptionsAlternate($event)"></app-long-question-step-check>
   </div>
 
 

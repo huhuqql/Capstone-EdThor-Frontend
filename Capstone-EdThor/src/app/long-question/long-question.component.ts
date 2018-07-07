@@ -35,10 +35,12 @@ export class LongQuestionComponent {
   @Output() nextProblem = new EventEmitter();
   @Output() submitOptions = new EventEmitter<string>();
   @Output() submitLQOptions = new EventEmitter<boolean[]>();
+  @Output() submitLQAlternateOption = new EventEmitter<boolean>();
   @Output() jumpStep = new EventEmitter();
 
   my_option: string;
   step_check_options: boolean[];
+  step_check_option_alternate: boolean;
 
   enterNextStep() {
     console.log("next");
@@ -56,6 +58,7 @@ export class LongQuestionComponent {
     }
     else if(this.cur_step == 2){
       this.submitLQOptions.emit(this.step_check_options);
+      this.submitLQAlternateOption.emit(this.step_check_option_alternate);
       this.nextStep.emit();
     }
     this.my_option = null;
@@ -72,6 +75,7 @@ export class LongQuestionComponent {
     }
     else if(this.cur_step == 4){
       this.submitLQOptions.emit(this.step_check_options);
+      this.submitLQAlternateOption.emit(this.step_check_option_alternate);
       this.nextProblem.emit();
     }
     this.my_option = null;
@@ -84,6 +88,10 @@ export class LongQuestionComponent {
 
   saveStepCheckOptions(options){
     this.step_check_options = options;
+  }
+
+  saveStepCheckOptionsAlternate(option){
+    this.step_check_option_alternate = option;
   }
 
 }

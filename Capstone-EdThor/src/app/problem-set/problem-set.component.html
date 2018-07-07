@@ -138,7 +138,7 @@
               </div>
               <app-long-question *ngSwitchCase=1 [cur_problem_number]="this.cur_problem_number" [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"
                 (nextStep)="nextStep()" (nextProblem)="nextProblem()" [cur_sub_prob]="this.cur_sub_prob" (submitOptions)="submitOptions($event)"
-                (jumpStep)="this.jumpStep()" (submitLQOptions)="this.submitLQOptions($event)"></app-long-question>
+                (jumpStep)="this.jumpStep()" (submitLQOptions)="this.submitLQOptions($event)" (submitLQAlternateOption)="this.submitLQAlternateOption($event)"></app-long-question>
               <app-fill-in-blank *ngSwitchCase=2 [cur_problem_number]="this.cur_problem_number" [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"
                 (nextStep)="nextStep()" (nextProblem)="nextProblem()" (submitOptions)="submitOptions($event)"></app-fill-in-blank>
               <app-multiple-choice *ngSwitchCase=3 [cur_problem_number]="this.cur_problem_number" [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"

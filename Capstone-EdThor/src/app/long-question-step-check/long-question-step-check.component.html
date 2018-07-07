@@ -17,8 +17,14 @@
         </div>
       </div>
       <div style="margin-left:10px;" class="col-auto">
-            <p class="vertical-middle"> • • • • • • • • • &nbsp;&nbsp;&nbsp;&nbsp; 知识点：{{cur_kcs[i]}}</p>
+        <p class="vertical-middle"> • • • • • • • • • &nbsp;&nbsp;&nbsp;&nbsp; 知识点：{{cur_kcs[i]}}</p>
       </div>
     </div>
   </mat-checkbox>
 </div>
+
+<mat-checkbox class="check-radio-button" value="option-alternate" [(ngModel)]="checked_alternate" style="margin-top:10px;">
+    <div style="min-height:10px;margin-left:15px;margin-top:15px;">
+      <p style="font-size:13px;line-height:15px;color:#A0A0A0" class="check-radio-button-forimg"> 我的方法和以上步骤不同</p>
+    </div>
+  </mat-checkbox>

@@ -92,6 +92,8 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   answer_list: boolean[] = [];
   LQ_answer_list_1: boolean[] = [];
   LQ_answer_list_2: boolean[] = [];
+  LQ_answer_alternate: boolean[] = [];
+
   state: string = "active";
 
   step_duration: number[] = [];
@@ -198,7 +200,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
 
   ngAfterViewInit() {
-  this.retrieveRecord();
+    this.retrieveRecord();
     // this.ready_selected_num = 78;
     // this.ready_selected_type = 1;
 
@@ -532,6 +534,11 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     }
   }
 
+  submitLQAlternateOption(option) {
+    this.LQ_answer_alternate.push(option);
+    console.log(this.LQ_answer_alternate);
+  }
+
   showNewProblem() {
     this.cur_problem.state = "inactive";
     this.cur_problem_number++;
@@ -635,7 +642,8 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       problemResult: [],
       problemKc: this.cur_problem.problem_kc,
       problemLongquestionAnswer: [],
-      problemStepDuration: this.step_duration
+      problemStepDuration: this.step_duration,
+      problemLongquestionAnswerifAlternate: this.LQ_answer_alternate
     }
 
     if (this.selected_type == 1) {
@@ -796,10 +804,11 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     this.step_duration.push(this.step_end_time - this.step_start_time);
     this.step_duration.push(0);
     this.step_start_time = d.getTime();
-    
+
     const that = this;
     if (this.cur_problem.problem_type == 1) {
       if (this.cur_step == 1) {
+        this.LQ_answer_alternate.push(false);
         this.cur_problem.state = "inactive";
         setTimeout(function () {
           that.cur_step++;
