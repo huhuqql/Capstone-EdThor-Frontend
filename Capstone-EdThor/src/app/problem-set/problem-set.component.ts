@@ -248,16 +248,16 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     console.log("final choice:" + option);
     this.http.get(this.base_url + this.selected_num + "/" + "answer.html", { responseType: 'text' })
       .subscribe(data => {
-        if (data.indexOf("a") > 0 || data.indexOf("A") > 0) {
+        if (data.indexOf("a") >= 0 || data.indexOf("A") >= 0) {
           this.cur_problem.problem_answers[0] = 0;
         }
-        else if (data.indexOf("b") > 0 || data.indexOf("B") > 0) {
+        else if (data.indexOf("b") >= 0 || data.indexOf("B") >= 0) {
           this.cur_problem.problem_answers[0] = 1;
         }
-        else if (data.indexOf("c") > 0 || data.indexOf("C") > 0) {
+        else if (data.indexOf("c") >= 0 || data.indexOf("C") >= 0) {
           this.cur_problem.problem_answers[0] = 2;
         }
-        else if (data.indexOf("d") > 0 || data.indexOf("D") > 0) {
+        else if (data.indexOf("d") >= 0 || data.indexOf("D") >= 0) {
           this.cur_problem.problem_answers[0] = 3;
         }
         this.cur_problem.problem_multiple_choice_answer = option;
