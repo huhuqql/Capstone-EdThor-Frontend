@@ -721,7 +721,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
       if (includeLongQ == 0) {
         let tempKc = data[i];
-        if (tempKc[tempKc.length - 1] <= 0.8) {
+        if (tempKc[tempKc.length - 1] <= 0.85) {
           tempKcs = this.getFMProblemsFromKc(i + 1);
           findKc = 1;
         }
