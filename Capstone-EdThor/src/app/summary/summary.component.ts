@@ -69,14 +69,18 @@ export class SummaryComponent implements OnInit {
     for (var i = 0; i < this.problem_set.length; i++) {
       for (var j = 0; j < this.problem_set[i].problem_kc.length; j++) {
         let tempkc = this.problem_set[i].problem_kc[j];
+        console.log("check " + tempkc);
         if (tempkcs.indexOf(tempkc) < 0) {
           tempkcs.push(tempkc);
         }
       }
     }
+    console.log("这次练习碰到的kc：");
+    console.log(tempkcs);
 
     for (var i = 0; i < tempkcs.length; i++) {
       let tempmastery = this.mastery_set[tempkcs[i] - 1][this.mastery_set[tempkcs[i] - 1].length - 1];
+      console.log("the kc current mastery -------> " + tempmastery);
       if (tempmastery > 0.95) {
         this.kc_status.push([this.kc_names[tempkcs[i] - 1], 4]);
       }
