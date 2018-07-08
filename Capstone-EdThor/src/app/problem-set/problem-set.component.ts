@@ -616,10 +616,10 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         that.retrieveRecord();
       }, '300');
       setTimeout(function () {
-        // if (that.selected_type != 4) {
-        //   that.generateProblem();
-        //   that.showNewProblem();
-        // }
+        if (that.selected_type != 4) {
+          that.generateProblem();
+          that.showNewProblem();
+        }
       }, '600');
       var temp = this.progress;
       $('.progress-bar').css("width", function (i) {
@@ -743,8 +743,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         this.ready_selected_type = KC[this.ready_selected_num - 1].problemType;
         console.log("现在显示的这道题的序号是 ----------> " + this.ready_selected_num);
         console.log("现在显示的这道题的体型是 ----------> " + this.ready_selected_type);
-        this.generateProblem();
-        this.showNewProblem();
         return 1;
       }
 
