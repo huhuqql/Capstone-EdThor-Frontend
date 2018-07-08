@@ -617,8 +617,8 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         that.retrieveRecord();
       }, '300');
       setTimeout(function () {
-
-      }, '600');
+        that.next_step_button.disabled = "";
+      }, '2000');
       var temp = this.progress;
       $('.progress-bar').css("width", function (i) {
         if (temp < 100) {
