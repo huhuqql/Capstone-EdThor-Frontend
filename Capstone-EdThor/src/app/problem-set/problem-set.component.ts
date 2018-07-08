@@ -99,6 +99,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   step_duration: number[] = [];
   step_start_time: number = 0;
   step_end_time: number = 0;
+  mastery_set: number[][] = [];
 
 
   private math_formlua_element: any;
@@ -616,10 +617,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         that.retrieveRecord();
       }, '300');
       setTimeout(function () {
-        if (that.selected_type != 4) {
-          that.generateProblem();
-          that.showNewProblem();
-        }
+
       }, '600');
       var temp = this.progress;
       $('.progress-bar').css("width", function (i) {
@@ -714,6 +712,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
     // console.log("KC needs improve ----->" + curKc);
     // console.log("Mode: " + includeLongQ);
+    this.mastery_set = data;
 
     for (var i = 0; i < data.length; i++) {
       let findKc: number = 0;
@@ -743,6 +742,10 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         this.ready_selected_type = KC[this.ready_selected_num - 1].problemType;
         console.log("现在显示的这道题的序号是 ----------> " + this.ready_selected_num);
         console.log("现在显示的这道题的体型是 ----------> " + this.ready_selected_type);
+        if (this.selected_type != 0) {
+          this.generateProblem();
+          this.showNewProblem();
+        }
         return 1;
       }
 

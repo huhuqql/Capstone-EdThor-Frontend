@@ -31,6 +31,7 @@ export class SummaryComponent implements OnInit {
   @Input() record_list: any[];
   @Input() kc_set: any[];
   @Input() problem_set: any[];
+  @Input() mastery_set: number[][];
 
 
   correct_num: number = 0;
@@ -40,10 +41,14 @@ export class SummaryComponent implements OnInit {
   multiple_choice_progress: number = 0;
   long_question_progress: number = 0;
   cur_problem: Problem;
+  kc_status: any[];
 
   timer_1: any;
   timer_2: any;
   timer_3: any;
+
+  kc_names = ['任意角的弧度制和任意角的三角函数', '同角三角函数的基本关系式和诱导公式', '三角函数的图像与性质', '三角函数图像变换', '正弦定理', '余弦定理', '斜三角形面积公式'];
+  
 
   returnToReport() {
     this.page = 1;
@@ -58,6 +63,39 @@ export class SummaryComponent implements OnInit {
     console.log("type =" + this.type);
     console.log("page =" + this.page);
   }
+
+  generateKCstatus() {
+    let tempkcs: number[] = [];
+    for (var i = 0; i < this.problem_set.length; i++) {
+      for (var j = 0; j < this.problem_set[i].problem_kc.length; j++) {
+        let tempkc = this.problem_set[i].problem_kc[j];
+        if (tempkcs.indexOf(tempkc) < 0) {
+          tempkcs.push(tempkc);
+        }
+      }
+    }
+
+    for (var i = 0; i < tempkcs.length; i++) {
+      let tempmastery = this.mastery_set[tempkcs[i] - 1][this.mastery_set[tempkcs[i] - 1].length - 1];
+      if (tempmastery > 0.95) {
+        this.kc_status.push([this.kc_names[tempkcs[i] - 1], 4]);
+      }
+      else if (tempmastery > 0.85) {
+        this.kc_status.push([this.kc_names[tempkcs[i] - 1], 3]);
+      }
+      else if (tempmastery > 0.65) {
+        this.kc_status.push([this.kc_names[tempkcs[i] - 1], 2]);
+      }
+      else if (tempmastery > 0.45) {
+        this.kc_status.push([this.kc_names[tempkcs[i] - 1], 1]);
+      }
+      else if (tempmastery < 0.45) {
+        this.kc_status.push([this.kc_names[tempkcs[i] - 1], 0]);
+      }
+    }
+  }
+
+
 
   setFillinBlankProgress(num) {
     this.fill_in_blank_progress++;
