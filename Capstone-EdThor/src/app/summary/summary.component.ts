@@ -186,6 +186,7 @@ export class SummaryComponent implements OnInit {
 
 
     setTimeout(function () {
+      this.generateKCstatus();
       for (var i = 0; i < that.record_list.length; i++) {
         if (that.record_list[i].problemType == 2 || that.record_list[i].problemType == 3) {
           if (that.record_list[i].problemResult[0] == true) {
