@@ -699,36 +699,58 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   public retrieveRecord(): void {
     let temp_user_id = this.userService.getStudentId();
     this.recordService.getRecordMasteryLevel(temp_user_id).subscribe(
-      (data) => {
-        console.log("retrieve data ----->");
-        console.log(data);
-        this.processBKTrecords(data);
+      (masterylevel) => {
+
+        console.log("retrieve masterylevel ----->");
+        console.log(masterylevel);
+
+        this.recordService.getRecordHistory(temp_user_id).subscribe(
+          (history) => {
+
+            console.log("retrieve history ----->");
+            console.log(history);
+
+            this.processBKTrecords(masterylevel, history);
+          }
+        )
+
       }
     )
   }
 
-  processBKTrecords(data) {
+  // public retrieveHistory(): void {
+  //   let temp_user_id = this.userService.getStudentId();
+  //   this.recordService.getRecordHistory(temp_user_id).subscribe(
+  //     (data) => {
+
+  //     }
+  //   )
+  // }
+
+  processBKTrecords(masterylevel, history) {
     let includeLongQ: number = 0;
 
     // console.log("KC needs improve ----->" + curKc);
     // console.log("Mode: " + includeLongQ);
-    this.mastery_set = data;
+    this.mastery_set = masterylevel;
 
-    for (var i = 0; i < data.length; i++) {
+    for (var i = 0; i < masterylevel.length; i++) {
       let findKc: number = 0;
-      let tempKcs: number[] = [];
+      let FMQuestions: number[] = [];
+      let LongQuestions: number[] = [];
 
       if (includeLongQ == 0) {
-        let tempKc = data[i];
+        let tempKc = masterylevel[i];
         if (tempKc[tempKc.length - 1] <= 0.85) {
-          tempKcs = this.getFMProblemsFromKc(i + 1);
+          FMQuestions = this.getFMProblemsFromKc(i + 1);
           findKc = 1;
         }
       }
       else {
-        let tempKc = data[i];
+        let tempKc = masterylevel[i];
         if (tempKc[tempKc.length - 1] <= 0.95) {
-          tempKcs = this.getAllProblemsFromKc(i + 1);
+          FMQuestions = this.getFMProblemsFromKc(i + 1);
+          LongQuestions = this.getLongProblemsFromKc(i + 1);
           findKc = 1;
         }
       }
@@ -737,28 +759,66 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       // console.log("questions to this KC ------->");
       // console.log(tempKcs);
 
-      if (data[i].length < tempKcs.length + 1 && findKc == 1) {
-        this.ready_selected_num = tempKcs[data[i].length - 1];
-        this.ready_selected_type = KC[this.ready_selected_num - 1].problemType;
-        console.log("现在显示的这道题的序号是 ----------> " + this.ready_selected_num);
-        console.log("现在显示的这道题的体型是 ----------> " + this.ready_selected_type);
-        if (this.selected_type != 0) {
-          this.generateProblem();
-          this.showNewProblem();
+      if (findKc == 1) {
+        if (includeLongQ == 0) {
+          for(var j = 0; j < FMQuestions.length; j++){
+            if(history.indexOf(FMQuestions[j]) < 0){
+              this.ready_selected_num = FMQuestions[j];
+              this.ready_selected_type = KC[this.ready_selected_num - 1].problemType;
+              console.log("现在显示的这道题的序号是 ----------> " + this.ready_selected_num);
+              console.log("现在显示的这道题的体型是 ----------> " + this.ready_selected_type);
+              if (this.selected_type != 0) {
+                this.generateProblem();
+                this.showNewProblem();
+              }
+              return 1;
+            }
+          }
+          // this.ready_selected_num = FMQuestions[masterylevel[i].length - 1];
+          // this.ready_selected_type = KC[this.ready_selected_num - 1].problemType;
         }
-        return 1;
+        else {
+          for(var j = 0; j < LongQuestions.length; j++){
+            if(history.indexOf(LongQuestions[j]) < 0){
+              this.ready_selected_num = LongQuestions[j];
+              this.ready_selected_type = KC[this.ready_selected_num - 1].problemType;
+              console.log("现在显示的这道题的序号是 ----------> " + this.ready_selected_num);
+              console.log("现在显示的这道题的体型是 ----------> " + this.ready_selected_type);
+              if (this.selected_type != 0) {
+                this.generateProblem();
+                this.showNewProblem();
+              }
+              return 1;
+            }
+          }
+          for(var j = 0; j < FMQuestions.length; j++){
+            if(history.indexOf(FMQuestions[j]) < 0){
+              this.ready_selected_num = FMQuestions[j];
+              this.ready_selected_type = KC[this.ready_selected_num - 1].problemType;
+              console.log("现在显示的这道题的序号是 ----------> " + this.ready_selected_num);
+              console.log("现在显示的这道题的体型是 ----------> " + this.ready_selected_type);
+              if (this.selected_type != 0) {
+                this.generateProblem();
+                this.showNewProblem();
+              }
+              return 1;
+            }
+          }
+        }
+        // console.log("现在显示的这道题的序号是 ----------> " + this.ready_selected_num);
+        // console.log("现在显示的这道题的体型是 ----------> " + this.ready_selected_type);
+        // if (this.selected_type != 0) {
+        //   this.generateProblem();
+        //   this.showNewProblem();
+        // }
       }
 
-      if (i == data.length - 1 && includeLongQ == 0) {
+      if (i == masterylevel.length - 1 && includeLongQ == 0) {
         includeLongQ = 1;
         i = 0;
       }
 
-      if (i == data.length - 1 && includeLongQ == 1) {
-        console.log("You have complete all the questions!");
-        console.log("You have complete all the questions!");
-        console.log("You have complete all the questions!");
-        console.log("You have complete all the questions!");
+      if (i == masterylevel.length - 1 && includeLongQ == 1) {
         console.log("You have complete all the questions!");
         this.selected_type = 4;
         return -1;
@@ -780,7 +840,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     return tempKcs;
   }
 
-  getAllProblemsFromKc(curKc: number): number[] {
+  getLongProblemsFromKc(curKc: number): number[] {
     let tempKcs: number[] = [];
     for (var i = 0; i < this.global.NUMBERPROBLEM; i++) {
       if (KC[i].problemType == 1) {
@@ -791,11 +851,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
             tempKcs.push(KC[i].problemId);
             break;
           }
-        }
-      }
-      else {
-        if (curKc == KC[i].problemKc) {
-          tempKcs.push(KC[i].problemId);
         }
       }
     }

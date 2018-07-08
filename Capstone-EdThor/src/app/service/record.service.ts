@@ -29,6 +29,11 @@ export class RecordService {
     return this.httpService.get<any>(this.baseUrl + "/mastery/", { params: params });
   }
 
+  public getRecordHistory(studentId: number): Observable<any> {
+    const params = new HttpParams().set('studentId', studentId.toString());
+    return this.httpService.get<any>(this.baseUrl + "/history/", { params: params });
+  }
+
   // public getRecommendation(studentId: number): Observable<any> {
     
   // }
