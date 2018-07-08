@@ -41,7 +41,7 @@ export class SummaryComponent implements OnInit {
   multiple_choice_progress: number = 0;
   long_question_progress: number = 0;
   cur_problem: Problem;
-  kc_status: any[];
+  kc_status: any[] = [];
 
   timer_1: any;
   timer_2: any;
