@@ -411,7 +411,12 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
   changeFontSize(content) {
     var pattern = /font-size(\S*)pt/g;
-    var temp = content.replace(pattern, "font-size:16pt");
+    var temp = content.replace(pattern, "font-size:14pt");
+    var pattern1 = /font-family(\S*)"/g;
+    temp = temp.replace(pattern1, "font-family:Microsoft Yahei&quot;");
+
+    var pattern2 = /&quot;/g;
+    temp = temp.replace(pattern2, '"');
     return temp;
   }
 
