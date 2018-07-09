@@ -417,6 +417,10 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
     var pattern2 = /&quot;/g;
     temp = temp.replace(pattern2, '"');
+
+    var pattern3 = /h1/g;
+    temp = temp.replace(pattern3, "p");
+
     return temp;
   }
 
