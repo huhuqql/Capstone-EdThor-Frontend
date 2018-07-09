@@ -64,8 +64,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   topic: any;
   topic_name: any;
   problem_set: any[] = [];
-  kc_set: any[] = [["正弦定理的理解与应用", 4], ["余弦定理的理解与应用", 3], ["三角函数的图像与性质", 2], ["同角三角形的基本关系和诱导公式", 1]];
-  answer_set: any[] = [true, false, true];
   type_set: any[] = [];
   duration_set: any[] = [];
   cur_problem_number: number = 0;
@@ -398,6 +396,72 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
           this.cur_problem.problem_solution_steps = this.transform(this.changeFontSize(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/solution-step/clip")));
         });
     }
+
+  }
+
+  restartTest(){
+    this.selected_type = 0;
+    this.progress = 0;
+    this.problem_set = [];
+    this.type_set = [];
+    this.duration_set = [];
+    this.cur_problem_number = 0;
+    this.currentMathFormula= 0;
+    this.math_formula= [];
+    this.answerMathField = [];
+
+    this.cur_step = 0;
+    this.cur_sub_prob = 0;
+  
+    this.ready_selected_num = 0;
+    this.ready_selected_type = 0;
+  
+    this.selected_num = 0;
+    this.selected_type = 0;
+
+  
+  
+    this.record_list = [];
+    this. answer_list = [];
+    this.LQ_answer_list_1= [];
+    this.LQ_answer_list_2= [];
+    this.LQ_answer_alternate= [];
+  
+    this.state = "active";
+  
+    this.step_duration = [];
+    this.step_start_time = 0;
+    this.step_end_time = 0;
+    this.mastery_set = [];
+
+    this.retrieveRecord();
+
+    // this.ready_selected_num = 78;
+    // this.ready_selected_type = 1;
+
+    const that = this;
+
+    setTimeout(function () {
+      if (that.selected_type != 4) {
+        that.state = "inactive";
+      }
+    }, '3000');
+
+    console.log("ready prepare problem...");
+    setTimeout(function () {
+      if (that.selected_type != 4) {
+        that.generateProblem();
+        console.log("done prepare problem!");
+      }
+    }, '3500');
+
+    setTimeout(function () {
+      if (that.selected_type != 4) {
+        console.log("ready generate problem...");
+        that.getButtons();
+        that.showNewProblem();
+      }
+    }, '3600');
 
   }
 

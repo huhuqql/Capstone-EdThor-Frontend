@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   trigger,
   state,
@@ -32,6 +33,7 @@ export class SummaryComponent implements OnInit {
   @Input() kc_set: any[];
   @Input() problem_set: any[];
   @Input() mastery_set: number[][];
+  @Output() restartTest =  new EventEmitter();
 
 
   correct_num: number = 0;
@@ -48,7 +50,19 @@ export class SummaryComponent implements OnInit {
   timer_3: any;
 
   kc_names = ['任意角的弧度制和任意角的三角函数', '同角三角函数的基本关系式和诱导公式', '三角函数的图像与性质', '三角函数图像变换', '正弦定理', '余弦定理', '斜三角形面积公式'];
-  
+
+  endTest() {
+    this.router.navigate(['/', 'dashboard']).then(nav => {
+      console.log(nav);
+    }, err => {
+      console.log(err)
+    });
+    console.log("to dashboard");
+  }
+
+  goRestartTest(){
+    this.restartTest.emit();
+  }
 
   returnToReport() {
     this.page = 1;
@@ -159,7 +173,7 @@ export class SummaryComponent implements OnInit {
   page: number = 0;
   type: number = -1;
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {

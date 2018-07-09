@@ -143,7 +143,7 @@
                 (nextStep)="nextStep()" (nextProblem)="nextProblem()" (submitOptions)="submitOptions($event)"></app-fill-in-blank>
               <app-multiple-choice *ngSwitchCase=3 [cur_problem_number]="this.cur_problem_number" [cur_problem]="this.cur_problem" [cur_step]="this.cur_step"
                 (nextStep)="nextStep()" (nextProblem)="nextProblem()" (submitMCOptions)="submitMCOptions($event)"></app-multiple-choice>
-              <app-summary *ngSwitchCase=4 [record_list]="this.record_list" [kc_set]="this.kc_set" [problem_set]="problem_set" [mastery_set]="mastery_set"></app-summary>
+              <app-summary *ngSwitchCase=4 [record_list]="this.record_list" [kc_set]="this.kc_set" [problem_set]="problem_set" [mastery_set]="mastery_set" (restartTest)="restartTest()"></app-summary>
             </div>
 
           </div>
