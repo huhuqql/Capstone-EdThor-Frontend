@@ -615,9 +615,10 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       const that = this;
       setTimeout(function () {
         that.retrieveRecord();
-      }, '300');
+        this.next_step_button.disabled = "";
+      }, '500');
       setTimeout(function () {
-        that.next_step_button.disabled = "";
+
       }, '2000');
       var temp = this.progress;
       $('.progress-bar').css("width", function (i) {
