@@ -615,7 +615,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       const that = this;
       setTimeout(function () {
         that.retrieveRecord();
-        this.next_step_button.disabled = "";
+        
       }, '500');
       setTimeout(function () {
 
