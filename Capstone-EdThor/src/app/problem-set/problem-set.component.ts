@@ -283,12 +283,13 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     if (this.cur_problem.problem_type == 1) {
       this.http.get(this.base_url + this.selected_num + "/" + "answer_1.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_answers[1] = this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/answer_1/clip");
+          this.cur_problem.problem_answers[1] = this.changeFontSize(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/answer_1/clip"));
+
         });
 
       this.http.get(this.base_url + this.selected_num + "/" + "answer_2.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_answers[2] = this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/answer_2/clip");
+          this.cur_problem.problem_answers[2] = this.changeFontSize(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/answer_2/clip"));
         });
     }
   }
@@ -298,7 +299,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     if (this.cur_problem.problem_type == 2) {
       this.http.get(this.base_url + this.selected_num + "/" + "answer.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_answers[0] = this.transform(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/answer/clip"));
+          this.cur_problem.problem_answers[0] = this.transform(this.changeFontSize(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/answer/clip")));
         });
     }
   }
@@ -335,7 +336,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
     this.http.get(this.base_url + this.selected_num + "/" + "problem.html", { responseType: 'text' })
       .subscribe(data => {
-        this.cur_problem.problem_text = this.transform(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/problem/clip"));
+        this.cur_problem.problem_text = this.transform(this.changeFontSize(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/problem/clip")));
       });
   }
 
@@ -349,22 +350,22 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     else if (this.selected_type == 3) {
       this.http.get(this.base_url + this.selected_num + "/a.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_questions[0] = this.transform(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/a/clip"));
+          this.cur_problem.problem_questions[0] = this.transform(this.changeFontSize(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/a/clip")));
         }, error => console.log(error));
 
       this.http.get(this.base_url + this.selected_num + "/b.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_questions[1] = this.transform(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/b/clip"));
+          this.cur_problem.problem_questions[1] = this.transform(this.changeFontSize(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/b/clip")));
         }, error => console.log(error));
 
       this.http.get(this.base_url + this.selected_num + "/c.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_questions[2] = this.transform(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/c/clip"));
+          this.cur_problem.problem_questions[2] = this.transform(this.changeFontSize(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/c/clip")));
         }, error => console.log(error));
 
       this.http.get(this.base_url + this.selected_num + "/d.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_questions[3] = this.transform(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/d/clip"));
+          this.cur_problem.problem_questions[3] = this.transform(this.changeFontSize(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/d/clip")));
         }, error => console.log(error));
 
     }
@@ -373,7 +374,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   requestSolutionSteps(num, sub_problem) {
     this.http.get(this.base_url + this.selected_num + "/" + "/solution_" + sub_problem + "/" + num + ".html", { responseType: 'text' })
       .subscribe(data => {
-        this.cur_problem.problem_long_question_solution[sub_problem].push(this.transform(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/solution_" + sub_problem + "/" + num + "/clip")));
+        this.cur_problem.problem_long_question_solution[sub_problem].push(this.transform(this.changeFontSize(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/solution_" + sub_problem + "/" + num + "/clip"))));
         this.requestSolutionSteps(num + 1, sub_problem);
       }, error => {
         console.log(error);
@@ -388,13 +389,13 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     else if (this.selected_type == 2) {
       this.http.get(this.base_url + this.selected_num + "/" + "solution-step.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_solution_steps = this.transform(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/solution-step/clip"));
+          this.cur_problem.problem_solution_steps = this.transform(this.changeFontSize(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/solution-step/clip")));
         });
     }
     else if (this.selected_type == 3) {
       this.http.get(this.base_url + this.selected_num + "/" + "solution-step.html", { responseType: 'text' })
         .subscribe(data => {
-          this.cur_problem.problem_solution_steps = this.transform(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/solution-step/clip"));
+          this.cur_problem.problem_solution_steps = this.transform(this.changeFontSize(this.changeImageUrl(data, "src=&quot;" + this.base_url + this.selected_num + "/solution-step/clip")));
         });
     }
 
@@ -408,13 +409,11 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     return temp;
   }
 
-  // changeFontSize(content) {
-  //   var pattern = /src="(\S*)clip/g;
-  //   var temp = content.replace(pattern);
-  //   var pattern1 = /&quot;/g;
-  //   temp = temp.replace(pattern1, '"');
-  //   return temp;
-  // }
+  changeFontSize(content) {
+    var pattern = /font-size(\S*)pt/g;
+    var temp = content.replace(pattern, "font-size:16pt");
+    return temp;
+  }
 
 
   getButtons() {
@@ -615,7 +614,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       const that = this;
       setTimeout(function () {
         that.retrieveRecord();
-        
+
       }, '500');
       setTimeout(function () {
 
@@ -762,8 +761,8 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
       if (findKc == 1) {
         if (includeLongQ == 0) {
-          for(var j = 0; j < FMQuestions.length; j++){
-            if(history.indexOf(FMQuestions[j]) < 0){
+          for (var j = 0; j < FMQuestions.length; j++) {
+            if (history.indexOf(FMQuestions[j]) < 0) {
               this.ready_selected_num = FMQuestions[j];
               this.ready_selected_type = KC[this.ready_selected_num - 1].problemType;
               console.log("现在显示的这道题的序号是 ----------> " + this.ready_selected_num);
@@ -779,8 +778,8 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
           // this.ready_selected_type = KC[this.ready_selected_num - 1].problemType;
         }
         else {
-          for(var j = 0; j < LongQuestions.length; j++){
-            if(history.indexOf(LongQuestions[j]) < 0){
+          for (var j = 0; j < LongQuestions.length; j++) {
+            if (history.indexOf(LongQuestions[j]) < 0) {
               this.ready_selected_num = LongQuestions[j];
               this.ready_selected_type = KC[this.ready_selected_num - 1].problemType;
               console.log("现在显示的这道题的序号是 ----------> " + this.ready_selected_num);
@@ -792,8 +791,8 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
               return 1;
             }
           }
-          for(var j = 0; j < FMQuestions.length; j++){
-            if(history.indexOf(FMQuestions[j]) < 0){
+          for (var j = 0; j < FMQuestions.length; j++) {
+            if (history.indexOf(FMQuestions[j]) < 0) {
               this.ready_selected_num = FMQuestions[j];
               this.ready_selected_type = KC[this.ready_selected_num - 1].problemType;
               console.log("现在显示的这道题的序号是 ----------> " + this.ready_selected_num);
