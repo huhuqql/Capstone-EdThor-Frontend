@@ -402,6 +402,11 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
   restartTest(){
     this.selected_type = 0;
     this.progress = 0;
+
+    $('.progress-bar').css("width", function (i) {
+        return 0 + "%";
+    });
+
     this.problem_set = [];
     this.type_set = [];
     this.duration_set = [];
