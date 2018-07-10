@@ -27,9 +27,9 @@ import { UserService } from '../service/user.service';
 export class StatisticsComponent implements OnInit {
 
   search_id: string;
-  user_list: any;
+  user_list: any = [];
   shown_user_list: any = [];
-  history_list: any[];
+  history_list: any[] = [];
   page = 0;
   cur_user: any;
 
@@ -73,6 +73,7 @@ export class StatisticsComponent implements OnInit {
   }
 
   cardDetail(i) {
+    this.retrieveRecord(i);
     this.page = 1;
     this.cur_user = this.shown_user_list[i];
   }
@@ -83,6 +84,7 @@ export class StatisticsComponent implements OnInit {
 
 
   public getAllUserStats(id) {
+    console.log()
     if (id >= this.user_list.length + 1) {
       return;
     }
@@ -94,15 +96,14 @@ export class StatisticsComponent implements OnInit {
     )
   }
 
-  public retrieveRecord(): void {
-    let temp_user_id = this.userService.getStudentId();
-    this.recordService.getRecordMasteryLevel(temp_user_id).subscribe(
+  public retrieveRecord(id): void {
+    this.recordService.getRecordMasteryLevel(id).subscribe(
       (masterylevel) => {
 
         console.log("retrieve masterylevel ----->");
         console.log(masterylevel);
 
-        this.recordService.getRecordHistory(temp_user_id).subscribe(
+        this.recordService.getRecordHistory(id).subscribe(
           (history) => {
 
             console.log("retrieve history ----->");
