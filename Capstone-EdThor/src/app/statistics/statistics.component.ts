@@ -18,6 +18,8 @@ import { RecordService } from "../service/record.service";
 
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../service/user.service';
+export declare var jquery: any;
+export declare var $: any;
 
 @Component({
   selector: 'app-statistics',
