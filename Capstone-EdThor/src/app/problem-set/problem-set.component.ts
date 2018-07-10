@@ -641,7 +641,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     }, '100');
     setTimeout(function () {
       that.cur_problem.state = "active";
-    }, '200');
+    }, '500');
 
 
   }
@@ -696,7 +696,6 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       const that = this;
       setTimeout(function () {
         that.retrieveRecord();
-
       }, '500');
       setTimeout(function () {
         that.getMasteryLevel();
