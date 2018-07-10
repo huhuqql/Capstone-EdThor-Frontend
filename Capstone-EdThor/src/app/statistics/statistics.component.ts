@@ -73,9 +73,9 @@ export class StatisticsComponent implements OnInit {
   }
 
   cardDetail(i) {
-    this.retrieveRecord(i+1);
     this.page = 1;
     this.cur_user = this.shown_user_list[i];
+    this.retrieveRecord(this.cur_user.studentId);
   }
 
   showRecord(masterylevel, history) {
