@@ -39,6 +39,7 @@ export class StatisticsComponent implements OnInit {
 
   list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
   cur_mastery: any;
+  cur_record: any;
 
   constructor(private recordService: RecordService, private sanitized: DomSanitizer, private route: ActivatedRoute, private global: GlobalsService, private http: HttpClient, private userService: UserService) { }
 
@@ -60,9 +61,35 @@ export class StatisticsComponent implements OnInit {
     )
   }
 
-  dataToCsv() {
+  dataToCsvRecord(){
     var csvString: string = "";
-    var filename = this.cur_user.username + "masterylevel.csv";
+    var filename = this.cur_user.username + "-record.csv";
+
+    let tablerows = (document.getElementById("record_table") as HTMLTextAreaElement).rows;
+
+    for (var i = 0; i < 18; i++) {
+      var cells = tablerows[i].cells;
+      for (var j = 0; j < cells.length; j++) {
+        console.log(cells[j].innerHTML);
+        csvString = csvString + cells[j].innerHTML + ",";
+      }
+      csvString = csvString.substring(0, csvString.length - 1);
+      csvString = csvString + "\n";
+    }
+
+    var _utf = '\uFEFF';
+    var a = $('<a/>', {
+      style: 'display:none',
+      href: 'data:attachment/csv;charset=utf-8,' + _utf + encodeURIComponent(csvString),
+      download: filename
+    }).appendTo('body');
+    a[0].click();
+    a.remove();
+  }
+
+  dataToCsvMastery() {
+    var csvString: string = "";
+    var filename = this.cur_user.username + "-masterylevel.csv";
 
     let tablerows = (document.getElementById("mastery_table") as HTMLTextAreaElement).rows;
 
@@ -108,8 +135,10 @@ export class StatisticsComponent implements OnInit {
     this.retrieveRecord(this.cur_user.studentId);
   }
 
-  showRecord(masterylevel, history) {
+  showRecord(masterylevel, record) {
     this.cur_mastery = masterylevel;
+    this.cur_record = record;
+    console.log(this.cur_record);
   }
 
 
@@ -133,13 +162,13 @@ export class StatisticsComponent implements OnInit {
         console.log("retrieve masterylevel ----->");
         console.log(masterylevel);
 
-        this.recordService.getRecordHistory(id).subscribe(
-          (history) => {
+        this.recordService.getRecordbyId(id).subscribe(
+          (record) => {
 
-            console.log("retrieve history ----->");
-            console.log(history);
+            console.log("retrieve record ----->");
+            console.log(record);
 
-            this.showRecord(masterylevel, history);
+            this.showRecord(masterylevel, record);
           }
         )
 

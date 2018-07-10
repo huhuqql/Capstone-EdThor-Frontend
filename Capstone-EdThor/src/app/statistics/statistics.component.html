@@ -46,7 +46,7 @@
         <div style="margin-top:20px;" class="row justify-content-md-center">
           <div style="margin-left:2px;margin-right:2px;padding-left:2px;padding-right:2px;" class="col-auto">
             <div class="input-group mb-3" style="height:36px;">
-              <input type="text" [(ngModel)]="search_id" placeholder="请输入id或用户名" />
+              <input type="text" [(ngModel)]="search_id" placeholder="id/username" />
             </div>
           </div>
           <div style="margin-left:2px;margin-right:2px;padding-left:2px;padding-right:2px;" class="col-auto">
@@ -67,39 +67,74 @@
         </div>
 
         <div style="margin-left:50px;margin-right:2px;padding-left:2px;padding-right:2px;" class="col-auto">
-          <button type="button" class="btn btn-outline-light" (click)="dataToCsv()">导出csv</button>
+          <button type="button" class="btn btn-outline-light" (click)="dataToCsvMastery()">导出CSV</button>
         </div>
         <div style="margin-top:20px;margin-left:50px;margin-right:50px;" class="row justify-content-md-center">
-            <table id="mastery_table" class="table" style="color:#fff">
-                <thead>
-                  <tr>
-                    <th scope="col">Attempts</th>
-                    <th scope="col">kc 1</th>
-                    <th scope="col">kc 2</th>
-                    <th scope="col">kc 3</th>
-                    <th scope="col">kc 4</th>
-                    <th scope="col">kc 5</th>
-                    <th scope="col">kc 6</th>
-                    <th scope="col">kc 7</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let l of list; index as i">
-                    <th scope="row">{{l}}</th>
-                    <td>{{cur_mastery[0][i]}}</td>
-                    <td>{{cur_mastery[1][i]}}</td>
-                    <td>{{cur_mastery[2][i]}}</td>
-                    <td>{{cur_mastery[3][i]}}</td>
-                    <td>{{cur_mastery[4][i]}}</td>
-                    <td>{{cur_mastery[5][i]}}</td>
-                    <td>{{cur_mastery[6][i]}}</td>
-                  </tr>
-                </tbody>
-              </table>
+          <table id="mastery_table" class="table" style="color:#fff">
+            <thead>
+              <tr>
+                <th scope="col">Attempts</th>
+                <th scope="col">kc_1</th>
+                <th scope="col">kc_2</th>
+                <th scope="col">kc_3</th>
+                <th scope="col">kc_4</th>
+                <th scope="col">kc_5</th>
+                <th scope="col">kc_6</th>
+                <th scope="col">kc_7</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let l of list; index as i">
+                <th scope="row">{{l}}</th>
+                <td>{{cur_mastery[0][i]}}</td>
+                <td>{{cur_mastery[1][i]}}</td>
+                <td>{{cur_mastery[2][i]}}</td>
+                <td>{{cur_mastery[3][i]}}</td>
+                <td>{{cur_mastery[4][i]}}</td>
+                <td>{{cur_mastery[5][i]}}</td>
+                <td>{{cur_mastery[6][i]}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
+
+
+      <div style="margin-left:50px;margin-right:2px;padding-left:2px;padding-right:2px;margin-top:50px;" class="col-auto">
+        <button type="button" class="btn btn-outline-light" (click)="dataToCsvRecord()">导出CSV</button>
+      </div>
+      <div style="margin-top:20px;margin-left:50px;margin-right:50px;" class="row justify-content-md-center">
+        <table id="record_table" class="table" style="color:#fff">
+          <thead>
+            <tr>
+              <th scope="col">Problem_Id</th>
+              <th scope="col">Problem_Type</th>
+              <th scope="col">Problem_Duration</th>
+              <th scope="col">Problem_Step_Duration</th>
+              <th scope="col">Problem_KC</th>
+              <th scope="col">Problem_Result</th>
+              <th scope="col">LongquestionAnswer</th>
+              <th scope="col">LongquestionAlternate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let r of cur-record">
+              <th scope="row">{{r[2]}}</th>
+              <td>{{r[4]}}</td>
+              <td>{{r[5]}}</td>
+              <td>{{r[6]}}</td>
+              <td>{{r[7]}}</td>
+              <td>{{r[8]}}</td>
+              <td>{{r[9]}}</td>
+              <td>{{r[10]}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+
+  </div>
   </div>
 
 
