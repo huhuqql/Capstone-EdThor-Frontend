@@ -21,6 +21,8 @@ export class MultipleChoiceAnswerComponent implements OnInit {
   color = ['', '', '', ''];
   checked = [false, false, false, false];
   result: string = "";
+  instruction_border = "#76b852";
+  arrow_border = "40px solid #76b852";
 
   ngOnInit() {
     const that = this;
@@ -34,6 +36,8 @@ export class MultipleChoiceAnswerComponent implements OnInit {
         that.checked[that.cur_problem.problem_multiple_choice_answer] = true;
         that.checked[that.cur_problem.problem_answers[0]] = true;
         that.result = "你答错了";
+        that.instruction_border = "#f44336";
+        that.arrow_border = "40px solid #f44336";
       }
     }, '500');
 

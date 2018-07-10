@@ -1,9 +1,9 @@
 <div style="margin:0;padding:0;margin-top:20px;" class="row">
   <div style="margin:0;padding:0" class="col-auto">
-    <p class="problem-instruction">{{result}} </p>
+    <p class="problem-instruction" [style.background-color]="instruction_border">{{result}} </p>
   </div>
   <div style="margin:0;padding:0" class="col-auto">
-    <div class="arrow"></div>
+    <div class="arrow" [style.border-left]="arrow_border"></div>
   </div>
 </div>
 
