@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
   }
 
   toStat(){
-    this.router.navigate(['/', 'dogshit']).then(nav => {
+    this.router.navigate(['/', 'stats']).then(nav => {
       console.log(nav);
     }, err => {
       console.log(err)

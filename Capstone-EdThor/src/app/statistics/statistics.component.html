@@ -66,8 +66,11 @@
           </div>
         </div>
 
+        <div style="margin-left:50px;margin-right:2px;padding-left:2px;padding-right:2px;" class="col-auto">
+          <button type="button" class="btn btn-outline-light" (click)="dataToCsv()">导出csv</button>
+        </div>
         <div style="margin-top:20px;margin-left:50px;margin-right:50px;" class="row justify-content-md-center">
-            <table class="table" style="color:#fff">
+            <table id="mastery_table" class="table" style="color:#fff">
                 <thead>
                   <tr>
                     <th scope="col">Attempts</th>

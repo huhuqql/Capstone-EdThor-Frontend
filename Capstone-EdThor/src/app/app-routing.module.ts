@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'problem-set/:topic', component: ProblemSetComponent },
-  { path: 'dogshit', component: StatisticsComponent }
+  { path: 'stats', component: StatisticsComponent }
 ];
 
 @NgModule({
