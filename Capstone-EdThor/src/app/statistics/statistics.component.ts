@@ -29,7 +29,7 @@ export declare var $: any;
 export class StatisticsComponent implements OnInit {
 
   search_id: string;
-  // user_list = [{ "id": "5b3b1ee9503aba7e8a76cd3f", "username": "siyu", "password": "123", "pseudoname": null, "studentId": 1 }, { "id": "5b3b27d0503aba7e8a76cd94", "username": "siyu1", "password": "123", "pseudoname": null, "studentId": 2 }, { "id": "5b3cd586503aba7e8a76cdae", "username": "LuSun", "password": "LuSun", "pseudoname": null, "studentId": 3 }];
+  //user_list = [{ "id": "5b3b1ee9503aba7e8a76cd3f", "username": "siyu", "password": "123", "pseudoname": null, "studentId": 1 }, { "id": "5b3b27d0503aba7e8a76cd94", "username": "siyu1", "password": "123", "pseudoname": null, "studentId": 2 }, { "id": "5b3cd586503aba7e8a76cdae", "username": "LuSun", "password": "LuSun", "pseudoname": null, "studentId": 3 }];
   user_list: any = [];
   shown_user_list: any = [];
 
@@ -61,7 +61,7 @@ export class StatisticsComponent implements OnInit {
     )
   }
 
-  dataToCsvRecord(){
+  dataToCsvRecord() {
     var csvString: string = "";
     var filename = this.cur_user.username + "-record.csv";
 

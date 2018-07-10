@@ -1,10 +1,10 @@
 
 body {
-    background: #76b852; 
-    background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-    background: -moz-linear-gradient(right, #76b852, #8DC26F);
-    background: -o-linear-gradient(right, #76b852, #8DC26F);
-    background: linear-gradient(to left, #76b852, #8DC26F);
+    background: #7952B8; 
+    background: -webkit-linear-gradient(right, #7952B8, #AB6FC2);
+    background: -moz-linear-gradient(right, #7952B8, #AB6FC2);
+    background: -o-linear-gradient(right, #7952B8, #AB6FC2);
+    background: linear-gradient(to left, #7952B8, #AB6FC2);
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;      
@@ -13,11 +13,11 @@ body {
 }
 
 .page {
-    background: #76b852; 
-    background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-    background: -moz-linear-gradient(right, #76b852, #8DC26F);
-    background: -o-linear-gradient(right, #76b852, #8DC26F);
-    background: linear-gradient(to left, #76b852, #8DC26F);
+    background: #7952B8; 
+    background: -webkit-linear-gradient(right, #7952B8, #AB6FC2);
+    background: -moz-linear-gradient(right, #7952B8, #AB6FC2);
+    background: -o-linear-gradient(right, #7952B8, #AB6FC2);
+    background: linear-gradient(to left, #7952B8, #AB6FC2);
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;      
