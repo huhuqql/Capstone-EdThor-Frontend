@@ -39,7 +39,7 @@ export class MultipleChoiceAnswerComponent implements OnInit {
         that.instruction_border = "#f44336";
         that.arrow_border = "40px solid #f44336";
       }
-    }, '500');
+    }, '400');
 
   }
 
