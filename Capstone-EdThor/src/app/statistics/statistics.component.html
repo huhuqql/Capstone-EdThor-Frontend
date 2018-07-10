@@ -22,12 +22,12 @@
         </div>
 
         <div style="margin-top:20px;" class="row justify-content-md-center">
-
+          
           <div style="margin:10px;" class="col-auto" *ngFor="let user of shown_user_list; index as i">
             <div class="card" style="width: 14rem;" (click)="cardDetail(i)">
               <div class="card-body">
                 <h5 style="color:#fff" class="card-title">{{user.username}}</h5>
-                <h6 style="color:#DACACA" class="card-subtitle mb-2 text-muted">id: {{user.studentId}}</h6>
+                <h6 style="color:#DACACA" class="card-subtitle mb-2">id: {{user.studentId}}</h6>
                 <p style="color:#fff" class="card-text">已做题数：{{history_list[i]}}</p>
               </div>
             </div>
