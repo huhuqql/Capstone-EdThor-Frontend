@@ -681,6 +681,10 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
           return temp + 10 + "%";
         }
       });
+      const that = this;
+      setTimeout(function () {
+        that.getMasteryLevel();
+      }, '1000');
       this.progress = this.progress + 10;
       this.selected_type = 4;
     }
@@ -695,7 +699,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
       }, '500');
       setTimeout(function () {
-
+        that.getMasteryLevel();
       }, '2000');
       var temp = this.progress;
       $('.progress-bar').css("width", function (i) {
@@ -770,6 +774,15 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     this.recordService.saveRecord(new_record).subscribe(
       () => {
         console.log("Save the record!");
+      }
+    )
+  }
+
+  public getMasteryLevel(){
+    let temp_user_id = this.userService.getStudentId();
+    this.recordService.getRecordMasteryLevel(temp_user_id).subscribe(
+      (masterylevel) => {
+        this.mastery_set = masterylevel;  
       }
     )
   }
