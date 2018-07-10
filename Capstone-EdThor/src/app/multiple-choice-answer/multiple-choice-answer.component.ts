@@ -35,7 +35,7 @@ export class MultipleChoiceAnswerComponent implements OnInit {
         that.checked[that.cur_problem.problem_answers[0]] = true;
         that.result = "你答错了";
       }
-    }, '190');
+    }, '500');
 
   }
 
