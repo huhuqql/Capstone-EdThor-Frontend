@@ -1,6 +1,6 @@
 <div [ngSwitch]="page">
 
-  <div style="margin:0;padding:0;position:absolute;top:88%;width:95%;z-index:100;" class="row justify-content-end">
+  <div style="margin:0;padding:0;position:absolute;top:88%;width:95%;z-index:100;" class="row justify-content-end" [style.display]="menuButton_display">
     <div class="col-auto">
       <button id="next-step-button" type="button" class="btn-input-answer btn-theme" (click)="endTest()">结束练习</button>
     </div>

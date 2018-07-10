@@ -48,6 +48,7 @@ export class SummaryComponent implements OnInit {
   timer_1: any;
   timer_2: any;
   timer_3: any;
+  menuButton_display: string = "";
 
   kc_names = ['任意角的弧度制和任意角的三角函数', '同角三角函数的基本关系式和诱导公式', '三角函数的图像与性质', '三角函数图像变换', '正弦定理', '余弦定理', '斜三角形面积公式'];
 
@@ -65,10 +66,12 @@ export class SummaryComponent implements OnInit {
   }
 
   returnToReport() {
+    this.menuButton_display = "";
     this.page = 1;
   }
 
   showReport(num) {
+    this.menuButton_display = "none";
     console.log(this.problem_set[num]);
     this.cur_problem = this.problem_set[num];
     this.cur_problem.state = "inactive";

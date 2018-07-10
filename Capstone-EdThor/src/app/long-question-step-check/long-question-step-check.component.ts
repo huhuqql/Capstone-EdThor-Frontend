@@ -32,13 +32,23 @@ export class LongQuestionStepCheckComponent implements OnInit {
 
     if (this.cur_sub_prob == 1) {
       for (var i = 0; i < this.cur_problem.problem_long_question_solution[this.cur_sub_prob].length; i++) {
-        this.cur_kcs.push(this.kc_names[this.cur_problem.problem_kc[i] - 1]);
+        if(this.cur_problem.problem_kc[i] < 0){
+          this.cur_kcs.push("无");
+        }
+        else{
+          this.cur_kcs.push(this.kc_names[this.cur_problem.problem_kc[i] - 1]);
+        }
       }
     }
     else {
       var templength = this.cur_problem.problem_kc.length - this.cur_problem.problem_long_question_solution[this.cur_sub_prob].length;
       for (var i = 0; i < this.cur_problem.problem_long_question_solution[this.cur_sub_prob].length; i++) {
-        this.cur_kcs.push(this.kc_names[this.cur_problem.problem_kc[templength + i] - 1]);
+        if(this.cur_problem.problem_kc[templength + i] < 0){
+          this.cur_kcs.push("无");
+        }
+        else{
+          this.cur_kcs.push(this.kc_names[this.cur_problem.problem_kc[templength + i] - 1]);
+        }
       }
     }
 
