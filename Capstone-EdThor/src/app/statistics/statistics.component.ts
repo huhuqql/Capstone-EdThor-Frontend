@@ -90,7 +90,7 @@ export class StatisticsComponent implements OnInit {
     }
     this.recordService.getRecordHistory(id).subscribe(
       (history) => {
-        this.history_list[id - 1].push(history.length);
+        this.history_list.push(history.length);
         this.getAllUserStats(id + 1);
       }
     )
