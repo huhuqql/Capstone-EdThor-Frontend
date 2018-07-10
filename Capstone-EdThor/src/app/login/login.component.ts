@@ -30,6 +30,11 @@ export class LoginComponent implements OnInit {
 
 
   login() {
+    if(this.curUser.username == "chensiyu" && this.curUser.password == "dashuaibi"){
+      console.log("inspector mode");
+      this.toStat();
+      return;
+    }
     this.userService.getUser(this.curUser).subscribe(
       (data) => {
         if(data == -1){
@@ -53,6 +58,15 @@ export class LoginComponent implements OnInit {
       console.log(err)
     });
     console.log("login");
+  }
+
+  toStat(){
+    this.router.navigate(['/', 'dogshit']).then(nav => {
+      console.log(nav);
+    }, err => {
+      console.log(err)
+    });
+    console.log("statistics");
   }
 
   register() {

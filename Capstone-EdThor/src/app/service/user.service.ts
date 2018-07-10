@@ -23,6 +23,10 @@ export class UserService {
     this.baseUrl = environment.base_url + "/ws/users";
   }
 
+  public getAllUsers(): Observable<User[]> {
+    return this.httpService.get<User[]>(this.baseUrl);
+  }
+
   public clearUser(){
     this.my_user.username = '';
     this.my_user.password = '';

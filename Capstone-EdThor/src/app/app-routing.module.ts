@@ -4,13 +4,15 @@ import { MemberComponent } from "./member/member.component";
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProblemSetComponent } from './problem-set/problem-set.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'problem-set/:topic', component: ProblemSetComponent }
+  { path: 'problem-set/:topic', component: ProblemSetComponent },
+  { path: 'dogshit', component: StatisticsComponent }
 ];
 
 @NgModule({

@@ -42,6 +42,7 @@ import { FillInBlankReportSolutionStepsComponent } from './fill-in-blank-report-
 import { LongQuestionReportComponent } from './long-question-report/long-question-report.component';
 import { LongQuestionReportAnswerComponent } from './long-question-report-answer/long-question-report-answer.component';
 import { LongQuestionReportSolutionStepsComponent } from './long-question-report-solution-steps/long-question-report-solution-steps.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { LongQuestionReportSolutionStepsComponent } from './long-question-report
     FillInBlankReportSolutionStepsComponent,
     LongQuestionReportComponent,
     LongQuestionReportAnswerComponent,
-    LongQuestionReportSolutionStepsComponent
+    LongQuestionReportSolutionStepsComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,

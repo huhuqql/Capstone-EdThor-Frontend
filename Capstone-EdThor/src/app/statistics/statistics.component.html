@@ -1,0 +1,104 @@
+<body>
+
+  <div [ngSwitch]="page">
+
+    <div *ngSwitchCase=0 class="page">
+      <div class="container-fluid">
+        <div class="row justify-content-md-center">
+          <h1 style="color:#fff">Student Statistics</h1>
+        </div>
+        <div style="margin-top:20px;" class="row justify-content-md-center">
+          <div style="margin-left:2px;margin-right:2px;padding-left:2px;padding-right:2px;" class="col-auto">
+            <div class="input-group mb-3" style="height:36px;">
+              <input type="text" [(ngModel)]="search_id" placeholder="请输入id或用户名" />
+            </div>
+          </div>
+          <div style="margin-left:2px;margin-right:2px;padding-left:2px;padding-right:2px;" class="col-auto">
+            <button type="button" class="btn btn-outline-light" (click)="searchId()">确认</button>
+          </div>
+          <div style="margin-left:2px;margin-right:2px;padding-left:2px;padding-right:2px;" class="col-auto">
+            <button type="button" class="btn btn-outline-light" (click)="reset()">重置</button>
+          </div>
+        </div>
+
+        <div style="margin-top:20px;" class="row justify-content-md-center">
+
+          <div style="margin:10px;" class="col-auto" *ngFor="let user of shown_user_list; index as i">
+            <div class="card" style="width: 14rem;" (click)="cardDetail(i)">
+              <div class="card-body">
+                <h5 class="card-title">{{user.username}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">id: {{user.studentId}}</h6>
+                <p class="card-text">已做题数：{{history_list[i]}}</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div *ngSwitchCase=1 class="page">
+      <div class="container-fluid">
+        <div class="row justify-content-md-center">
+          <h1 style="color:#fff">Student Statistics</h1>
+        </div>
+        <div style="margin-top:20px;" class="row justify-content-md-center">
+          <div style="margin-left:2px;margin-right:2px;padding-left:2px;padding-right:2px;" class="col-auto">
+            <div class="input-group mb-3" style="height:36px;">
+              <input type="text" [(ngModel)]="search_id" placeholder="请输入id或用户名" />
+            </div>
+          </div>
+          <div style="margin-left:2px;margin-right:2px;padding-left:2px;padding-right:2px;" class="col-auto">
+            <button type="button" class="btn btn-outline-light" (click)="searchId()">确认</button>
+          </div>
+          <div style="margin-left:2px;margin-right:2px;padding-left:2px;padding-right:2px;" class="col-auto">
+            <button type="button" class="btn btn-outline-light" (click)="reset()">重置</button>
+          </div>
+        </div>
+
+        <div style="margin-top:20px;" class="row justify-content-md-center">
+          <div class="col-auto">
+            <h5 style="color:#fff">Username: {{cur_user.username}} </h5>
+          </div>
+          <div class="col-auto">
+            <h5 style="color:#fff">Id: {{cur_user.studentId}}</h5>
+          </div>
+        </div>
+
+        <div style="margin-top:20px;margin-left:50px;margin-right:50px;" class="row justify-content-md-center">
+            <table class="table" style="color:#fff">
+                <thead>
+                  <tr>
+                    <th scope="col">Attempts</th>
+                    <th scope="col">kc 1</th>
+                    <th scope="col">kc 2</th>
+                    <th scope="col">kc 3</th>
+                    <th scope="col">kc 4</th>
+                    <th scope="col">kc 5</th>
+                    <th scope="col">kc 6</th>
+                    <th scope="col">kc 7</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let l of list; index as i">
+                    <th scope="row">{{l}}</th>
+                    <td>{{cur_mastery[0][i]}}</td>
+                    <td>{{cur_mastery[1][i]}}</td>
+                    <td>{{cur_mastery[2][i]}}</td>
+                    <td>{{cur_mastery[3][i]}}</td>
+                    <td>{{cur_mastery[4][i]}}</td>
+                    <td>{{cur_mastery[5][i]}}</td>
+                    <td>{{cur_mastery[6][i]}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</body>
