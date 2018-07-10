@@ -18,7 +18,7 @@ import { Problem } from '../service/model/problem';
       state('inactive', style({ opacity: 0 })),
       transition('inactive => active', [
         style({ opacity: 0 }),
-        animate('200ms ease-in-out', style({ opacity: 1 }))
+        animate('400ms ease-in-out', style({ opacity: 1 }))
       ]),
       transition('active => inactive', [
         animate('100ms ease-in-out', style({ opacity: 0 }))

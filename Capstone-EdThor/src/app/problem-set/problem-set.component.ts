@@ -968,7 +968,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         }, '100');
         setTimeout(function () {
           that.cur_problem.state = "active";
-        }, '200');
+        }, '400');
       }
       else {
         this.nextProblem();
@@ -994,7 +994,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         }, '100');
         setTimeout(function () {
           that.cur_problem.state = "active";
-        }, '200');
+        }, '400');
       }
       else if (this.cur_step == 1) {
         this.cur_problem.state = "inactive";
@@ -1003,7 +1003,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         }, '100');
         setTimeout(function () {
           that.cur_problem.state = "active";
-        }, '200');
+        }, '400');
       }
       else if (this.cur_step == 2) {
         this.cur_problem.state = "inactive";
@@ -1014,7 +1014,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         }, '100');
         setTimeout(function () {
           that.cur_problem.state = "active";
-        }, '200');
+        }, '400');
       }
       else if (this.cur_step == 3) {
         this.cur_problem.state = "inactive";
@@ -1025,7 +1025,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         }, '100');
         setTimeout(function () {
           that.cur_problem.state = "active";
-        }, '200');
+        }, '400');
       }
     }
     else if (this.cur_problem.problem_type == 2) {
@@ -1039,7 +1039,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         }, '100');
         setTimeout(function () {
           that.cur_problem.state = "active";
-        }, '200');
+        }, '400');
       }
       else if (this.cur_step == 1) {
         this.cur_problem.state = "inactive";
@@ -1052,7 +1052,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         }, '100');
         setTimeout(function () {
           that.cur_problem.state = "active";
-        }, '200');
+        }, '400');
       }
     }
     else if (this.cur_problem.problem_type == 3) {
@@ -1066,7 +1066,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         }, '100');
         setTimeout(function () {
           that.cur_problem.state = "active";
-        }, '200');
+        }, '400');
       }
       else if (this.cur_step == 1) {
         this.cur_problem.state = "inactive";
@@ -1078,7 +1078,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         }, '100');
         setTimeout(function () {
           that.cur_problem.state = "active";
-        }, '200');
+        }, '400');
 
       }
     }
