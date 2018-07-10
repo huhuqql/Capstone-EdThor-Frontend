@@ -965,7 +965,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
           that.cur_step++;
           that.cur_sub_prob++;
           that.getLongquestionAnswer();
-        }, '100');
+        }, '300');
         setTimeout(function () {
           that.cur_problem.state = "active";
         }, '400');
@@ -991,7 +991,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         this.check_solution_button.disabled = "";
         setTimeout(function () {
           that.cur_step++;
-        }, '100');
+        }, '300');
         setTimeout(function () {
           that.cur_problem.state = "active";
         }, '400');
@@ -1000,7 +1000,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         this.cur_problem.state = "inactive";
         setTimeout(function () {
           that.cur_step++;
-        }, '100');
+        }, '300');
         setTimeout(function () {
           that.cur_problem.state = "active";
         }, '400');
@@ -1011,7 +1011,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         setTimeout(function () {
           that.cur_step++;
           that.cur_sub_prob++;
-        }, '100');
+        }, '300');
         setTimeout(function () {
           that.cur_problem.state = "active";
         }, '400');
@@ -1022,7 +1022,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         this.check_solution_button.disabled = "disabled";
         setTimeout(function () {
           that.cur_step++;
-        }, '100');
+        }, '300');
         setTimeout(function () {
           that.cur_problem.state = "active";
         }, '400');
@@ -1036,7 +1036,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         this.next_step_button.disabled = "";
         setTimeout(function () {
           that.cur_step++;
-        }, '100');
+        }, '300');
         setTimeout(function () {
           that.cur_problem.state = "active";
         }, '400');
@@ -1049,7 +1049,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         // this.getSolutionSteps();
         setTimeout(function () {
           that.cur_step++;
-        }, '100');
+        }, '300');
         setTimeout(function () {
           that.cur_problem.state = "active";
         }, '400');
@@ -1063,7 +1063,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         this.next_step_button.disabled = "";
         setTimeout(function () {
           that.cur_step++;
-        }, '100');
+        }, '300');
         setTimeout(function () {
           that.cur_problem.state = "active";
         }, '400');
@@ -1075,7 +1075,7 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
         this.next_step_button.disabled = "";
         setTimeout(function () {
           that.cur_step++;
-        }, '100');
+        }, '300');
         setTimeout(function () {
           that.cur_problem.state = "active";
         }, '400');

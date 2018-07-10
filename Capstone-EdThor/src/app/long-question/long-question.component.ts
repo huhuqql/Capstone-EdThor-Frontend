@@ -20,7 +20,7 @@ import { Problem } from '../service/model/problem';
         animate('400ms ease-in-out', style({ opacity: 1 }))
       ]),
       transition('active => inactive', [
-        animate('100ms ease-in-out', style({ opacity: 0 }))
+        animate('300ms ease-in-out', style({ opacity: 0 }))
       ])
     ])
   ]
