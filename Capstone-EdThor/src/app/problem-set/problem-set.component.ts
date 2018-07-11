@@ -399,41 +399,41 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
   }
 
-  restartTest(){
+  restartTest() {
     this.selected_type = 0;
     this.progress = 0;
 
     $('.progress-bar').css("width", function (i) {
-        return 0 + "%";
+      return 0 + "%";
     });
 
     this.problem_set = [];
     this.type_set = [];
     this.duration_set = [];
     this.cur_problem_number = 0;
-    this.currentMathFormula= 0;
-    this.math_formula= [];
+    this.currentMathFormula = 0;
+    this.math_formula = [];
     this.answerMathField = [];
 
     this.cur_step = 0;
     this.cur_sub_prob = 0;
-  
+
     this.ready_selected_num = 0;
     this.ready_selected_type = 0;
-  
+
     this.selected_num = 0;
     this.selected_type = 0;
 
-  
-  
+
+
     this.record_list = [];
-    this. answer_list = [];
-    this.LQ_answer_list_1= [];
-    this.LQ_answer_list_2= [];
-    this.LQ_answer_alternate= [];
-  
+    this.answer_list = [];
+    this.LQ_answer_list_1 = [];
+    this.LQ_answer_list_2 = [];
+    this.LQ_answer_alternate = [];
+
     this.state = "active";
-  
+
     this.step_duration = [];
     this.step_start_time = 0;
     this.step_end_time = 0;
@@ -777,11 +777,11 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
     )
   }
 
-  public getMasteryLevel(){
+  public getMasteryLevel() {
     let temp_user_id = this.userService.getStudentId();
     this.recordService.getRecordMasteryLevel(temp_user_id).subscribe(
       (masterylevel) => {
-        this.mastery_set = masterylevel;  
+        this.mastery_set = masterylevel;
       }
     )
   }
@@ -956,8 +956,8 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
     const that = this;
     if (this.cur_problem.problem_type == 1) {
+      this.LQ_answer_alternate.push(false);
       if (this.cur_step == 1) {
-        this.LQ_answer_alternate.push(false);
         this.cur_problem.state = "inactive";
         setTimeout(function () {
           that.cur_step++;
