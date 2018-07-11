@@ -37,7 +37,7 @@ export class StatisticsComponent implements OnInit {
   page = 0;
   cur_user: any;
 
-  list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+  list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
   cur_mastery: any;
   cur_record: any;
 
@@ -67,7 +67,7 @@ export class StatisticsComponent implements OnInit {
 
     let tablerows = (document.getElementById("record_table") as HTMLTextAreaElement).rows;
 
-    for (var i = 0; i < 18; i++) {
+    for (var i = 0; i < this.cur_record.length + 1; i++) {
       var cells = tablerows[i].cells;
       for (var j = 0; j < cells.length; j++) {
         console.log(cells[j].innerHTML);
