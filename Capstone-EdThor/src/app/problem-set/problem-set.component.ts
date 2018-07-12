@@ -638,10 +638,10 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
       that.getSolutionSteps();
       that.getLongquestionAnswer();
       that.getFillinblankAnswer();
-    }, '100');
+    }, '300');
     setTimeout(function () {
       that.cur_problem.state = "active";
-    }, '500');
+    }, '600');
 
 
   }
