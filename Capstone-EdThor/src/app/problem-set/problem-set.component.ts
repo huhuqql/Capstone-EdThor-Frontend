@@ -199,9 +199,9 @@ export class ProblemSetComponent implements OnInit, OnDestroy {
 
 
   ngAfterViewInit() {
-    this.retrieveRecord();
-    // this.ready_selected_num = 78;
-    // this.ready_selected_type = 1;
+    // this.retrieveRecord();
+    this.ready_selected_num = 81;
+    this.ready_selected_type = 1;
 
     const that = this;
 
