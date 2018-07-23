@@ -71,7 +71,7 @@ export class StatisticsComponent implements OnInit {
       var cells = tablerows[i].cells;
       for (var j = 0; j < cells.length; j++) {
         console.log(cells[j].innerHTML);
-        csvString = csvString + cells[j].innerHTML + ",";
+        csvString = csvString + cells[j].innerHTML + ";";
       }
       csvString = csvString.substring(0, csvString.length - 1);
       csvString = csvString + "\n";
@@ -97,7 +97,7 @@ export class StatisticsComponent implements OnInit {
       var cells = tablerows[i].cells;
       for (var j = 0; j < cells.length; j++) {
         console.log(cells[j].innerHTML);
-        csvString = csvString + cells[j].innerHTML + ",";
+        csvString = csvString + cells[j].innerHTML + ";";
       }
       csvString = csvString.substring(0, csvString.length - 1);
       csvString = csvString + "\n";
